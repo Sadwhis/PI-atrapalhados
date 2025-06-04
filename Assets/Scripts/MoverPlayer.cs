@@ -8,6 +8,8 @@ public class MoverPlayer : MonoBehaviour
     [SerializeField] Vector2 _moveInput;
     [SerializeField] float _speed;
     [SerializeField] float _forceJump;
+    [SerializeField] bool _checkGround;
+    [SerializeField] int _numbSort;
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -26,10 +28,13 @@ public class MoverPlayer : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("JumpGround"))
         {
-            if(collision.gameObject.GetComponent<GroundJumpControl>() ._numbcor ==1) 
+            GroundJumpControl groundJump = collision.gameObject.GetComponent<GroundJumpControl>();
+            if(groundJump._numbcor == 1 || groundJump._numbcor==0) 
             {
                 Jump();
               Debug.Log("Pular");
+
+                _numbSort = Random.Range(1, 5);
             }
            
         }
