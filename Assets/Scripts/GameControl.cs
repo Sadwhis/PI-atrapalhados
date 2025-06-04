@@ -9,7 +9,11 @@ public class GameControl : MonoBehaviour
     void Start()
     {
         _groundH = _groundBase.position.y;
-        Invoke("GroundStart", 1);
+        for (int i = 0; i < 10; i++)
+        {
+           Invoke("GroundStart", 0.25f);
+        }
+        
     }
 
     // Update is called once per frame
@@ -18,7 +22,8 @@ public class GameControl : MonoBehaviour
         GameObject bullet = GroundPool._groundPool.GetPooledObject();
         if (bullet != null)
         {
-            bullet.transform.position = new Vector2(bullet.transform.position.x, _groundH + _distance); ;
+            bullet.transform.position = new Vector2(bullet.transform.position.x, _groundH + _distance); 
+            _groundH = bullet.transform.position.y;
             //bullet.transform.rotation = turret.transform.rotation;
             bullet.SetActive(true);
         }

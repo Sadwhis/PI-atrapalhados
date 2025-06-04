@@ -26,7 +26,12 @@ public class MoverPlayer : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("JumpGround"))
         {
-            Debug.Log("Pular");
+            if(collision.gameObject.GetComponent<GroundJumpControl>() ._numbcor ==1) 
+            {
+                Jump();
+              Debug.Log("Pular");
+            }
+           
         }
     }
     void Jump()
