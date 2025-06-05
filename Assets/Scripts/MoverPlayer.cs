@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class MoverPlayer : MonoBehaviour
 {
     Rigidbody2D _rb;
-    [SerializeField] Vector2 _moveInput;
+     Vector2 _moveInput;
     [SerializeField] float _speed;
     [SerializeField] float _forceJump;
     [SerializeField] bool _checkGround;
@@ -29,7 +29,7 @@ public class MoverPlayer : MonoBehaviour
         if (collision.gameObject.CompareTag("JumpGround"))
         {
             GroundJumpControl groundJump = collision.gameObject.GetComponent<GroundJumpControl>();
-            if(groundJump._numbcor == 1 || groundJump._numbcor==0) 
+            if(groundJump._numbcor == _numbSort || groundJump._numbcor==0) 
             {
                 Jump();
               Debug.Log("Pular");
