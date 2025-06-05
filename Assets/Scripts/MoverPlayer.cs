@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class MoverPlayer : MonoBehaviour
 {
+    GameControl _gameControl;
     Rigidbody2D _rb;
      Vector2 _moveInput;
     [SerializeField] float _speed;
@@ -13,6 +14,7 @@ public class MoverPlayer : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _gameControl = GameObject.FindWithTag("GameController").GetComponent<GameControl>();
     }
 
     // Update is called once per frame
@@ -32,9 +34,10 @@ public class MoverPlayer : MonoBehaviour
             if(groundJump._numbcor == _numbSort || groundJump._numbcor==0) 
             {
                 Jump();
-              Debug.Log("Pular");
+              Debug.Log(_numbSort);
 
                 _numbSort = Random.Range(1, 5);
+                _gameControl._menuControl.CorPulo(_numbSort);
             }
            
         }

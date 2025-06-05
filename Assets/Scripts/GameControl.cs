@@ -3,6 +3,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class GameControl : MonoBehaviour
 {
+    public MenuControl _menuControl;
     [SerializeField] Transform _groundBase;
     [SerializeField] float _groundH;
     [SerializeField] float _distance;

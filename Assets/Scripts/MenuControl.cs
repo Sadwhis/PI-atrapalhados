@@ -1,16 +1,22 @@
+using TMPro;
 using UnityEngine;
 
 public class MenuControl : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    GameControl _gameControl;
+    [SerializeField] string[] _nomeCores;
+    [SerializeField] TextMeshProUGUI _textoComando;
     void Start()
     {
-        
+       _gameControl = GameObject.FindWithTag("GameController").GetComponent<GameControl>();
+        CorPulo(0);
     }
 
-    // Update is called once per frame
-    void Update()
+   public void CorPulo(int number)
     {
-        
+        if (number == 0)
+        {
+            _textoComando.text = _nomeCores[number];
+        }
     }
 }
