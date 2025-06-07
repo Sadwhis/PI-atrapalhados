@@ -12,14 +12,15 @@ public class GameControl : MonoBehaviour
     void Start()
     {
         _groundH = _groundBase.position.y;
-        for (int i = 0; i < 10; i++)
-        {
-           Invoke("GroundStart", 0.25f);
-           
-            
-        }
-        
+
+         Invoke("GroundStart", 0.25f);
+
+        GroundTime();
+
+
+
     }
+    
 
     // Update is called once per frame
     void GroundStart()
@@ -29,6 +30,10 @@ public class GameControl : MonoBehaviour
         {
             bullet.transform.position = new Vector2(bullet.transform.position.x, _groundH + _distance); 
             _groundH = bullet.transform.position.y;
+            if(_checkGroundCount == true)
+            {
+                bullet.GetComponent<SpriteRenderer>().color = Color.black;
+            }
             
             //bullet.transform.rotation = turret.transform.rotation;
             bullet.SetActive(true);

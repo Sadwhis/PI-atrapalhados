@@ -44,7 +44,11 @@ public class MoverPlayer : MonoBehaviour
     }
     void Jump()
     {
-        _rb.linearVelocityY = 0;
-        _rb.AddForceY(_forceJump);
+        if(_rb.linearVelocityY <= 0)
+        {
+         _rb.linearVelocityY = 0;
+         _rb.AddForceY(_forceJump);
+        }
+        
     }
 }
