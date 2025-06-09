@@ -20,7 +20,10 @@ public class MoverPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _rb.linearVelocity = new Vector2(_moveInput.x * _speed, _rb.linearVelocity.y);
+        if(_gameControl._gameStay == true)
+        {
+         _rb.linearVelocity = new Vector2(_moveInput.x * _speed, _rb.linearVelocity.y);
+        }
     }
     public void SetMove(InputAction.CallbackContext value)
     {
@@ -40,6 +43,12 @@ public class MoverPlayer : MonoBehaviour
                 _gameControl._menuControl.CorPulo(_numbSort);
             }
            
+        }
+        if (collision.gameObject.CompareTag("FimGame"))
+        {
+            _gameControl._gameStay = false;
+            _gameControl._fimGame = true;
+            _gameControl.GameStay(false);
         }
     }
     void Jump()
