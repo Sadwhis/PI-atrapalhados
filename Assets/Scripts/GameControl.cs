@@ -14,6 +14,9 @@ public class GameControl : MonoBehaviour
     [SerializeField] Transform _panelSartGame;
     public bool _fimGame;
     [SerializeField] Transform _panelFimGame;
+    [SerializeField] Transform _FalaNPC;
+    public GameObject _Falando;
+
     void Start()
     {
         _groundH = _groundBase.position.y;
