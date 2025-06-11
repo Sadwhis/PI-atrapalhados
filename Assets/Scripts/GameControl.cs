@@ -23,8 +23,21 @@ public class GameControl : MonoBehaviour
         Invoke("GroundTime", 0.25f);
         _panelSartGame.gameObject.SetActive(true);
         _panelFimGame.localScale = new Vector3(0,0,0);
+        GroundTime();
     }
-    
+
+      void GroundTime()
+      {
+        for (int i = 0;i<_groundNumber;i++)
+        {
+            GroundStart();
+            if (i < _groundNumber - 2)
+            {
+              _checkGroundCount = true;
+            }
+        }
+      }
+
 
     // Update is called once per frame
     void GroundStart()
@@ -33,29 +46,22 @@ public class GameControl : MonoBehaviour
         if (bullet != null)
         {
             bullet.GetComponent<GroundPref>()._fimGame.SetActive(false);
-            bullet.transform.position = new Vector2(bullet.transform.position.x, _groundH + _distance); 
-            _groundH = bullet.transform.position.y;
+            
+           
             if(_checkGroundCount == true)
             {
                 bullet.GetComponent<SpriteRenderer>().color = Color.black;
                 bullet.GetComponent<GroundPref>()._fimGame.SetActive(true);
             }
             
+            bullet.transform.position = new Vector2(bullet.transform.position.x, _groundH + _distance); 
+            _groundH = bullet.transform.position.y;
             //bullet.transform.rotation = turret.transform.rotation;
+           
             bullet.SetActive(true);
         }
     }
-    void GroundTime()
-    {
-        for (int i = 0;i<_groundNumber;i++)
-        {
-            GroundStart();
-            if (i < _groundNumber - 2)
-            {
-                _checkGroundCount = true;
-            }
-        }
-    }
+  
     IEnumerator TimeFimGame()
     {
         yield return new WaitForSeconds(1);

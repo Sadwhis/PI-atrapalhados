@@ -14,9 +14,9 @@ public class MenuControl : MonoBehaviour
 
    public void CorPulo(int number)
     {
-        if (number == 0)
-        {
+       // if (number == 0)
+        //{
             _textoComando.text = _nomeCores[number];
-        }
+       // }
     }
 }
