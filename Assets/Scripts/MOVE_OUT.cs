@@ -18,11 +18,12 @@ public class MOVE_OUT : MonoBehaviour
         
     }
 
-    
+
     void Update()
     {
         _Velocidade = 5;
         _RigBy.linearVelocity = new Vector2(_Move.x * _Velocidade, _Move.y * _Velocidade);
+        ButtonDialogue();
     }
 
     public void SetMove(InputAction.CallbackContext value)
@@ -48,7 +49,7 @@ public class MOVE_OUT : MonoBehaviour
         
     }
 
-    public void ButtonDialogue(bool Active)
+    public void ButtonDialogue()
     {
         
         if(_BD == true)
