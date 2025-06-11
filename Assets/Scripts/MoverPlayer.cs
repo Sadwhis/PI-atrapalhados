@@ -48,6 +48,13 @@ public class MoverPlayer : MonoBehaviour
         {
             _gameControl._gameStay = false;
             _gameControl._fimGame = true;
+
+            _rb.bodyType = RigidbodyType2D.Kinematic;
+            _rb.linearVelocity = new Vector2(0, 0);
+
+            _gameControl._panelFimGame.gameObject.SetActive(true);
+            _gameControl._panelFimGame.transform.localScale = Vector3.one;
+
             _gameControl.GameStay(false);
         }
     }

@@ -220,7 +220,7 @@ Transform:
   m_GameObject: {fileID: 259313094}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000071525574, y: 0.00000023841858, z: -1.99}
+  m_LocalPosition: {x: -0.00000047683716, y: 0.00000023841858, z: -1.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -297,10 +297,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nomeCores:
   - mashemelo
-  - "algod\xE3o doce"
-  - "ursinho de lim\xE3o"
-  - sanduiche de soverte
+  - sanduicher de soverte
   - sapo de chocolate
+  - "ursinho de lim\xE3o"
+  - "algod\xE3o doce"
   _textoComando: {fileID: 1276740002}
 --- !u!1 &408349121
 GameObject:
@@ -1847,7 +1847,7 @@ Transform:
   m_GameObject: {fileID: 2022736394}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000071525574, y: 0.00000023841858, z: -1.99}
+  m_LocalPosition: {x: -0.00000047683716, y: 0.00000023841858, z: -1.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

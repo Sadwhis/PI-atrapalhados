@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
 public class GameControl : MonoBehaviour
@@ -13,7 +14,7 @@ public class GameControl : MonoBehaviour
     public int _groundNumber;
     [SerializeField] Transform _panelSartGame;
     public bool _fimGame;
-    [SerializeField] Transform _panelFimGame;
+    public Transform _panelFimGame;
     [SerializeField] Transform _FalaNPC;
     public GameObject _Falando;
 
@@ -23,7 +24,7 @@ public class GameControl : MonoBehaviour
         Invoke("GroundTime", 0.25f);
         _panelSartGame.gameObject.SetActive(true);
         _panelFimGame.localScale = new Vector3(0,0,0);
-        GroundTime();
+        
     }
 
       void GroundTime()
@@ -31,7 +32,7 @@ public class GameControl : MonoBehaviour
         for (int i = 0;i<_groundNumber;i++)
         {
             GroundStart();
-            if (i < _groundNumber - 2)
+            if (i == _groundNumber-2)
             {
               _checkGroundCount = true;
             }
@@ -77,5 +78,9 @@ public class GameControl : MonoBehaviour
         {
             _panelFimGame.localScale = new Vector3(1,1,1);
         }
+    }
+    public void ResetarCena()
+    {
+        SceneManager.LoadScene("Game1");
     }
 }
