@@ -20,7 +20,10 @@ public class MoverPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _rb.linearVelocity = new Vector2(_moveInput.x * _speed, _rb.linearVelocity.y);
+        if(_gameControl._gameStay == true)
+        {
+         _rb.linearVelocity = new Vector2(_moveInput.x * _speed, _rb.linearVelocity.y);
+        }
     }
     public void SetMove(InputAction.CallbackContext value)
     {
@@ -41,10 +44,27 @@ public class MoverPlayer : MonoBehaviour
             }
            
         }
+        if (collision.gameObject.CompareTag("FimGame"))
+        {
+            _gameControl._gameStay = false;
+            _gameControl._fimGame = true;
+
+            _rb.bodyType = RigidbodyType2D.Kinematic;
+            _rb.linearVelocity = new Vector2(0, 0);
+
+            _gameControl._panelFimGame.gameObject.SetActive(true);
+            _gameControl._panelFimGame.transform.localScale = Vector3.one;
+
+            _gameControl.GameStay(false);
+        }
     }
     void Jump()
     {
-        _rb.linearVelocityY = 0;
-        _rb.AddForceY(_forceJump);
+        if(_rb.linearVelocityY <= 0)
+        {
+         _rb.linearVelocityY = 0;
+         _rb.AddForceY(_forceJump);
+        }
+        
     }
 }

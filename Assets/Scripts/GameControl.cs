@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
 public class GameControl : MonoBehaviour
@@ -8,18 +10,35 @@ public class GameControl : MonoBehaviour
     [SerializeField] float _groundH;
     [SerializeField] float _distance;
     [SerializeField] bool _checkGroundCount;
+    public bool _gameStay;
     public int _groundNumber;
+    [SerializeField] Transform _panelSartGame;
+    public bool _fimGame;
+    public Transform _panelFimGame;
+    [SerializeField] Transform _FalaNPC;
+    public GameObject _Falando;
+
     void Start()
     {
         _groundH = _groundBase.position.y;
-        for (int i = 0; i < 10; i++)
-        {
-           Invoke("GroundStart", 0.25f);
-           
-            
-        }
+        Invoke("GroundTime", 0.25f);
+        _panelSartGame.gameObject.SetActive(true);
+        _panelFimGame.localScale = new Vector3(0,0,0);
         
     }
+
+      void GroundTime()
+      {
+        for (int i = 0;i<_groundNumber;i++)
+        {
+            GroundStart();
+            if (i == _groundNumber-2)
+            {
+              _checkGroundCount = true;
+            }
+        }
+      }
+
 
     // Update is called once per frame
     void GroundStart()
@@ -27,22 +46,41 @@ public class GameControl : MonoBehaviour
         GameObject bullet = GroundPool._groundPool.GetPooledObject();
         if (bullet != null)
         {
+            bullet.GetComponent<GroundPref>()._fimGame.SetActive(false);
+            
+           
+            if(_checkGroundCount == true)
+            {
+                bullet.GetComponent<SpriteRenderer>().color = Color.black;
+                bullet.GetComponent<GroundPref>()._fimGame.SetActive(true);
+            }
+            
             bullet.transform.position = new Vector2(bullet.transform.position.x, _groundH + _distance); 
             _groundH = bullet.transform.position.y;
-            
             //bullet.transform.rotation = turret.transform.rotation;
+           
             bullet.SetActive(true);
         }
     }
-    void GroundTime()
+  
+    IEnumerator TimeFimGame()
     {
-        for (int i = 0;i<_groundNumber;i++)
+        yield return new WaitForSeconds(1);
+    }
+    public void GameStay(bool ativar)
+    {
+        _gameStay = ativar;
+        if(_gameStay == true)
         {
-            GroundStart();
-            if (i < _groundNumber - 2)
-            {
-                _checkGroundCount = true;
-            }
+            _panelSartGame.localScale = new Vector3(0, 0, 0);
         }
+        else if(_fimGame == true)
+        {
+            _panelFimGame.localScale = new Vector3(1,1,1);
+        }
+    }
+    public void ResetarCena()
+    {
+        SceneManager.LoadScene("Game1");
     }
 }

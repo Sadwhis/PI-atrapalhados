@@ -7,7 +7,7 @@ public class GroundPool : ObjectPool
     public override void Awake()
     {
         base.Awake();
-        base.amountToPool = _gameControl._groundNumber;
         _groundPool = this;
+        base.amountToPool = _gameControl._groundNumber;
     }
 }
