@@ -410,6 +410,7 @@ MonoBehaviour:
   _groundH: 0
   _distance: 5
   _checkGroundCount: 0
+<<<<<<< Updated upstream
   _gameStay: 0
   _groundNumber: 10
   _panelSartGame: {fileID: 549662975}
@@ -417,6 +418,9 @@ MonoBehaviour:
   _panelFimGame: {fileID: 538227610}
   _FalaNPC: {fileID: 0}
   _Falando: {fileID: 0}
+=======
+  _groundNumber: 0
+>>>>>>> Stashed changes
 --- !u!114 &392007454
 MonoBehaviour:
   m_ObjectHideFlags: 0
