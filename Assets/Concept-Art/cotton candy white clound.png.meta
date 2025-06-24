@@ -247,7 +247,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      cotton candy white clound_0: -1484634784448263561
+      cotton candy white clound_1: 2124863946427790943
+      cotton candy white clound_2: -768234657483864749
+      cotton candy white clound_3: 1803318454743966710
+      cotton candy white clound_4: 5455706428319230840
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

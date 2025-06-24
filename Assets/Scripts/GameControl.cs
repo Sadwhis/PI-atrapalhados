@@ -83,4 +83,8 @@ public class GameControl : MonoBehaviour
     {
         SceneManager.LoadScene("Game1");
     }
+    public void ResetarCena(string Cena)
+    {
+        SceneManager.LoadScene(Cena);
+    }
 }
