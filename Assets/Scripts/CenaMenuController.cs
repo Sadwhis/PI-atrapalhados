@@ -83,4 +83,13 @@ public class CenaMenuController : MonoBehaviour
             _painelconfig[i].DOScale(0, .25f);
         }
     }
+    IEnumerator TimerStart()
+    {
+        for(int i = 0; i < _painelStart.Length; i++)
+        {
+            _painelStart[i].DOScale(1.5f, .25f);
+            yield return new WaitForSeconds(0.25f);
+            _painelStart[i].DOScale(1, .25f);
+        }
+    }
 }
