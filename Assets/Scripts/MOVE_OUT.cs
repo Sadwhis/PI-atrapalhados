@@ -22,7 +22,7 @@ public class MOVE_OUT : MonoBehaviour
     void Update()
     {
         _Velocidade = 5;
-        _RigBy.linearVelocity = new Vector2(_Move.x * _Velocidade, _Move.y * _Velocidade);
+        _RigBy.linearVelocity = new Vector2(_Move.x * _Velocidade,_RigBy.linearVelocity.y);
         ButtonDialogue();
     }
 
