@@ -5,7 +5,7 @@ public class InimigoPool : ObjectPool
 {
     public static InimigoPool _InimigoPool;
 
-    protected override void Awake()
+    public override void Awake()
     {
         base.Awake();
         _InimigoPool = this;

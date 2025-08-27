@@ -1,15 +1,35 @@
 using UnityEngine;
 
-public class INIMIGOSPAI : MonoBehaviour
+public class INIMIGOSPAI : InimigoPool
 {
+
+    public static INIMIGOSPAI _InimigosPai;
+
+    [SerializeField] int _Vida;
+    [SerializeField] float _Velocidade;
+    [SerializeField] Rigidbody _RB;
+
+    public override void Awake()
+    {
+        _RB = GetComponent<Rigidbody>();
+
+
+    }
+        
+
     
-    void Start()
+    void Update()
     {
         
     }
 
-    
-    void Update()
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
     {
         
     }

@@ -9,13 +9,13 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] protected GameObject objectToPool;
     [SerializeField] protected int amountToPool;
 
-    protected virtual void Awake()
+    public virtual void Awake()
     {
         _gameControl = GameObject.FindWithTag("GameController").GetComponent<GameControl>();
         //SharedInstance = this;
     }
 
-    protected virtual void Start()
+    public virtual void Start()
     {
         pooledObjects = new List<GameObject>();
         GameObject tmp;
@@ -26,7 +26,7 @@ public class ObjectPool : MonoBehaviour
             pooledObjects.Add(tmp);
         }
     }
-    protected virtual  GameObject GetPooledObject()
+    public virtual  GameObject GetPooledObject()
     {
         for (int i = 0; i < amountToPool; i++)
         {
