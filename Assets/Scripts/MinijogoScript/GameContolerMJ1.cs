@@ -2,13 +2,18 @@ using UnityEngine;
 
 public class GameContolerMJ1 : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] float _DistanciaInimigo;
+    [SerializeField] int _quantidade;
+    [SerializeField] float _posicao;   
+
+
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         

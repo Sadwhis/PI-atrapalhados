@@ -5,6 +5,7 @@ public class ObjectPool : MonoBehaviour
 {
     //public static ObjectPool SharedInstance;
     [SerializeField] protected GameControl _gameControl;
+    [SerializeField] protected GameContolerMJ1 _GCMJ1;
     [SerializeField] protected List<GameObject> pooledObjects;
     [SerializeField] protected GameObject objectToPool;
     [SerializeField] protected int amountToPool;
