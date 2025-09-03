@@ -6,7 +6,7 @@ public class MoverPlayer : MonoBehaviour
 {
     GameControl _gameControl;
     Rigidbody2D _rb;
-     Vector2 _moveInput;
+    Vector2 _moveInput;
     [SerializeField] float _speed;
     [SerializeField] float _forceJump;
     [SerializeField] bool _checkGround;

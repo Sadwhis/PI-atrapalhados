@@ -427,7 +427,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.94, y: 0.14}
+  m_Size: {x: 0.97, y: 0.35}
   m_EdgeRadius: 0
 --- !u!1 &114820843
 GameObject:
@@ -875,11 +875,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
-  far clip plane: 5000
-  field of view: 40
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 10.84
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -904,7 +904,7 @@ Transform:
   m_GameObject: {fileID: 481027485}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.580927, y: 0.09981501, z: -10.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1229,6 +1229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameControl: {fileID: 1623711835}
+  _GCMJ1: {fileID: 0}
   pooledObjects: []
   objectToPool: {fileID: 693008298067923955, guid: 077bd2becee55464780cb0003a90c76b, type: 3}
   amountToPool: 10
@@ -1243,9 +1244,10 @@ GameObject:
   - component: {fileID: 884957372}
   - component: {fileID: 884957374}
   - component: {fileID: 884957373}
+  - component: {fileID: 884957375}
   m_Layer: 0
   m_Name: GroundJump
-  m_TagString: Untagged
+  m_TagString: JumpGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1366,6 +1368,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &884957375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884957371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cc12bf7d763a5e4a9cf0be4096360b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numbcor: 0
 --- !u!1 &894364107
 GameObject:
   m_ObjectHideFlags: 0
@@ -1535,7 +1550,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 2118681076}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -1549,7 +1564,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 114820843}
+      - m_Target: {fileID: 894364107}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -1868,7 +1883,7 @@ MonoBehaviour:
   _groundNumber: 5
   _panelSartGame: {fileID: 894364108}
   _fimGame: 0
-  _panelFimGame: {fileID: 0}
+  _panelFimGame: {fileID: 114820844}
   _FalaNPC: {fileID: 0}
   _Falando: {fileID: 0}
 --- !u!114 &1623711836
