@@ -1,15 +1,18 @@
 using UnityEngine;
 
-public class FALA_OUT : MonoBehaviour
+public class GAMECONTROL_OUT : MonoBehaviour
 {
-    public bool _FALA;
+
+    [SerializeField] public GameObject _Falando;
+
     void Start()
     {
         
 
+
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         
