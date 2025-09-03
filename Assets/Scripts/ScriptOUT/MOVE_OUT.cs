@@ -7,14 +7,14 @@ public class MOVE_OUT : MonoBehaviour
     [SerializeField] Rigidbody2D _RigBy;
     [SerializeField] Vector2 _Move;
     [SerializeField] int _Velocidade;
-    GameControl _GC;
+    GAMECONTROL_OUT _GC;
     public bool _BD;
     
 
     void Start()
     {
         _RigBy=GetComponent<Rigidbody2D>();
-        _GC = GameObject.FindWithTag("GameController").GetComponent<GameControl>();
+        _GC = GameObject.FindWithTag("GAMEOUT").GetComponent<GAMECONTROL_OUT>();
         
     }
 
