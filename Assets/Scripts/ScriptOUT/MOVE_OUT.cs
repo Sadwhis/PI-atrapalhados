@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MOVE_OUT : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class MOVE_OUT : MonoBehaviour
     [SerializeField] int _Velocidade;
     GAMECONTROL_OUT _GC;
     public bool _BD;
+    [SerializeField] float _jump;
     
 
     void Start()
@@ -23,8 +25,22 @@ public class MOVE_OUT : MonoBehaviour
     {
         _Velocidade = 5;
         _RigBy.linearVelocity = new Vector2(_Move.x * _Velocidade,_RigBy.linearVelocity.y);
+        //_RigBy.AddForceY(_jump);
         ButtonDialogue();
+        //Jump();
+
     }
+    //void Jump()
+   // {
+      //  if ()
+       // {
+       //     _RigBy.linearVelocityY = 0;
+      //     _RigBy.AddForceY(_jump);
+
+       // }
+
+   // }
+
 
     public void SetMove(InputAction.CallbackContext value)
     {
