@@ -81,7 +81,7 @@ public class GameControl : MonoBehaviour
     }
     public void ResetarCena()
     {
-        SceneManager.LoadScene("Game1");
+        SceneManager.LoadScene("Sapo-Cururu");
     }
     public void ResetarCena(string Cena)
     {
