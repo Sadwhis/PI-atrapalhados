@@ -11,13 +11,14 @@ public class MOVE_OUT : MonoBehaviour
     GAMECONTROL_OUT _GC;
     public bool _BD;
     [SerializeField] float _jump;
-    
+
+    [SerializeField] bool _CheckGround;
 
     void Start()
     {
         _RigBy=GetComponent<Rigidbody2D>();
         _GC = GameObject.FindWithTag("GAMEOUT").GetComponent<GAMECONTROL_OUT>();
-        
+       
     }
 
 
@@ -25,21 +26,20 @@ public class MOVE_OUT : MonoBehaviour
     {
         _Velocidade = 5;
         _RigBy.linearVelocity = new Vector2(_Move.x * _Velocidade,_RigBy.linearVelocity.y);
-        //_RigBy.AddForceY(_jump);
+        
         ButtonDialogue();
-        //Jump();
+       
 
     }
-    //void Jump()
-   // {
-      //  if ()
-       // {
-       //     _RigBy.linearVelocityY = 0;
-      //     _RigBy.AddForceY(_jump);
+    public void Jump(InputAction.CallbackContext value)
+    { 
+        if (_CheckGround == true)
+        {
+            _RigBy.AddForce(new Vector2(0, 3), ForceMode2D.Impulse);
 
-       // }
+        }
 
-   // }
+    }
 
 
     public void SetMove(InputAction.CallbackContext value)
@@ -56,13 +56,22 @@ public class MOVE_OUT : MonoBehaviour
             _GC._Falando.SetActive(true);
             
         }
-       
+        if (collision.gameObject.tag == "Ground")
+        {
+            _CheckGround = true;
+
+        }
 
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        
+
+        if (collision.gameObject.tag == "Ground")
+        {
+            _CheckGround = false;
+        }
+
     }
 
     public void ButtonDialogue()
