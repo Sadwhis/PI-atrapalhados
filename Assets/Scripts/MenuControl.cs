@@ -8,15 +8,17 @@ public class MenuControl : MonoBehaviour
     [SerializeField] TextMeshProUGUI _textoComando;
     void Start()
     {
-       _gameControl = GameObject.FindWithTag("GameController").GetComponent<GameControl>();
+        _gameControl = GameObject.FindWithTag("GameController").GetComponent<GameControl>();
         CorPulo(0);
     }
 
-   public void CorPulo(int number)
+    public void CorPulo(int number)
     {
-       // if (number == 0)
+        // if (number == 0)
         //{
-            _textoComando.text = _nomeCores[number];
-       // }
+        _textoComando.text = _nomeCores[number];
+        // }
     }
+    //Texto texte pra ver se o junijho volta pra gente
+    
 }
