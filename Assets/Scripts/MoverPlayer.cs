@@ -1,9 +1,15 @@
+using DG.Tweening;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class MoverPlayer : MonoBehaviour
 {
+    SpriteRenderer _sp;
+    bool _checkHit;
+    [SerializeField] float _tempoInicial;
+    [SerializeField] bool _rodado;
+    [SerializeField] float _tempoRestante;
     GameControl _gameControl;
     Rigidbody2D _rb;
     Vector2 _moveInput;
@@ -14,15 +20,29 @@ public class MoverPlayer : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _sp = GetComponent<SpriteRenderer>();
         _gameControl = GameObject.FindWithTag("GameController").GetComponent<GameControl>();
+        _tempoRestante = _tempoInicial;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(_gameControl._gameStay == true)
+        if (_gameControl._gameStay == true)
         {
-         _rb.linearVelocity = new Vector2(_moveInput.x * _speed, _rb.linearVelocity.y);
+            _rb.linearVelocity = new Vector2(_moveInput.x * _speed, _rb.linearVelocity.y);
+        }
+        if (_rodado)
+        {
+            _tempoRestante -= Time.deltaTime;
+            if(_tempoRestante <= 0f)
+            {
+                _tempoRestante = _tempoInicial;
+                _sp.DOColor(Color.white, 0.25f);
+                _checkHit = false;
+                _rodado = false;
+
+            }
         }
     }
     public void SetMove(InputAction.CallbackContext value)
@@ -60,11 +80,22 @@ public class MoverPlayer : MonoBehaviour
     }
     void Jump()
     {
-        if(_rb.linearVelocityY <= 0)
+        if (_rb.linearVelocityY <= 0)
         {
-         _rb.linearVelocityY = 0;
-         _rb.AddForceY(_forceJump);
+            _rb.linearVelocityY = 0;
+            _rb.AddForceY(_forceJump);
         }
-        
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("HitPlayer") && _checkHit==false)
+        {
+            Debug.Log("Hit");
+            _gameControl._hudControl.HitSlider();
+            _sp.DOColor(Color.red, 0.25f);
+            _checkHit = true;
+            _rodado = true;
+        }
     }
 }

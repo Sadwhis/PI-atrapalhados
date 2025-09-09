@@ -9,6 +9,7 @@ TagManager:
   - FimGame
   - FALA(NPC)
   - GAMEOUT
+  - HitPlayer
   layers:
   - Default
   - TransparentFX

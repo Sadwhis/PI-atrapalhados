@@ -742,7 +742,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 183626883}
         m_TargetAssemblyTypeName: CenaMenuController, Assembly-CSharp
-        m_MethodName: PainelStartCheck
+        m_MethodName: PainelConfigCheck
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

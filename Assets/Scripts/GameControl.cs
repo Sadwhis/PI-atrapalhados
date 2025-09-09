@@ -6,6 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 public class GameControl : MonoBehaviour
 {
     public MenuControl _menuControl;
+    public HudControl _hudControl;
     [SerializeField] Transform _groundBase;
     [SerializeField] float _groundH;
     [SerializeField] float _distance;
@@ -17,7 +18,7 @@ public class GameControl : MonoBehaviour
     public Transform _panelFimGame;
     [SerializeField] Transform _FalaNPC;
     public GameObject _Falando;
-
+    public GameControl _gameControl;
     void Start()
     {
         _groundH = _groundBase.position.y;

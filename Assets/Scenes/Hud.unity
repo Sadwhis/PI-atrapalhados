@@ -1334,6 +1334,7 @@ MonoBehaviour:
   _imagemGameOver:
   - {fileID: 331994984}
   - {fileID: 16246024}
+  _gameControl: {fileID: 0}
 --- !u!114 &808466820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1540,7 +1541,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
