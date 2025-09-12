@@ -9,7 +9,8 @@ public class MOVE_OUT : MonoBehaviour
     [SerializeField] Vector2 _Move;
     [SerializeField] int _Velocidade;
     GAMECONTROL_OUT _GC;
-    public bool _BD;
+    [SerializeField] public bool _BD;
+    [SerializeField] public bool _BDE;
     [SerializeField] float _jump;
 
     [SerializeField] bool _CheckGround;
@@ -84,4 +85,16 @@ public class MOVE_OUT : MonoBehaviour
         }
 
     }
+
+    public void ButtonExit()
+    {
+        if(_BDE == true)
+        {
+            _GC._Falando.SetActive(false);
+
+        }
+
+
+    }
+
 }
