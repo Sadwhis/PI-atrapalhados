@@ -28,7 +28,7 @@ public class MOVE_OUT : MonoBehaviour
         _Velocidade = 5;
         _RigBy.linearVelocity = new Vector2(_Move.x * _Velocidade,_RigBy.linearVelocity.y);
         
-        ButtonDialogue();
+        //ButtonDialogue();
        
 
     }
@@ -75,26 +75,26 @@ public class MOVE_OUT : MonoBehaviour
 
     }
 
-    public void ButtonDialogue()
-    {
+    //public void ButtonDialogue()
+   // {
         
-        if(_BD == true)
-        {
-            SceneManager.LoadScene("Sapo-Cururu");
+       // if(_BD == true)
+      //  {
+         //   SceneManager.LoadScene("Sapo-Cururu");
 
-        }
+       // }
 
-    }
+   // }
 
-    public void ButtonExit()
-    {
-        if(_BDE == true)
-        {
-            _GC._Falando.SetActive(false);
+   // public void ButtonExit()
+   // {
+       // if(_BDE == true)
+      //  {
+         //   _GC._Falando.SetActive(false);
 
-        }
+       // }
 
-
-    }
+    
+    //}
 
 }
