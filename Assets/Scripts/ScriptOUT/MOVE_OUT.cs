@@ -1,100 +1,92 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class MOVE_OUT : MonoBehaviour
 {
-    [SerializeField] Rigidbody2D _RigBy;
-    [SerializeField] Vector2 _Move;
-    [SerializeField] int _Velocidade;
-    GAMECONTROL_OUT _GC;
-    [SerializeField] public bool _BD;
-    [SerializeField] public bool _BDE;
-    [SerializeField] float _jump;
+    [Header("Componentes")]
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private GAMECONTROL_OUT gameController;
 
-    [SerializeField] bool _CheckGround;
+    [Header("Movimento")]
+    [SerializeField] private float velocidade = 5f;
+    private Vector2 moveInput;
 
-    void Start()
+    [Header("Pulo")]
+    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundRadius = 0.2f;
+    [SerializeField] private LayerMask groundLayer;
+    private bool isGrounded;
+
+    [Header("Diálogo")]
+    [SerializeField] public bool botaoDialogo;
+    [SerializeField] public bool botaoDialogoExit;
+
+    private void Start()
     {
-        _RigBy=GetComponent<Rigidbody2D>();
-        _GC = GameObject.FindWithTag("GAMEOUT").GetComponent<GAMECONTROL_OUT>();
-       
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
+        if (gameController == null) gameController = GameObject.FindWithTag("GAMEOUT").GetComponent<GAMECONTROL_OUT>();
     }
 
-
-    void Update()
+    private void Update()
     {
-        _Velocidade = 5;
-        _RigBy.linearVelocity = new Vector2(_Move.x * _Velocidade,_RigBy.linearVelocity.y);
-        
-        //ButtonDialogue();
-       
+        // Movimento horizontal
+        rb.linearVelocity = new Vector2(moveInput.x * velocidade, rb.linearVelocity.y);
 
+        // Checa se está no chão
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
     }
-    public void Jump(InputAction.CallbackContext value)
-    { 
-        if (_CheckGround == true)
+
+    // Input do Movimento
+    public void SetMove(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<Vector2>();
+    }
+
+    // Input do Pulo
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if (context.performed && isGrounded)
         {
-            _RigBy.AddForce(new Vector2(0, 3), ForceMode2D.Impulse);
-
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
-
     }
-
-
-    public void SetMove(InputAction.CallbackContext value)
-    {
-        _Move=value.ReadValue<Vector2>();
-
-    }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("FALA(NPC)"))
+        if (collision.CompareTag("FALA(NPC)"))
         {
-            _GC._Falando.SetActive(true);
-            
+            gameController._Falando.SetActive(true);
         }
-        if (collision.gameObject.tag == "Ground")
-        {
-            _CheckGround = true;
-
-        }
-
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    /*
+    // botões de diálogo no futuro
+    public void ButtonDialogue()
     {
-
-        if (collision.gameObject.tag == "Ground")
+        if (botaoDialogo)
         {
-            _CheckGround = false;
+            SceneManager.LoadScene("Sapo-Cururu");
         }
-
     }
 
-    //public void ButtonDialogue()
-   // {
-        
-       // if(_BD == true)
-      //  {
-         //   SceneManager.LoadScene("Sapo-Cururu");
+    public void ButtonExit()
+    {
+        if (botaoDialogoExit)
+        {
+            gameController._Falando.SetActive(false);
+        }
+    }
+    */
 
-       // }
-
-   // }
-
-   // public void ButtonExit()
-   // {
-       // if(_BDE == true)
-      //  {
-         //   _GC._Falando.SetActive(false);
-
-       // }
-
-    
-    //}
-
+    private void OnDrawGizmosSelected()
+    {
+        // Gizmo para visualizar o Ground Check
+        if (groundCheck != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(groundCheck.position, groundRadius);
+        }
+    }
 }
