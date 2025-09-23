@@ -17,7 +17,6 @@ public class GameControl : MonoBehaviour
     public bool _fimGame;
     public Transform _panelFimGame;
     [SerializeField] Transform _FalaNPC;
-    public GameObject _Falando;
     public GameControl _gameControl;
     void Start()
     {

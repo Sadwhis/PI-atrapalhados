@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 public class MOVE_OUT : MonoBehaviour
 {
     [Header("Componentes")]
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] public Rigidbody2D rb;
     [SerializeField] private GAMECONTROL_OUT gameController;
+    public Main_HudControll _mainHud;
 
     [Header("Movimento")]
-    [SerializeField] private float velocidade = 5f;
+    [SerializeField] public float velocidade;
     private Vector2 moveInput;
 
     [Header("Pulo")]
@@ -17,16 +18,17 @@ public class MOVE_OUT : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
-    private bool isGrounded;
+    public bool isGrounded;
 
     [Header("Diálogo")]
-    [SerializeField] public bool botaoDialogo;
+    [SerializeField] public bool _botaoDialogo;
     [SerializeField] public bool botaoDialogoExit;
 
     private void Start()
     {
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         if (gameController == null) gameController = GameObject.FindWithTag("GAMEOUT").GetComponent<GAMECONTROL_OUT>();
+        _mainHud = GameObject.FindWithTag("Hud").GetComponent<Main_HudControll>();
     }
 
     private void Update()
@@ -57,7 +59,8 @@ public class MOVE_OUT : MonoBehaviour
     {
         if (collision.CompareTag("FALA(NPC)"))
         {
-            gameController._Falando.SetActive(true);
+            _mainHud.MostrarDialogo();
+            _botaoDialogo = true;
         }
     }
 
