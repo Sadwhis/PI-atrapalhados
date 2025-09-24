@@ -3,13 +3,13 @@ using DG.Tweening;
 
 public class Main_HudControll : MonoBehaviour
 {
-    MOVE_OUT _moveScript;
+    PlayerController _moveScript;
     [SerializeField] GameObject _painelStart;
     public GameObject _DialogoIni;
 
     void Start()
     {
-        _moveScript = GameObject.FindWithTag("Player").GetComponent<MOVE_OUT>();
+        _moveScript = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 
         _DialogoIni.SetActive(false);
     }

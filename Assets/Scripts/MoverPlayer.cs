@@ -28,10 +28,6 @@ public class MoverPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_gameControl._gameStay == true)
-        {
-            _rb.linearVelocity = new Vector2(_moveInput.x * _speed, _rb.linearVelocity.y);
-        }
         if (_rodado)
         {
             _tempoRestante -= Time.deltaTime;
@@ -77,6 +73,14 @@ public class MoverPlayer : MonoBehaviour
 
             _gameControl.GameStay(false);
         }
+    }
+
+    private void FixedUpdate()
+    {
+       
+        
+            _rb.linearVelocity = new Vector2(_moveInput.x * _speed, _rb.linearVelocity.y);
+        
     }
     void Jump()
     {

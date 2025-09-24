@@ -2,11 +2,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class MOVE_OUT : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [Header("Componentes")]
-    [SerializeField] public Rigidbody2D rb;
-    [SerializeField] private GAMECONTROL_OUT gameController;
+    public Rigidbody2D rb;
     public Main_HudControll _mainHud;
 
     [Header("Movimento")]
@@ -20,14 +19,9 @@ public class MOVE_OUT : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     public bool isGrounded;
 
-    [Header("Diálogo")]
-    [SerializeField] public bool _botaoDialogo;
-    [SerializeField] public bool botaoDialogoExit;
-
     private void Start()
     {
         if (rb == null) rb = GetComponent<Rigidbody2D>();
-        if (gameController == null) gameController = GameObject.FindWithTag("GAMEOUT").GetComponent<GAMECONTROL_OUT>();
         _mainHud = GameObject.FindWithTag("Hud").GetComponent<Main_HudControll>();
     }
 
@@ -60,29 +54,9 @@ public class MOVE_OUT : MonoBehaviour
         if (collision.CompareTag("FALA(NPC)"))
         {
             _mainHud.MostrarDialogo();
-            _botaoDialogo = true;
+           
         }
     }
-
-    /*
-    // botões de diálogo no futuro
-    public void ButtonDialogue()
-    {
-        if (botaoDialogo)
-        {
-            SceneManager.LoadScene("Sapo-Cururu");
-        }
-    }
-
-    public void ButtonExit()
-    {
-        if (botaoDialogoExit)
-        {
-            gameController._Falando.SetActive(false);
-        }
-    }
-    */
-
     private void OnDrawGizmosSelected()
     {
         // Gizmo para visualizar o Ground Check
