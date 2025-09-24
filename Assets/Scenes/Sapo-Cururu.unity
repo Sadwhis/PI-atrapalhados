@@ -1323,8 +1323,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 613.9, y: 0}
+  m_SizeDelta: {x: 353.79, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &528290119
 MonoBehaviour:
@@ -1726,7 +1726,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -97.706726, y: -3.778717}
+  m_AnchoredPosition: {x: -97.70679, y: -3.7786865}
   m_SizeDelta: {x: 0, y: -0.000061035156}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &791871042
@@ -3295,7 +3295,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -97.706726, y: -3.778717}
+  m_AnchoredPosition: {x: -97.70679, y: -3.7786865}
   m_SizeDelta: {x: 0, y: -0.000061035156}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1339683273
@@ -3669,7 +3669,6 @@ MonoBehaviour:
   _fimGame: 0
   _panelFimGame: {fileID: 114820844}
   _FalaNPC: {fileID: 0}
-  _Falando: {fileID: 0}
   _gameControl: {fileID: 0}
 --- !u!114 &1623711836
 MonoBehaviour:
@@ -3710,7 +3709,6 @@ MonoBehaviour:
   _imagemGameOver:
   - {fileID: 731081479}
   - {fileID: 1932908895}
-  _gameControl: {fileID: 0}
 --- !u!1 &1776467543
 GameObject:
   m_ObjectHideFlags: 0
@@ -4382,7 +4380,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1932908895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4475,7 +4473,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -97.706726, y: 255.90762}
+  m_AnchoredPosition: {x: -97.70679, y: 255.90762}
   m_SizeDelta: {x: 0, y: -1126}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1986068289
@@ -4886,6 +4884,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0725645381c9ecc43825a6283d24c486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tempoInicial: 0
+  _rodado: 0
+  _tempoRestante: 0
   _speed: 5
   _forceJump: 560
   _checkGround: 0
