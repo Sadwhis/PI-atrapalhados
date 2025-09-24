@@ -50,16 +50,18 @@ public class MoverPlayer : MonoBehaviour
         if (collision.gameObject.CompareTag("JumpGround"))
         {
             GroundJumpControl groundJump = collision.gameObject.GetComponent<GroundJumpControl>();
-            if(groundJump._numbcor == _numbSort || groundJump._numbcor==0) 
+            if ((groundJump._numbcor == _numbSort || groundJump._numbcor == 0) && !_checkGround)
             {
                 Jump();
-              Debug.Log(_numbSort);
+                Debug.Log(_numbSort);
 
                 _numbSort = Random.Range(1, 5);
                 _gameControl._menuControl.CorPulo(_numbSort);
+
+                _checkGround = true; // evita pulao
             }
-           
         }
+
         if (collision.gameObject.CompareTag("FimGame"))
         {
             _gameControl._gameStay = false;
@@ -72,6 +74,14 @@ public class MoverPlayer : MonoBehaviour
             _gameControl._panelFimGame.transform.localScale = Vector3.one;
 
             _gameControl.GameStay(false);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("JumpGround"))
+        {
+            _checkGround = false; // libera pulo 
         }
     }
 
