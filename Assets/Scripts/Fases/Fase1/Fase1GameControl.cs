@@ -3,10 +3,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
-public class GameControl : MonoBehaviour
+public class Fase1GameControl : MonoBehaviour
 {
     public MenuControl _menuControl;
-    public HudControl _hudControl;
     [SerializeField] Transform _groundBase;
     [SerializeField] float _groundH;
     [SerializeField] float _distance;
@@ -16,8 +15,6 @@ public class GameControl : MonoBehaviour
     [SerializeField] Transform _panelSartGame;
     public bool _fimGame;
     public Transform _panelFimGame;
-    [SerializeField] Transform _FalaNPC;
-    public GameControl _gameControl;
     void Start()
     {
         _groundH = _groundBase.position.y;
@@ -81,7 +78,7 @@ public class GameControl : MonoBehaviour
     }
     public void ResetarCena()
     {
-        SceneManager.LoadScene("Sapo-Cururu");
+        SceneManager.LoadScene("Fase1");
     }
     public void ResetarCena(string Cena)
     {

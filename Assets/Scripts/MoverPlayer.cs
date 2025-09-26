@@ -10,7 +10,7 @@ public class MoverPlayer : MonoBehaviour
     [SerializeField] float _tempoInicial;
     [SerializeField] bool _rodado;
     [SerializeField] float _tempoRestante;
-    GameControl _gameControl;
+    Fase1GameControl _gameControl;
     Rigidbody2D _rb;
     Vector2 _moveInput;
     [SerializeField] float _speed;
@@ -21,7 +21,7 @@ public class MoverPlayer : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _sp = GetComponent<SpriteRenderer>();
-        _gameControl = GameObject.FindWithTag("GameController").GetComponent<GameControl>();
+        _gameControl = GameObject.FindWithTag("GameController").GetComponent<Fase1GameControl>();
         _tempoRestante = _tempoInicial;
     }
 
@@ -106,7 +106,7 @@ public class MoverPlayer : MonoBehaviour
         if (other.gameObject.CompareTag("HitPlayer") && _checkHit==false)
         {
             Debug.Log("Hit");
-            _gameControl._hudControl.HitSlider();
+             //_gameControl._hudControl.HitSlider();
             _sp.DOColor(Color.red, 0.25f);
             _checkHit = true;
             _rodado = true;

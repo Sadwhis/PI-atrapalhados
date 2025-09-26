@@ -14,7 +14,7 @@ public class HudControl : MonoBehaviour
     [SerializeField] int _hitValue;
     [SerializeField] int _life;
     [SerializeField] List<Image> _imagemGameOver;
-    GameControl _gameControl;
+   
     void Start()
     {
         slider.maxValue = _lifeStart;
@@ -54,7 +54,7 @@ public class HudControl : MonoBehaviour
     {
         if(other.gameObject.CompareTag("HitPlayer"))
         {
-           _gameControl._hudControl.HitSlider();
+          // _gameControl._hudControl.HitSlider();
         }
     }
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class MenuControl : MonoBehaviour
 {
-    GameControl _gameControl;
+    Fase1GameControl _gameControl;
     [SerializeField] string[] _nomeCores;
     [SerializeField] TextMeshProUGUI _textoComando;
     void Start()
     {
-        _gameControl = GameObject.FindWithTag("GameController").GetComponent<GameControl>();
+        _gameControl = GameObject.FindWithTag("GameController").GetComponent<Fase1GameControl>();
         CorPulo(0);
     }
 

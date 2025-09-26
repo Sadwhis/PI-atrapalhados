@@ -4,15 +4,14 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
     //public static ObjectPool SharedInstance;
-    [SerializeField] protected GameControl _gameControl;
-    [SerializeField] protected GameContolerMJ1 _GCMJ1;
+    [SerializeField] protected Fase1GameControl _gameControl;
     [SerializeField] protected List<GameObject> pooledObjects;
     [SerializeField] protected GameObject objectToPool;
     [SerializeField] protected int amountToPool;
 
     public virtual void Awake()
     {
-        _gameControl = GameObject.FindWithTag("GameController").GetComponent<GameControl>();
+        _gameControl = GameObject.FindWithTag("GameController").GetComponent<Fase1GameControl>();
         //SharedInstance = this;
     }
 

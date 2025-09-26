@@ -9,7 +9,6 @@ public class InimigoPool : ObjectPool
     {
         base.Awake();
         _InimigoPool = this;
-        _GCMJ1= GameObject.FindWithTag("GameControllerMJ1").GetComponent<GameContolerMJ1>();
     }
 
     // Update is called once per frame
