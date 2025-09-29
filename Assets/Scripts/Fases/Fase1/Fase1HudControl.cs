@@ -1,87 +1,60 @@
-using System.Collections;
+using DG.Tweening;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEngine.GraphicsBuffer;
 
-public class Fase1HudControl: MonoBehaviour
+public class Fase1HudControl : MonoBehaviour
 {
-    public MenuControl _menuControl;
-    [SerializeField] Transform _groundBase;
-    [SerializeField] float _groundH;
-    [SerializeField] float _distance;
-    [SerializeField] bool _checkGroundCount;
-    public bool _gameStay;
-    public int _groundNumber;
-    [SerializeField] Transform _panelSartGame;
-    public bool _fimGame;
-    public Transform _panelFimGame;
+    Fase1GameControl _fase1GameControl;
+    [SerializeField] string[] _nomeCores;
+    [SerializeField] TextMeshProUGUI _textoComando;
+    public Transform _painelStart;
+    public Transform _painelEnd;
+
     void Start()
     {
-        _groundH = _groundBase.position.y;
-        Invoke("GroundTime", 0.25f);
-        _panelSartGame.gameObject.SetActive(true);
-        _panelFimGame.localScale = new Vector3(0,0,0);
+       _fase1GameControl = GameObject.FindWithTag("GameController").GetComponent<Fase1GameControl>();
+        CorPulo(0);
+
         
-    }
-
-      void GroundTime()
-      {
-        for (int i = 0;i<_groundNumber;i++)
-        {
-            GroundStart();
-            if (i == _groundNumber-2)
-            {
-              _checkGroundCount = true;
-            }
-        }
-      }
+        _painelStart.localScale = Vector3.zero;
 
 
-    // Update is called once per frame
-    void GroundStart()
-    {
-        GameObject bullet = GroundPool._groundPool.GetPooledObject();
-        if (bullet != null)
-        {
-            bullet.GetComponent<GroundPref>()._fimGame.SetActive(false);
-            
-           
-            if(_checkGroundCount == true)
-            {
-                bullet.GetComponent<SpriteRenderer>().color = Color.black;
-                bullet.GetComponent<GroundPref>()._fimGame.SetActive(true);
-            }
-            
-            bullet.transform.position = new Vector2(bullet.transform.position.x, _groundH + _distance); 
-            _groundH = bullet.transform.position.y;
-            //bullet.transform.rotation = turret.transform.rotation;
-           
-            bullet.SetActive(true);
-        }
+        MostrarStartPanel();
     }
-  
-    IEnumerator TimeFimGame()
+
+    void MostrarStartPanel()
     {
-        yield return new WaitForSeconds(1);
+        _painelStart.gameObject.SetActive(true);
+        _painelStart.DOScale(Vector3.one, 1f).SetEase(Ease.OutBack); 
     }
-    public void GameStay(bool ativar)
+
+    public void MostrarEndPanel()
     {
-        _gameStay = ativar;
-        if(_gameStay == true)
-        {
-            _panelSartGame.localScale = new Vector3(0, 0, 0);
-        }
-        else if(_fimGame == true)
-        {
-            _panelFimGame.localScale = new Vector3(1,1,1);
-        }
+        _painelEnd.gameObject.SetActive(true);
+        _painelEnd.localScale = Vector3.zero;
+        _painelEnd.DOScale(Vector3.one, 1f).SetEase(Ease.OutBack);
     }
+
+    public void BotaoStart()
+    {
+        _painelStart.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack).OnComplete(() =>
+        {
+            _painelStart.gameObject.SetActive(false);
+        });
+
+        _fase1GameControl._fase1MoverPlayer.PlayerLiberar();
+    }
+
+    public void CorPulo(int number)
+    {
+        _textoComando.text = _nomeCores[number];
+    }
+
     public void ResetarCena()
     {
-        SceneManager.LoadScene("Fase1");
-    }
-    public void ResetarCena(string Cena)
-    {
-        SceneManager.LoadScene(Cena);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

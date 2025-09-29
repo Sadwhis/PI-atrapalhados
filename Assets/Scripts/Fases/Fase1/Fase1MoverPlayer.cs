@@ -3,14 +3,14 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MoverPlayer : MonoBehaviour
+public class Fase1MoverPlayer : MonoBehaviour
 {
     SpriteRenderer _sp;
     bool _checkHit;
     [SerializeField] float _tempoInicial;
     [SerializeField] bool _rodado;
     [SerializeField] float _tempoRestante;
-    Fase1GameControl _gameControl;
+    Fase1GameControl _fase1GameControl;
     Rigidbody2D _rb;
     Vector2 _moveInput;
     [SerializeField] float _speed;
@@ -21,7 +21,7 @@ public class MoverPlayer : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _sp = GetComponent<SpriteRenderer>();
-        _gameControl = GameObject.FindWithTag("GameController").GetComponent<Fase1GameControl>();
+        _fase1GameControl = GameObject.FindWithTag("GameController").GetComponent<Fase1GameControl>();
         _tempoRestante = _tempoInicial;
     }
 
@@ -56,7 +56,7 @@ public class MoverPlayer : MonoBehaviour
                 Debug.Log(_numbSort);
 
                 _numbSort = Random.Range(1, 5);
-                _gameControl._menuControl.CorPulo(_numbSort);
+                _fase1GameControl._fase1HudControl.CorPulo(_numbSort);
 
                 _checkGround = true; // evita pulao
             }
@@ -64,16 +64,8 @@ public class MoverPlayer : MonoBehaviour
 
         if (collision.gameObject.CompareTag("FimGame"))
         {
-            _gameControl._gameStay = false;
-            _gameControl._fimGame = true;
-
-            _rb.bodyType = RigidbodyType2D.Kinematic;
-            _rb.linearVelocity = new Vector2(0, 0);
-
-            _gameControl._panelFimGame.gameObject.SetActive(true);
-            _gameControl._panelFimGame.transform.localScale = Vector3.one;
-
-            _gameControl.GameStay(false);
+            PlayerTravar();
+            _fase1GameControl._fase1HudControl.MostrarEndPanel();
         }
     }
 
@@ -87,10 +79,7 @@ public class MoverPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-       
-        
-            _rb.linearVelocity = new Vector2(_moveInput.x * _speed, _rb.linearVelocity.y);
-        
+      _rb.linearVelocity = new Vector2(_moveInput.x * _speed, _rb.linearVelocity.y);
     }
     void Jump()
     {
@@ -99,6 +88,22 @@ public class MoverPlayer : MonoBehaviour
             _rb.linearVelocityY = 0;
             _rb.AddForceY(_forceJump);
         }
+    }
+
+    public void PlayerTravar()
+    {
+        _fase1GameControl._fimGame = true;
+
+        _rb.bodyType = RigidbodyType2D.Kinematic;
+        _rb.linearVelocity = new Vector2(0, 0);
+
+        _speed = 0;
+    }
+    public void PlayerLiberar()
+    {
+
+        _rb.bodyType = RigidbodyType2D.Dynamic;
+        _speed = 5f;
 
     }
     private void OnTriggerEnter(Collider other)

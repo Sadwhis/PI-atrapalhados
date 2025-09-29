@@ -5,22 +5,21 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Fase1GameControl : MonoBehaviour
 {
-    public MenuControl _menuControl;
     [SerializeField] Transform _groundBase;
     [SerializeField] float _groundH;
     [SerializeField] float _distance;
     [SerializeField] bool _checkGroundCount;
-    public bool _gameStay;
+
     public int _groundNumber;
-    [SerializeField] Transform _panelSartGame;
     public bool _fimGame;
-    public Transform _panelFimGame;
+    public Fase1HudControl _fase1HudControl;
+    public Fase1MoverPlayer _fase1MoverPlayer;
     void Start()
     {
+        _fase1MoverPlayer = GameObject.FindWithTag("Player").GetComponent<Fase1MoverPlayer>();
+        _fase1HudControl = GameObject.FindWithTag("Hud").GetComponent<Fase1HudControl>();
         _groundH = _groundBase.position.y;
         Invoke("GroundTime", 0.25f);
-        _panelSartGame.gameObject.SetActive(true);
-        _panelFimGame.localScale = new Vector3(0,0,0);
         
     }
 
@@ -64,18 +63,7 @@ public class Fase1GameControl : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
     }
-    public void GameStay(bool ativar)
-    {
-        _gameStay = ativar;
-        if(_gameStay == true)
-        {
-            _panelSartGame.localScale = new Vector3(0, 0, 0);
-        }
-        else if(_fimGame == true)
-        {
-            _panelFimGame.localScale = new Vector3(1,1,1);
-        }
-    }
+ 
     public void ResetarCena()
     {
         SceneManager.LoadScene("Fase1");

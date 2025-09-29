@@ -8,6 +8,6 @@ public class GroundPool : ObjectPool
     {
         base.Awake();
         _groundPool = this;
-        base.amountToPool = _gameControl._groundNumber;
+        base.amountToPool = _fase1GameControl._groundNumber;
     }
 }

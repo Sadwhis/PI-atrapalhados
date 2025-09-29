@@ -351,43 +351,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 99447841}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114820843}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 2118681076}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameControl, Assembly-CSharp
-        m_MethodName: ResetarCena
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &99447841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -911,6 +875,7 @@ Transform:
   - {fileID: 791871043}
   - {fileID: 1623711834}
   - {fileID: 164180283}
+  - {fileID: 866158307}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &481027490
@@ -1231,10 +1196,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816b9ce127cb49346a03bbbea3a50e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameControl: {fileID: 0}
+  _fase1GameControl: {fileID: 0}
   pooledObjects: []
   objectToPool: {fileID: 693008298067923955, guid: 077bd2becee55464780cb0003a90c76b, type: 3}
   amountToPool: 10
+--- !u!1 &866158306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 866158307}
+  - component: {fileID: 866158308}
+  m_Layer: 0
+  m_Name: HudControl
+  m_TagString: Hud
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &866158307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866158306}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 481027489}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &866158308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866158306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9273aa26afad20f4eb814491e540c31b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nomeCores:
+  - Pula ae men
+  - Sanduiche de choclate
+  - "Sapo de lim\xE3o"
+  - Urso de chocolate
+  - "Algod\xE3o Doce"
+  _textoComando: {fileID: 528290119}
 --- !u!1 &884957371
 GameObject:
   m_ObjectHideFlags: 0
@@ -1418,7 +1434,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10.530029, y: 2.8099976}
+  m_AnchoredPosition: {x: -10.530029, y: 2.8100586}
   m_SizeDelta: {x: 52.63, y: 61.71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &894364109
@@ -1843,36 +1859,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameControl, Assembly-CSharp
-        m_MethodName: GameStay
-        m_Mode: 6
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 2118681076}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 894364107}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1942,11 +1934,11 @@ Transform:
   m_GameObject: {fileID: 1227384688}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.2000003, y: 1.58, z: 0}
+  m_LocalPosition: {x: -1.8499999, y: 22.2367, z: 0}
   m_LocalScale: {x: 2.2323, y: 2.245, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2118681082}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1227384690
 SpriteRenderer:
@@ -1996,8 +1988,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 19.2, y: 10.8}
+  m_DrawMode: 1
+  m_Size: {x: 19.2, y: 30.94849}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2127,7 +2119,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1623711834}
-  - component: {fileID: 1623711836}
   - component: {fileID: 1623711838}
   m_Layer: 0
   m_Name: GameControl
@@ -2151,25 +2142,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 481027489}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1623711836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623711833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33deed9435306914d92337afa1fb8aae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _nomeCores:
-  - marshmallow
-  - Saduiche de chocolate
-  - Sapo de chocolate
-  - "Urso de lim\xE3o"
-  - "Algod\xE3o doce"
-  _textoComando: {fileID: 528290119}
 --- !u!114 &1623711838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2185,13 +2157,14 @@ MonoBehaviour:
   _menuControl: {fileID: 0}
   _groundBase: {fileID: 1776467546}
   _groundH: 0
-  _distance: 0
+  _distance: 5
   _checkGroundCount: 0
   _gameStay: 0
-  _groundNumber: 0
+  _groundNumber: 10
   _panelSartGame: {fileID: 894364108}
   _fimGame: 0
   _panelFimGame: {fileID: 114820844}
+  _fase1HudControl: {fileID: 0}
 --- !u!1 &1776467543
 GameObject:
   m_ObjectHideFlags: 0
@@ -2734,43 +2707,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1990157295}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114820843}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 2118681076}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameControl, Assembly-CSharp
-        m_MethodName: ResetarCena
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Sapo-Cururu-v2
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1990157295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3025,7 +2962,7 @@ MonoBehaviour:
   _tempoInicial: 0
   _rodado: 0
   _tempoRestante: 0
-  _speed: 5
+  _speed: 0
   _forceJump: 560
   _checkGround: 0
   _numbSort: 0
@@ -3124,7 +3061,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1227384689}
   - {fileID: 113415972}
   - {fileID: 58737754}
   m_Father: {fileID: 0}
@@ -3311,3 +3247,4 @@ SceneRoots:
   - {fileID: 705961239}
   - {fileID: 1510167978}
   - {fileID: 1986068288}
+  - {fileID: 1227384689}
