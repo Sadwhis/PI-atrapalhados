@@ -305,8 +305,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -299, y: -18}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -271, y: -0.0000019073}
+  m_SizeDelta: {x: 214.7, y: 53.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &99447840
 MonoBehaviour:
@@ -351,7 +351,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 99447841}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 866158308}
+        m_TargetAssemblyTypeName: Fase1HudControl, Assembly-CSharp
+        m_MethodName: ResetarCena
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &99447841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,8 +516,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.5, y: 0}
-  m_SizeDelta: {x: -3, y: 0}
+  m_AnchoredPosition: {x: -1, y: -0.5}
+  m_SizeDelta: {x: -4, y: -1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &114820845
 MonoBehaviour:
@@ -514,13 +526,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114820843}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 0.99003696, b: 0, a: 0.4117647}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1251,6 +1263,8 @@ MonoBehaviour:
   - Urso de chocolate
   - "Algod\xE3o Doce"
   _textoComando: {fileID: 528290119}
+  _painelStart: {fileID: 894364108}
+  _painelEnd: {fileID: 114820844}
 --- !u!1 &884957371
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,7 +1430,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &894364108
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1858,13 +1872,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 866158308}
+        m_TargetAssemblyTypeName: Fase1HudControl, Assembly-CSharp
+        m_MethodName: BotaoStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2154,17 +2168,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fd32a5f579e2c945bb85a63b1b67812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuControl: {fileID: 0}
   _groundBase: {fileID: 1776467546}
   _groundH: 0
   _distance: 5
   _checkGroundCount: 0
-  _gameStay: 0
   _groundNumber: 10
-  _panelSartGame: {fileID: 894364108}
   _fimGame: 0
-  _panelFimGame: {fileID: 114820844}
   _fase1HudControl: {fileID: 0}
+  _fase1MoverPlayer: {fileID: 0}
 --- !u!1 &1776467543
 GameObject:
   m_ObjectHideFlags: 0
@@ -2661,8 +2672,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 223, y: -18}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 254, y: 0}
+  m_SizeDelta: {x: 209.64, y: 68.49}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1990157294
 MonoBehaviour:
@@ -2896,7 +2907,7 @@ GameObject:
   - component: {fileID: 2118681077}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2974,7 +2985,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2118681076}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
