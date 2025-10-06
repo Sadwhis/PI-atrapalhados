@@ -2,77 +2,140 @@
 
 public class InimigoVoado : MonoBehaviour
 {
-    public float speed = 2f;                  // Velocidade normal
-    public Transform pointA;                  // Ponto inicial
-    public Transform pointB;                  // Ponto final
-    public float detectionRadius = 5f;        // Raio de detecção do player
-    public float liftHeight = 3f;             // Quanto o inimigo levanta o player
-    public float liftSpeed = 2f;              // Velocidade ao levantar o player
-    public LayerMask playerLayer;             // Layer do player
+    [Header("Patrol")]
+    public float speed = 2f;
+    public Transform pointA;
+    public Transform pointB;
 
-    private Vector3 target;                   // Alvo atual
-    private Transform player;                 // Referência ao player
-    private bool carryingPlayer = false;      // Se o inimigo está carregando o player
+    [Header("Detection / Grab")]
+    public float detectionRadius = 5f;
+    public float grabDistance = 0.5f;
+    public LayerMask playerLayer;
+
+    [Header("Carry / Lift")]
+    public float liftSpeed = 2f;
+    public Vector3 carryOffset = new Vector3(0f, -0.5f, 0f);
+
+    [Header("Release / Drop")]
+    public float dropForce = 5f;
+    public float cooldownTime = 5f; // tempo de espera antes de poder agarrar de novo
+
+    // internals
+    private Vector3 patrolTarget;
+    private Transform player;
+    private Rigidbody2D playerRb;
+    private Transform originalParent;
+    private float originalGravity;
+    private bool carryingPlayer = false;
+    private bool onCooldown = false;
 
     void Start()
     {
-        target = pointA.position; // começa indo para A
+        patrolTarget = (pointA != null) ? pointA.position : transform.position;
     }
 
     void Update()
     {
         if (carryingPlayer)
         {
-            // Levanta o player junto
-            Vector3 liftTarget = new Vector3(transform.position.x, transform.position.y + liftHeight, transform.position.z);
-            transform.position = Vector2.MoveTowards(transform.position, liftTarget, liftSpeed * Time.deltaTime);
+            // Carregando o player → vai até o próximo ponto de patrulha
+            transform.position = Vector2.MoveTowards(transform.position, patrolTarget, liftSpeed * Time.deltaTime);
 
-            // Move o player junto com o inimigo
-            if (player != null)
+            // Se chegou no ponto de patrulha → solta o player e entra em cooldown
+            if (Vector2.Distance(transform.position, patrolTarget) < 0.1f)
             {
-                player.position = transform.position + new Vector3(0, -0.5f, 0);
+                ReleasePlayer();
+                StartCoroutine(StartCooldown());
             }
         }
         else
         {
-            // Procura o player dentro do raio de visão
-            Collider2D playerCheck = Physics2D.OverlapCircle(transform.position, detectionRadius, playerLayer);
-
-            if (playerCheck != null)
+            if (onCooldown)
             {
-                // Player detectado → vai até ele
-                player = playerCheck.transform;
-                transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-
-                // Se chegou perto o suficiente, agarra
-                if (Vector2.Distance(transform.position, player.position) < 0.5f)
-                {
-                    carryingPlayer = true;
-                }
+                // Se está em cooldown → apenas patrulha normalmente
+                Patrol();
             }
             else
             {
-                // Patrulha normal entre os pontos
-                transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+                // Procura player
+                Collider2D playerCheck = Physics2D.OverlapCircle(transform.position, detectionRadius, playerLayer);
 
-                if (Vector2.Distance(transform.position, target) < 0.1f)
+                if (playerCheck != null)
                 {
-                    if (target == pointA.position)
+                    Transform pT = playerCheck.transform;
+                    transform.position = Vector2.MoveTowards(transform.position, pT.position, speed * Time.deltaTime);
+
+                    if (Vector2.Distance(transform.position, pT.position) < grabDistance)
                     {
-                        target = pointB.position;
-                        transform.eulerAngles = new Vector3(0, 180, 0);
+                        GrabPlayer(pT);
                     }
-                    else
-                    {
-                        target = pointA.position;
-                        transform.eulerAngles = new Vector3(0, 0, 0);
-                    }
+                }
+                else
+                {
+                    Patrol();
                 }
             }
         }
     }
 
-    // Gizmo para visualizar área de detecção
+    void Patrol()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, patrolTarget, speed * Time.deltaTime);
+
+        if (pointA != null && pointB != null && Vector2.Distance(transform.position, patrolTarget) < 0.1f)
+        {
+            patrolTarget = (patrolTarget == pointA.position) ? pointB.position : pointA.position;
+            transform.eulerAngles = (patrolTarget == pointA.position) ? Vector3.zero : new Vector3(0, 180, 0);
+        }
+    }
+
+    void GrabPlayer(Transform p)
+    {
+        player = p;
+        playerRb = player.GetComponent<Rigidbody2D>();
+        originalParent = player.parent;
+
+        if (playerRb != null)
+        {
+            originalGravity = playerRb.gravityScale;
+            playerRb.linearVelocity = Vector2.zero;
+            playerRb.gravityScale = 0f;
+            playerRb.isKinematic = true;
+        }
+
+        player.SetParent(transform);
+        player.localPosition = carryOffset;
+
+        carryingPlayer = true;
+    }
+
+    void ReleasePlayer()
+    {
+        if (player == null) return;
+
+        player.SetParent(originalParent);
+
+        if (playerRb != null)
+        {
+            playerRb.isKinematic = false;
+            playerRb.gravityScale = originalGravity;
+            if (dropForce != 0f)
+            {
+                playerRb.AddForce(Vector2.down * dropForce, ForceMode2D.Impulse);
+            }
+        }
+
+        player = null;
+        carryingPlayer = false;
+    }
+
+    System.Collections.IEnumerator StartCooldown()
+    {
+        onCooldown = true;
+        yield return new WaitForSeconds(cooldownTime); // espera segundos ou minutos
+        onCooldown = false;
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -85,3 +148,4 @@ public class InimigoVoado : MonoBehaviour
         }
     }
 }
+
