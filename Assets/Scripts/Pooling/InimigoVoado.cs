@@ -89,6 +89,7 @@ public class InimigoVoado : MonoBehaviour
         }
     }
 
+    [System.Obsolete]
     void GrabPlayer(Transform p)
     {
         player = p;
@@ -109,6 +110,7 @@ public class InimigoVoado : MonoBehaviour
         carryingPlayer = true;
     }
 
+    [System.Obsolete]
     void ReleasePlayer()
     {
         if (player == null) return;
