@@ -25,6 +25,7 @@ namespace Atrapalhados
         void OnSprint(InputValue value)
         {
             FPController._sprintInput = value.isPressed;
+            Debug.Log($"Sprint Input mudou para: {FPController._sprintInput}");
         }
 
         void OnJump(InputValue value)
