@@ -4,7 +4,7 @@ using UnityEditor.ShaderGraph.Internal;
 using UnityEditor.Rendering.LookDev;
 
 
-namespace Matinta
+namespace Atrapalhados
 {
     [RequireComponent(typeof(CharacterController))]
     public class FPController : MonoBehaviour
@@ -20,6 +20,8 @@ namespace Matinta
         [Space(15)]
         [Tooltip("É assim que o personagem pode pular alto")]
         [SerializeField] float _jumpHeight = 2f; // Jump height
+        public bool UseFPSCamera = true;
+
 
         public bool Sprinting
         {
@@ -95,7 +97,9 @@ namespace Matinta
         void Update()
         {
             MoveUpdate();
-            LookUpdate();
+            if (UseFPSCamera)
+                LookUpdate();
+
             CameraUpdate();
         }
 

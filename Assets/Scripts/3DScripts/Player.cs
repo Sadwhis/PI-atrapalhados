@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Matinta
+namespace Atrapalhados
 {
 
     [RequireComponent(typeof(FPController))]
