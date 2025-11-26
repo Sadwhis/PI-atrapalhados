@@ -1,16 +1,14 @@
+using Atrapalhados;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Atrapalhados
 {
-
     [RequireComponent(typeof(FPController))]
     public class Player : MonoBehaviour
     {
-
         [Header("Components")]
         [SerializeField] FPController FPController;
-
 
         #region Input Handling
 
@@ -35,7 +33,14 @@ namespace Atrapalhados
             {
                 FPController.TryJump();
             }
-            Debug.Log("Jump Input: " + value.isPressed);
+        }
+
+        void OnSwitchCamera(InputValue value)
+        {
+            if (value.isPressed)
+            {
+                FPController.ToggleCameraView();
+            }
         }
 
         #endregion
@@ -47,7 +52,6 @@ namespace Atrapalhados
             if (FPController == null) FPController = GetComponent<FPController>();
         }
 
-
         void Start()
         {
             Cursor.visible = false;
@@ -55,10 +59,4 @@ namespace Atrapalhados
         }
     }
     #endregion
-
-
-
-
-
-
 }
