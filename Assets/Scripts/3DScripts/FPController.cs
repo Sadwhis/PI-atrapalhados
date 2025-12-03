@@ -123,6 +123,7 @@ namespace Atrapalhados
                 
                 bool estaAndando = _currentSpeed > 0.1f;
                 _animator.SetBool("TaAndando", estaAndando);
+                _animator.SetBool("NoChao", IsGrounded);
             }
         }
 
