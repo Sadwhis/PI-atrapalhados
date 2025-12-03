@@ -59,6 +59,7 @@ namespace Atrapalhados
         [Header("Components")]
         [SerializeField] CinemachineCamera _fpCamera;
         [SerializeField] CharacterController _charactercontroller;
+        [SerializeField] Animator _animator; // <--- NOVO: Campo para arrastar o Animator
 
         #region Unity Methods
         void OnValidate()
@@ -81,7 +82,14 @@ namespace Atrapalhados
         public void TryJump()
         {
             if (!IsGrounded) return;
+
             _verticalVelocity = Mathf.Sqrt(_jumpHeight * -2f * Physics.gravity.y * _gravityScale);
+
+           
+            if (_animator != null)
+            {
+                _animator.SetTrigger("Pular");
+            }
         }
 
         public void ToggleCameraView()
@@ -108,6 +116,14 @@ namespace Atrapalhados
             Vector3 fullVelocity = new Vector3(_currentVelocity.x, _verticalVelocity, _currentVelocity.z);
             _charactercontroller.Move(fullVelocity * Time.deltaTime);
             _currentSpeed = _currentVelocity.magnitude;
+
+           
+            if (_animator != null)
+            {
+                
+                bool estaAndando = _currentSpeed > 0.1f;
+                _animator.SetBool("TaAndando", estaAndando);
+            }
         }
 
         void LookUpdate()
@@ -117,8 +133,7 @@ namespace Atrapalhados
             // Olhar Cima/Baixo
             CurrentPitch -= input.y;
 
-            // | Alterado | Rotacionamos o CameraRoot em vez de só a _fpCamera
-            // Se _cameraRoot for nulo, tenta usar a _fpCamera como fallback
+            // Rotacionamos o CameraRoot em vez de só a _fpCamera
             if (_cameraRoot != null)
             {
                 _cameraRoot.localRotation = Quaternion.Euler(CurrentPitch, 0f, 0f);
@@ -128,13 +143,11 @@ namespace Atrapalhados
                 _fpCamera.transform.localRotation = Quaternion.Euler(CurrentPitch, 0f, 0f);
             }
 
-            
             transform.Rotate(Vector3.up * input.x);
         }
 
         void CameraUpdate()
         {
-         
             if (_fpCamera == null) return;
 
             float targetFOV = _cameraNormalFOV;
@@ -146,22 +159,17 @@ namespace Atrapalhados
             _fpCamera.Lens.FieldOfView = Mathf.Lerp(_fpCamera.Lens.FieldOfView, targetFOV, _cameraFOVSmoothing * Time.deltaTime);
         }
 
-      
         void CameraMixingUpdate()
         {
             if (_mixingCamera == null) return;
 
-            
             float targetMix = _isFirstPerson ? 0f : 1f;
 
-            
             _cameraMixVal = Mathf.MoveTowards(_cameraMixVal, targetMix, _switchSpeed * Time.deltaTime);
 
-           
-            // Index 0 = FPS Camera
-            // Index 1 = TPS Camera
-            _mixingCamera.SetWeight(0, 1f - _cameraMixVal); // Se Mix é 0 (FPS), Peso é 1. Se Mix é 1 (TPS), Peso é 0.
-            _mixingCamera.SetWeight(1, _cameraMixVal);      // Oposto da FPS
+            // Index 0 = FPS Camera, Index 1 = TPS Camera
+            _mixingCamera.SetWeight(0, 1f - _cameraMixVal);
+            _mixingCamera.SetWeight(1, _cameraMixVal);
         }
 
         #endregion
