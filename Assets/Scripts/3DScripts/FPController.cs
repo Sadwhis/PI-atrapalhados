@@ -12,6 +12,11 @@ namespace Atrapalhados
         [SerializeField] float _walkSpeed = 3.5f;
         [SerializeField] float _SprintSpeed = 8f;
 
+        // --- NOVO: Suavização da rotação para 3ª pessoa ---
+        [Header("Rotation Parameters (TPS)")]
+        [SerializeField] float _turnSmoothTime = 0.1f;
+        float _turnSmoothVelocity;
+
         [Space(15)]
         [SerializeField] float _jumpHeight = 2f;
 
@@ -59,13 +64,23 @@ namespace Atrapalhados
         [Header("Components")]
         [SerializeField] CinemachineCamera _fpCamera;
         [SerializeField] CharacterController _charactercontroller;
-        [SerializeField] Animator _animator; // <--- NOVO: Campo para arrastar o Animator
+        [SerializeField] Animator _animator;
+
+        // Referência para a câmera principal para calcular direção na 3ª pessoa
+        private Transform _mainCamTransform;
 
         #region Unity Methods
         void OnValidate()
         {
             if (_charactercontroller == null)
                 _charactercontroller = GetComponent<CharacterController>();
+        }
+
+        void Start()
+        {
+            // Pega a referência da câmera principal (usada na lógica de 3ª pessoa)
+            if (Camera.main != null)
+                _mainCamTransform = Camera.main.transform;
         }
 
         void Update()
@@ -85,7 +100,6 @@ namespace Atrapalhados
 
             _verticalVelocity = Mathf.Sqrt(_jumpHeight * -2f * Physics.gravity.y * _gravityScale);
 
-           
             if (_animator != null)
             {
                 _animator.SetTrigger("Pular");
@@ -99,7 +113,38 @@ namespace Atrapalhados
 
         void MoveUpdate()
         {
-            Vector3 motion = transform.forward * _moveInput.y + transform.right * _moveInput.x;
+            Vector3 motion = Vector3.zero;
+
+           
+            if (_isFirstPerson)
+            {
+               
+                
+                motion = transform.forward * _moveInput.y + transform.right * _moveInput.x;
+            }
+            else
+            {
+               
+                Vector3 direction = new Vector3(_moveInput.x, 0f, _moveInput.y).normalized;
+
+                if (direction.magnitude >= 0.1f && _mainCamTransform != null)
+                {
+                    
+                    float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + _mainCamTransform.eulerAngles.y;
+
+                  
+                    float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVelocity, _turnSmoothTime);
+
+                  
+                    transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+                    
+                    Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                    motion = moveDir;
+                }
+            }
+
+            // Normaliza e Aplica Velocidade
             motion.y = 0f;
             motion.Normalize();
 
@@ -108,6 +153,7 @@ namespace Atrapalhados
             else
                 _currentVelocity = Vector3.MoveTowards(_currentVelocity, Vector3.zero, _acceleration * Time.deltaTime);
 
+            // Gravidade
             if (IsGrounded && _verticalVelocity <= 0.01f)
                 _verticalVelocity = -3f;
             else
@@ -117,10 +163,9 @@ namespace Atrapalhados
             _charactercontroller.Move(fullVelocity * Time.deltaTime);
             _currentSpeed = _currentVelocity.magnitude;
 
-           
+            // Animação
             if (_animator != null)
             {
-                
                 bool estaAndando = _currentSpeed > 0.1f;
                 _animator.SetBool("TaAndando", estaAndando);
                 _animator.SetBool("NoChao", IsGrounded);
@@ -131,10 +176,9 @@ namespace Atrapalhados
         {
             Vector2 input = new Vector2(_lookInput.x * _lookSensitivity.x, _lookInput.y * _lookSensitivity.y);
 
-            // Olhar Cima/Baixo
+            // Pitch (Olhar para cima e para baixo) - Acontece nos dois modos para mover a câmera
             CurrentPitch -= input.y;
 
-            // Rotacionamos o CameraRoot em vez de só a _fpCamera
             if (_cameraRoot != null)
             {
                 _cameraRoot.localRotation = Quaternion.Euler(CurrentPitch, 0f, 0f);
@@ -144,7 +188,12 @@ namespace Atrapalhados
                 _fpCamera.transform.localRotation = Quaternion.Euler(CurrentPitch, 0f, 0f);
             }
 
-            transform.Rotate(Vector3.up * input.x);
+            // Yaw (Girar o corpo esquerda/direita) - SÓ NA 1ª PESSOA
+            if (_isFirstPerson)
+            {
+                transform.Rotate(Vector3.up * input.x);
+            }
+            // Na 3ª pessoa, a rotação do corpo é controlada pelo MoveUpdate
         }
 
         void CameraUpdate()
@@ -171,6 +220,9 @@ namespace Atrapalhados
             // Index 0 = FPS Camera, Index 1 = TPS Camera
             _mixingCamera.SetWeight(0, 1f - _cameraMixVal);
             _mixingCamera.SetWeight(1, _cameraMixVal);
+
+            // REMOVIDO: A linha que forçava a rotação para identity (0,0,0) foi apagada daqui.
+            // A rotação correta agora é tratada no MoveUpdate.
         }
 
         #endregion
