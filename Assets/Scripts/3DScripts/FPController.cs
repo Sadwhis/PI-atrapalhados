@@ -12,7 +12,7 @@ namespace Atrapalhados
         [SerializeField] float _walkSpeed = 3.5f;
         [SerializeField] float _SprintSpeed = 8f;
 
-        // --- NOVO: Suavização da rotação para 3ª pessoa ---
+        
         [Header("Rotation Parameters (TPS)")]
         [SerializeField] float _turnSmoothTime = 0.1f;
         float _turnSmoothVelocity;
@@ -41,7 +41,7 @@ namespace Atrapalhados
         //Mixing Camera |
         [Header("Camera Switching")]
         [SerializeField] CinemachineMixingCamera _mixingCamera;
-        [Tooltip("Arraste o objeto que segura as câmeras aqui (CameraRoot) para que ambas girem verticalmente")]
+        [Tooltip("(CameraRoot")]
         [SerializeField] Transform _cameraRoot;
         [SerializeField] float _switchSpeed = 5f;
         private bool _isFirstPerson = true;
@@ -144,7 +144,7 @@ namespace Atrapalhados
                 }
             }
 
-            // Normaliza e Aplica Velocidade
+            
             motion.y = 0f;
             motion.Normalize();
 
@@ -153,7 +153,7 @@ namespace Atrapalhados
             else
                 _currentVelocity = Vector3.MoveTowards(_currentVelocity, Vector3.zero, _acceleration * Time.deltaTime);
 
-            // Gravidade
+            
             if (IsGrounded && _verticalVelocity <= 0.01f)
                 _verticalVelocity = -3f;
             else
@@ -164,11 +164,17 @@ namespace Atrapalhados
             _currentSpeed = _currentVelocity.magnitude;
 
             // Animação
+
+            _currentSpeed = _currentVelocity.magnitude;
+
             if (_animator != null)
             {
                 bool estaAndando = _currentSpeed > 0.1f;
                 _animator.SetBool("TaAndando", estaAndando);
                 _animator.SetBool("NoChao", IsGrounded);
+
+                float multiplicador = _currentSpeed / _walkSpeed;
+                _animator.SetFloat("VelocidadeAnim", multiplicador);
             }
         }
 
