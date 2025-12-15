@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 1
-  m_FogColor: {r: 0.55599326, g: 0.4009434, b: 1, a: 1}
+  m_FogColor: {r: 0.98039216, g: 0.5019608, b: 0.44705883, a: 1}
   m_FogMode: 2
   m_FogDensity: 0.01
   m_LinearFogStart: 0
@@ -5519,7 +5519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _acceleration: 20
   _walkSpeed: 3.5
-  _SprintSpeed: 15
+  _SprintSpeed: 5
   _turnSmoothTime: 0.1
   _jumpHeight: 2
   _lookSensitivity: {x: 0.1, y: 0.1}
