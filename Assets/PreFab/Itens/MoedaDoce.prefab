@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8789339330087619497
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 79b1b108a84a4a0468aa07b33f6915e0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20.02
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 79b1b108a84a4a0468aa07b33f6915e0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.48
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 79b1b108a84a4a0468aa07b33f6915e0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.9891214
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 79b1b108a84a4a0468aa07b33f6915e0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 79b1b108a84a4a0468aa07b33f6915e0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 79b1b108a84a4a0468aa07b33f6915e0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 79b1b108a84a4a0468aa07b33f6915e0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 79b1b108a84a4a0468aa07b33f6915e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 79b1b108a84a4a0468aa07b33f6915e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 79b1b108a84a4a0468aa07b33f6915e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 79b1b108a84a4a0468aa07b33f6915e0, type: 3}
+      propertyPath: m_Name
+      value: MoedaDoce
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 65702495048144492, guid: 79b1b108a84a4a0468aa07b33f6915e0, type: 3}
+    - {fileID: -8700617353114198275, guid: 79b1b108a84a4a0468aa07b33f6915e0, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 79b1b108a84a4a0468aa07b33f6915e0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8209613411921063700}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 79b1b108a84a4a0468aa07b33f6915e0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 532260519585149218}
+  m_SourcePrefab: {fileID: 100100000, guid: 79b1b108a84a4a0468aa07b33f6915e0, type: 3}
+--- !u!1 &8447460272023746296 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 79b1b108a84a4a0468aa07b33f6915e0, type: 3}
+  m_PrefabInstance: {fileID: 8789339330087619497}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8209613411921063700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8447460272023746296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0cb0bed4db2464882e2d7fddd4e5f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipo: 1
+  valor: 1
+--- !u!114 &532260519585149218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8447460272023746296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d8892ae12a14c4596f6a1b64b88223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 180
+  floatHeight: 0.25
+  floatDuration: 1
