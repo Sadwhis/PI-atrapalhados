@@ -74,9 +74,6 @@ public class FlyEnemy : MonoBehaviour
 
         if (Physics.Raycast(transform.position, directionToPlayer.normalized, out hit, _detectionRadius, _obstaclesLayer))
         {
-            
-
-            
             if (hit.transform == player)
             {
                 return true; 
@@ -94,8 +91,8 @@ public class FlyEnemy : MonoBehaviour
     {
         _isPerseguindo = true;
         _agent.isStopped = false;
-        _agent.SetDestination(player.position); // Vai para cima do player
-        _waitTimer = 0f; // Reseta o timer de patrulha
+        _agent.SetDestination(player.position); 
+        _waitTimer = 0f; 
     }
 
     void RotaçãoMelhorada()
@@ -127,7 +124,7 @@ public class FlyEnemy : MonoBehaviour
         
         if (!_agent.pathPending && _agent.remainingDistance < 0.5f)
         {
-            _waitTimer += Time.deltaTime; // Conta o tempo
+            _waitTimer += Time.deltaTime; 
 
             if (_waitTimer >= _patrolWaitTime)
             {
