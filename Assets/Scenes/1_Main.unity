@@ -181,12 +181,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
       propertyPath: m_Name
-      value: BrigadeiroVoador1
+      value: FlyModel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1355044245}
   m_SourcePrefab: {fileID: 100100000, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
 --- !u!1 &46310889
 GameObject:
@@ -6353,6 +6356,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &737511516 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
+  m_PrefabInstance: {fileID: 37520803}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &748345617
 GameObject:
   m_ObjectHideFlags: 0
@@ -8182,6 +8190,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1252824194}
   m_Mesh: {fileID: 8691780276856062721, guid: 7ed90f0bbe3341a4a95c2433fd1ac551, type: 3}
+--- !u!1 &1274731776 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
+  m_PrefabInstance: {fileID: 1404603103}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1274731777
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274731776}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 10769d529d04d544c8a872ad5b5b951c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1323225458 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 979f6fc0461b38e4bbc7df94c9c24897, type: 3}
@@ -8318,6 +8353,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
   m_PrefabInstance: {fileID: 37520803}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1355044245
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737511516}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1373118002
 GameObject:
   m_ObjectHideFlags: 0
@@ -8531,6 +8588,78 @@ CapsuleCollider:
   m_Height: 3.1576595
   m_Direction: 1
   m_Center: {x: -0.025642633, y: 0.32794094, z: 0.011970699}
+--- !u!1001 &1404603103
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 100.00002
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: -100.00002
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.356012
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 33.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -36.75
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.009407477
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.9999558
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
+      propertyPath: m_Name
+      value: BrigadeiroVoador1 (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1274731777}
+  m_SourcePrefab: {fileID: 100100000, guid: c13a3c41c3d3fee4ea67b89466cc6c9b, type: 3}
 --- !u!1 &1415967172
 GameObject:
   m_ObjectHideFlags: 0
@@ -9883,7 +10012,7 @@ MonoBehaviour:
   player: {fileID: 504753183}
   _flightHeight: 3
   _moveSpeed: 3.5
-  _detectionRadius: 12.49
+  _detectionRadius: 9.7
   _obstaclesLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -11974,3 +12103,4 @@ SceneRoots:
   - {fileID: 1721023345}
   - {fileID: 610099323}
   - {fileID: 1180361146}
+  - {fileID: 1404603103}

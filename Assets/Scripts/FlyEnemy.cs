@@ -54,6 +54,7 @@ public class FlyEnemy : MonoBehaviour
         Voando();
 
         RotaçãoMelhorada();
+
     }
 
     
@@ -154,7 +155,6 @@ public class FlyEnemy : MonoBehaviour
 
     }
 
-    
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

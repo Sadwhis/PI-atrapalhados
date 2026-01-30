@@ -1021,6 +1021,78 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "MiniJogo2D",
+            "id": "d7deefdb-6404-42f2-8245-c224e1829b21",
+            "actions": [
+                {
+                    "name": "Plataforma",
+                    "type": "Value",
+                    "id": "084c4fd2-3698-4b86-9af5-4128ff62f0a1",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "97c71361-5474-4209-9eac-7f12b704296c",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Plataforma",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Left",
+                    "id": "96187e62-7d87-466f-ba98-3c304a15bcad",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Plataforma",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Right",
+                    "id": "bef59090-8f44-401b-ab97-1753660807c5",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Plataforma",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "7021b2fb-5d2c-4ce9-8fca-925b6352b98c",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Plataforma",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "9dfcb076-66b4-4ee9-83ef-bcf947ceab74",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Plataforma",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
         }
     ],
     "controlSchemes": [
