@@ -1,21 +1,33 @@
 using UnityEngine;
-using UnityEngine.ProBuilder.Shapes;
 
 public class Princesa : MonoBehaviour
 {
-    [SerializeField] float _jump;
-    
-    Rigidbody2D _rb;
+    [Header("Configuração do Pulo")]
+    [SerializeField] float _jump = 15f; 
+
+    private Rigidbody2D _rb;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        
+       
+        if (collision.gameObject.CompareTag("Plataforma"))
+        {
+            Pular();
+        }
     }
 
-  
+    void Pular()
+    {
+        
+        _rb.linearVelocity = Vector2.zero;
+
+        
+        _rb.AddForce(Vector2.up * _jump, ForceMode2D.Impulse);
+    }
 }

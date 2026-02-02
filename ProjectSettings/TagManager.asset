@@ -12,6 +12,7 @@ TagManager:
   - HitPlayer
   - FxTemporaire
   - Hud
+  - Plataforma
   layers:
   - Default
   - TransparentFX
