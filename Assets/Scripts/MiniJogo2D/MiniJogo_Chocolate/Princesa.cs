@@ -3,7 +3,11 @@ using UnityEngine;
 public class Princesa : MonoBehaviour
 {
     [Header("Configuração do Pulo")]
-    [SerializeField] float _jump = 15f; 
+    [SerializeField] float _jump = 15f;
+    [SerializeField] float _aberturaCurva;
+    [SerializeField] float _forçaParedeX;
+    [SerializeField] float _forçaParedeY;
+    public float _pont;
 
     private Rigidbody2D _rb;
 
@@ -19,6 +23,15 @@ public class Princesa : MonoBehaviour
         if (collision.gameObject.CompareTag("Plataforma"))
         {
             Pular();
+            _pont++;
+        }
+        if (collision.gameObject.CompareTag("ParedeEsq"))
+        {
+            PularParede(1);
+        }
+        if (collision.gameObject.CompareTag("ParedeDir"))
+        {
+            PularParede(-1);
         }
     }
 
@@ -26,8 +39,15 @@ public class Princesa : MonoBehaviour
     {
         
         _rb.linearVelocity = Vector2.zero;
+        float desvioX = Random.Range(-1f, 1f);
+        Vector2 vetorPulo = new Vector2(desvioX * _aberturaCurva, _jump);
+        _rb.AddForce(vetorPulo, ForceMode2D.Impulse);
+    }
 
-        
-        _rb.AddForce(Vector2.up * _jump, ForceMode2D.Impulse);
+    void PularParede(int direcao)
+    {
+        _rb.linearVelocity = Vector2.zero;
+        Vector2 vetorParede = new Vector2(direcao * _forçaParedeX, _forçaParedeY);
+        _rb.AddForce(vetorParede, ForceMode2D.Impulse);
     }
 }

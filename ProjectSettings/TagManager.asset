@@ -13,6 +13,8 @@ TagManager:
   - FxTemporaire
   - Hud
   - Plataforma
+  - ParedeEsq
+  - ParedeDir
   layers:
   - Default
   - TransparentFX

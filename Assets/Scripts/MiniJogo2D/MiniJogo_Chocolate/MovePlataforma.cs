@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using TMPro;
 
 public class MovePlataforma : MonoBehaviour
 {
@@ -13,23 +14,26 @@ public class MovePlataforma : MonoBehaviour
 
     private Vector2 _move;
     private float _velocidadeAtual;
-    private SpriteRenderer _sprite;
+    
 
+    Princesa _princ;
+
+    [SerializeField] TextMeshProUGUI _pontuaçãoUI;
     void Start()
     {
-        _velocidadeAtual = _velocidadeNormal;
-        _sprite = GetComponentInChildren<SpriteRenderer>();
-        MudarTamanho(0); 
+        MudarTamanho(0);
+        _princ = GameObject.FindWithTag("Player").GetComponent<Princesa>();
     }
 
     void Update()
     {
         Move();
+        AtualizacaoUI();
     }
 
     void Move()
     {
-        Vector3 movimento = new Vector3(_move.x, 0, 0) * _velocidadeAtual * Time.deltaTime;
+        Vector3 movimento = new Vector3(_move.x, 0, 0) * _velocidadeNormal * Time.deltaTime;
         transform.Translate(movimento, Space.World);
 
         
@@ -37,6 +41,10 @@ public class MovePlataforma : MonoBehaviour
         transform.position = new Vector3(xTravado, transform.position.y, transform.position.z);
     }
 
+    void AtualizacaoUI() 
+    {
+        _pontuaçãoUI.text = $"Score: {_princ._pont:F0}";
+    }
     void OnPlataforma(InputValue value)
     {
         _move = value.Get<Vector2>();
