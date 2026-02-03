@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Princesa : MonoBehaviour
@@ -9,19 +10,28 @@ public class Princesa : MonoBehaviour
     [SerializeField] float _forçaParedeY;
     public float _pont;
 
+    public bool _jumpAnim;
     private Rigidbody2D _rb;
+    private Animator _anim;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _anim = GetComponentInChildren<Animator>();
     }
 
-    
+    private void Update()
+    {
+        Anim();
+    }
+
+
     void OnCollisionEnter2D(Collision2D collision)
     {
        
         if (collision.gameObject.CompareTag("Plataforma"))
         {
+            _jumpAnim = true;
             Pular();
             _pont++;
         }
@@ -35,6 +45,11 @@ public class Princesa : MonoBehaviour
         }
     }
 
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+       _jumpAnim = false;
+    }
+
     void Pular()
     {
         
@@ -42,6 +57,11 @@ public class Princesa : MonoBehaviour
         float desvioX = Random.Range(-1f, 1f);
         Vector2 vetorPulo = new Vector2(desvioX * _aberturaCurva, _jump);
         _rb.AddForce(vetorPulo, ForceMode2D.Impulse);
+    }
+
+    void Anim() 
+    {
+        _anim.SetBool("IsGround", _jumpAnim);
     }
 
     void PularParede(int direcao)

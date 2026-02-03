@@ -21,32 +21,11 @@ public class GeradorInimigos : ObjectPool
 
         if (_timer >= _tempoEntreSpawns)
         {
-            Spawnar();
+            
             _timer = 0f;
         }
     }
 
-    void Spawnar()
-    {
-        GameObject inimigo = GetPooledObject();
-
-        if (_pontosDeSpawn.Count > 0)
-        {
-           
-            int Sorteado = Random.Range(0, _pontosDeSpawn.Count);
-            Transform pontoSorteado = _pontosDeSpawn[Sorteado];
-
-            inimigo.transform.position = pontoSorteado.position;
-            inimigo.transform.rotation = Quaternion.identity;
-            inimigo.SetActive(true);
-
-            bool irParaDireita = pontoSorteado.position.x < 0;
-
-            InimigoDoce scriptInimigo = inimigo.GetComponent<InimigoDoce>();
-            if (scriptInimigo != null)
-            {
-                scriptInimigo.Configurar(irParaDireita);
-            }
-        }
-    }
+    
+    
 }
