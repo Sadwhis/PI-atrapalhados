@@ -13,7 +13,7 @@ public class InimigoDoce : MonoBehaviour
         
         if (Mathf.Abs(transform.position.x) > 15f)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 
