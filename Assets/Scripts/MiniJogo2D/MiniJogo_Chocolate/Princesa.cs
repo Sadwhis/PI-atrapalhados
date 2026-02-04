@@ -9,7 +9,7 @@ public class Princesa : MonoBehaviour
     [SerializeField] float _forçaParedeX;
     [SerializeField] float _forçaParedeY;
     public float _pont;
-
+    public bool _pauseGame;
     public bool _jumpAnim;
     private Rigidbody2D _rb;
     private Animator _anim;
@@ -25,6 +25,23 @@ public class Princesa : MonoBehaviour
         Anim();
     }
 
+    public void SetRigidBody2D(bool Value) 
+    {
+        if (Value)
+        {
+            _rb.bodyType = RigidbodyType2D.Kinematic;
+        }
+        else
+        {
+            _rb.bodyType = RigidbodyType2D.Dynamic;
+        }
+    }
+
+    void PauseGame(bool value)
+    {
+        value = true;
+
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
