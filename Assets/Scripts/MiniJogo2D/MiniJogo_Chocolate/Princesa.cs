@@ -59,6 +59,12 @@ public class Princesa : MonoBehaviour
         _rb.AddForce(vetorPulo, ForceMode2D.Impulse);
     }
 
+    public void Gravidade(float gravidade, float novaForcaPulo)
+    {
+        _rb.gravityScale = gravidade;
+        _jump = novaForcaPulo;
+    }
+
     void Anim() 
     {
         _anim.SetBool("IsGround", _jumpAnim);
