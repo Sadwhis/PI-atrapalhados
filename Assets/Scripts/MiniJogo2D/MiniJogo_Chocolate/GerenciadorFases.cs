@@ -32,8 +32,9 @@ public class GerenciadorFases : MonoBehaviour
        
         if (_timerFase >= _tempoFase && _faseAtual < 7)
         {
-            _faseAtual++;
             Fases(_faseAtual);
+            _faseAtual++;
+             
             _timerFase = 0f; 
         }
     }
