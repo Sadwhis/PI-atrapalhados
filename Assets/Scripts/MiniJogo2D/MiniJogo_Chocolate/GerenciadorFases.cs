@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEditor.Purchasing;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class GerenciadorFases : MonoBehaviour
@@ -20,6 +21,7 @@ public class GerenciadorFases : MonoBehaviour
     private float _timerFase;
 
     [SerializeField] TextMeshProUGUI _textoAnuncioFase;
+    [SerializeField] RawImage RawImage;
 
     bool _isPaused;
     void Start()
@@ -99,14 +101,14 @@ public class GerenciadorFases : MonoBehaviour
 
     IEnumerator SequenciaMudancaFase(int nivel)
     {
-        // 1. Pausa o jogo
+       
         _princesa.SetRigidBody2D(true);
 
         if (_textoAnuncioFase != null)
         {
             _plataforma._velocidadeNormal = 0f;
             CanvasGroup cg = _textoAnuncioFase.GetComponent<CanvasGroup>();
-            //cg.alpha = 0;
+            cg.alpha = 0;
             _textoAnuncioFase.transform.localScale = Vector3.one * 0.5f;
             _textoAnuncioFase.text = "FASE " + nivel;
             _textoAnuncioFase.gameObject.SetActive(true);
