@@ -9,15 +9,23 @@ public class Princesa : MonoBehaviour
     [SerializeField] float _forçaParedeX;
     [SerializeField] float _forçaParedeY;
     public float _pont;
-    public bool _pauseGame;
+    public bool _pauseGame = true;
     public bool _jumpAnim;
     private Rigidbody2D _rb;
     private Animator _anim;
+     
+    Vector2 _posSalva;
 
-    void Start()
+    void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponentInChildren<Animator>();
+        
+    }
+    void Start()
+    {
+       
+        SetRigidBody2D(true);
     }
 
     private void Update()
@@ -27,20 +35,24 @@ public class Princesa : MonoBehaviour
 
     public void SetRigidBody2D(bool Value) 
     {
+        
+
         if (Value)
         {
+            _posSalva = _rb.linearVelocity;
             _rb.bodyType = RigidbodyType2D.Kinematic;
+            _rb.linearVelocity = Vector2.zero;
+            _anim.enabled = !Value;
+            _pauseGame = true;
+
         }
         else
         {
             _rb.bodyType = RigidbodyType2D.Dynamic;
+            _rb.linearVelocity = _posSalva;
+            _anim.enabled = !Value;
+            _pauseGame = false;
         }
-    }
-
-    void PauseGame(bool value)
-    {
-        value = true;
-
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -93,4 +105,6 @@ public class Princesa : MonoBehaviour
         Vector2 vetorParede = new Vector2(direcao * _forçaParedeX, _forçaParedeY);
         _rb.AddForce(vetorParede, ForceMode2D.Impulse);
     }
+
+ 
 }

@@ -6,7 +6,7 @@ using TMPro;
 public class MovePlataforma : MonoBehaviour
 {
     
-    [SerializeField] float _velocidadeNormal = 10f;
+    public float _velocidadeNormal = 10f;
     [SerializeField] float _limiteX = 8f;
 
     [Header("Dificuldade (Tamanhos)")]
