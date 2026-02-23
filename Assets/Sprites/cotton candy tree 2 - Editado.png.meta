@@ -1,19 +1,16 @@
 fileFormatVersion: 2
-guid: df620d9362d039345ad39d4ecdb073c0
+guid: ee88e5bfc5487704f9c69bd2ad97373d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2400574666191871861
-    second: bushes candy - Editado_0
+      213: -6319109379973851028
+    second: cotton candy tree 2 - Editado_0
   - first:
-      213: -855688797075370200
-    second: bushes candy - Editado_1
+      213: 7496211975205211627
+    second: cotton candy tree 2 - Editado_1
   - first:
-      213: 487543551220292860
-    second: bushes candy - Editado_2
-  - first:
-      213: -4244519340816134381
-    second: bushes candy - Editado_3
+      213: 2275123975787918186
+    second: cotton candy tree 2 - Editado_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -118,17 +115,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bushes candy - Editado_0
+      name: cotton candy tree 2 - Editado_0
       rect:
         serializedVersion: 2
-        x: 36
-        y: 315
-        width: 386
-        height: 153
+        x: 61
+        y: 103
+        width: 252
+        height: 450
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +147,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 57f1b2ba0fd805120800000000000000
-      internalID: 2400574666191871861
+      spriteID: c68d1ddbf730e48a0800000000000000
+      internalID: -6319109379973851028
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bushes candy - Editado_1
+      name: cotton candy tree 2 - Editado_1
       rect:
         serializedVersion: 2
-        x: 498
-        y: 363
-        width: 574
-        height: 114
+        x: 395
+        y: 84
+        width: 332
+        height: 463
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,20 +169,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 82f8a0c929bff14f0800000000000000
-      internalID: -855688797075370200
+      spriteID: bedc2272315e70860800000000000000
+      internalID: 7496211975205211627
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bushes candy - Editado_2
+      name: cotton candy tree 2 - Editado_2
       rect:
         serializedVersion: 2
-        x: 290
-        y: 109
-        width: 221
-        height: 90
+        x: 756
+        y: 67
+        width: 311
+        height: 481
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,30 +191,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cfc9407d64a14c600800000000000000
-      internalID: 487543551220292860
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bushes candy - Editado_3
-      rect:
-        serializedVersion: 2
-        x: 591
-        y: 138
-        width: 309
-        height: 194
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 31f0160e5207815c0800000000000000
-      internalID: -4244519340816134381
+      spriteID: a6330dca33dd29f10800000000000000
+      internalID: 2275123975787918186
       vertices: []
       indices: 
       edges: []
@@ -223,10 +211,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bushes candy - Editado_0: 2400574666191871861
-      bushes candy - Editado_1: -855688797075370200
-      bushes candy - Editado_2: 487543551220292860
-      bushes candy - Editado_3: -4244519340816134381
+      cotton candy tree 2 - Editado_0: -6319109379973851028
+      cotton candy tree 2 - Editado_1: 7496211975205211627
+      cotton candy tree 2 - Editado_2: 2275123975787918186
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
