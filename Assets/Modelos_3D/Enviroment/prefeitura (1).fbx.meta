@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ff1646389a69b39409668a3eaa0572f5
+guid: 129ac25c438f837468a031409545be70
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,76 +7,141 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Biscoito
+    second: {fileID: 2100000, guid: 0259d2a21d4e3e049b2ef1a34a61d269, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black
+    second: {fileID: 2100000, guid: 5d74dd7c42b187e41bfe58256b0cb76b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Chocolate
-    second: {fileID: 2100000, guid: 8c8f4b26388e2474aaa2ec628c5d0763, type: 2}
+    second: {fileID: 2100000, guid: f8e9c14824a5b4a4db7bacfe91baac66, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Chocolate Amargo
-    second: {fileID: 2100000, guid: 22b13c8846cc0f143bbfbe547cfb5d42, type: 2}
+      name: Confeite
+    second: {fileID: 2100000, guid: c6bffed83fbb32a4d872bda0074bc5ea, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Chocolate Branco
-    second: {fileID: 2100000, guid: cbb7df33175d35e42a5779d96e645034, type: 2}
+      name: Entrada
+    second: {fileID: 2100000, guid: c8063e87de7a3b743a3987a4579737fc, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Janela
-    second: {fileID: 2100000, guid: c7a880ff951297945a29a2bcaa55fe8c, type: 2}
+      name: Horas
+    second: {fileID: 2100000, guid: 7abe58767396ae2428fa48b0f2e3f5e2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Janelas
+    second: {fileID: 2100000, guid: e6d37c1c33f39a141b2d2e5daf7757c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Marshmallow1
+    second: {fileID: 2100000, guid: 37d2911a97272394b821155fd123d8d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Marshmallow2
+    second: {fileID: 2100000, guid: d0ed259805a363e45bc5cf4721ba2ecb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Marshmallow3
+    second: {fileID: 2100000, guid: 42e3952797ee7fa41937b1f46e59a3b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Marshmallow4
+    second: {fileID: 2100000, guid: df156d29d29b3e84cb08a1532267fba2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Marshmallow5
+    second: {fileID: 2100000, guid: 383ab933274d531468e948b01354c5e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Marshmallow6
+    second: {fileID: 2100000, guid: 2d80a9da7f3181d48968b96b7ece7b5e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Marshmallow7
+    second: {fileID: 2100000, guid: 741985e62dbfada42a8130bcc29464c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Mar\xE7aneta"
+    second: {fileID: 2100000, guid: 86e5a49c5b6b49c40b424fcde73cdf26, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 743502145722be24595fd8e16facc3c0, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.001
-    second: {fileID: 2100000, guid: 0a184275e2580514383ffba164a94b94, type: 2}
+    second: {fileID: 2100000, guid: 204014f0f9aa2b448b337ba518db298f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Ouro
-    second: {fileID: 2100000, guid: 7bc86f4f646abb846b4629d78cff04a4, type: 2}
+      name: Peppermint1
+    second: {fileID: 2100000, guid: b487e238a7cac1246aa1d1a2252a5a7b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Petalas Agua verde
-    second: {fileID: 2100000, guid: 1fa75daec2e42cb439cc938f1eb79505, type: 2}
+      name: Peppermint2
+    second: {fileID: 2100000, guid: 45ab1879b8a963d48adb77fd506ae519, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Petalas Rosa-Vermelho
-    second: {fileID: 2100000, guid: c60e9e550e9078444a89b4b1b9c9fc31, type: 2}
+      name: Peppermint2.001
+    second: {fileID: 2100000, guid: 24053b4a0aa17d8429b60b11290f86e3, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Petalas Roxa
-    second: {fileID: 2100000, guid: 70ae84cb1f6c0ab43ac6639133f33a32, type: 2}
+      name: Peppermint2.002
+    second: {fileID: 2100000, guid: 9f47930b5338677438feaf4c7d5be1eb, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Planta
-    second: {fileID: 2100000, guid: f31b796111794a74081c5701e645a456, type: 2}
+      name: Peppermint2.003
+    second: {fileID: 2100000, guid: 58a661e1611963f4e809b50bfb8d0644, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Porta1
+    second: {fileID: 2100000, guid: 64986d29c6b87b445b64da9f452e9e24, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Rel\xF3gio"
+    second: {fileID: 2100000, guid: c86484ae74e188141a1cf909aa7e2dea, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Vidro1
-    second: {fileID: 2100000, guid: 2844158ceb4b06d43affe6630db38957, type: 2}
+    second: {fileID: 2100000, guid: 8bfd2cd0fbdaf854caefd450758ba4b0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Vidro2
+    second: {fileID: 2100000, guid: 2ec89f06ed11db14db73ae1592203d8d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Vidro3
-    second: {fileID: 2100000, guid: 5db3be039ae27c946b1c23aa448a96a4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Vidro4
-    second: {fileID: 2100000, guid: b950b0fa9e375264a81cfc49aa220be8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: preto
-    second: {fileID: 2100000, guid: 6476cbfefa62d184ca543648acda547a, type: 2}
+    second: {fileID: 2100000, guid: d37045f1472bb934596573875caa7dc2, type: 2}
   materials:
     materialImportMode: 2
-    materialName: 0
+    materialName: 1
     materialSearch: 1
     materialLocation: 1
   animations:
@@ -138,7 +203,7 @@ ModelImporter:
     useFileScale: 1
     strictVertexDataChecks: 0
   tangentSpace:
-    normalSmoothAngle: 60
+    normalSmoothAngle: 67
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
