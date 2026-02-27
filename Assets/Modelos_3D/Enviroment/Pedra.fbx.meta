@@ -3,7 +3,12 @@ guid: 116fde44220de0f4f93a03c4448887df
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: c692d868a51fa414abfdf58b4f2a7736, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -68,7 +73,7 @@ ModelImporter:
     useFileScale: 1
     strictVertexDataChecks: 0
   tangentSpace:
-    normalSmoothAngle: 99
+    normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
