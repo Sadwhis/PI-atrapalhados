@@ -1,79 +1,9 @@
 fileFormatVersion: 2
-guid: ff1646389a69b39409668a3eaa0572f5
+guid: bec16a7dde9687b4697db2d3d74f7fcd
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Chocolate
-    second: {fileID: 2100000, guid: 8c8f4b26388e2474aaa2ec628c5d0763, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Chocolate Amargo
-    second: {fileID: 2100000, guid: 22b13c8846cc0f143bbfbe547cfb5d42, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Chocolate Branco
-    second: {fileID: 2100000, guid: cbb7df33175d35e42a5779d96e645034, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Janela
-    second: {fileID: 2100000, guid: c7a880ff951297945a29a2bcaa55fe8c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: 0a184275e2580514383ffba164a94b94, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Ouro
-    second: {fileID: 2100000, guid: 7bc86f4f646abb846b4629d78cff04a4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Petalas Agua verde
-    second: {fileID: 2100000, guid: 1fa75daec2e42cb439cc938f1eb79505, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Petalas Rosa-Vermelho
-    second: {fileID: 2100000, guid: c60e9e550e9078444a89b4b1b9c9fc31, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Petalas Roxa
-    second: {fileID: 2100000, guid: 70ae84cb1f6c0ab43ac6639133f33a32, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Planta
-    second: {fileID: 2100000, guid: f31b796111794a74081c5701e645a456, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Vidro1
-    second: {fileID: 2100000, guid: 2844158ceb4b06d43affe6630db38957, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Vidro3
-    second: {fileID: 2100000, guid: 5db3be039ae27c946b1c23aa448a96a4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Vidro4
-    second: {fileID: 2100000, guid: b950b0fa9e375264a81cfc49aa220be8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: preto
-    second: {fileID: 2100000, guid: 6476cbfefa62d184ca543648acda547a, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
