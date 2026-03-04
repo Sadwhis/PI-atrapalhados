@@ -58,6 +58,11 @@ namespace Atrapalhados
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            
+        }
     }
     #endregion
 }
