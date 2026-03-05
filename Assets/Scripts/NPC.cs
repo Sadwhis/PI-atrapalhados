@@ -4,7 +4,8 @@ using DG.Tweening;
 public class NPC : MonoBehaviour
 {
     [Header("Configurações")]
-    public GameObject _TextoFrog; 
+    public GameObject _TextoFrog;
+    public GameObject _TextoFrog2;
     public float tempoAnimacao = 0.5f;
 
     private void Start()
@@ -18,11 +19,7 @@ public class NPC : MonoBehaviour
         {
 
             _TextoFrog.transform.DOKill();
-
-
             _TextoFrog.SetActive(true);
-
-
             _TextoFrog.transform.DOScale(1, tempoAnimacao).SetEase(Ease.OutBack);
         }
     }
@@ -32,8 +29,6 @@ public class NPC : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _TextoFrog.transform.DOKill();
-
-
             _TextoFrog.transform.DOScale(0, tempoAnimacao).SetEase(Ease.InBack).OnComplete(() =>
             {
                 _TextoFrog.SetActive(false);
