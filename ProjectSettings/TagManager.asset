@@ -19,12 +19,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - Npc
   - Water
   - UI
   - Ground
   - MiniMapIcon
-  - 
+  - Player
   - 
   - 
   - 
