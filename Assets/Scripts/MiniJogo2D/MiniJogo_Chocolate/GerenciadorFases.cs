@@ -23,6 +23,8 @@ public class GerenciadorFases : MonoBehaviour
     [SerializeField] TextMeshProUGUI _textoAnuncioFase;
     [SerializeField] RawImage RawImage;
 
+  
+
     bool _isPaused;
     void Start()
     {

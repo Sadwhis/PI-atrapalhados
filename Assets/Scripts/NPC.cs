@@ -18,8 +18,10 @@ public class NPC : MonoBehaviour
     public GameObject buttonClicar;
     public GameObject backGroundUI;
 
+    GuiaPlayer linhaP;
     private void Start()
     {
+        linhaP = GameObject.FindWithTag("Linha").GetComponent<GuiaPlayer>();
         foreach (var texto in _textos)
         {
             texto.transform.localScale = Vector3.zero;
@@ -80,7 +82,7 @@ public class NPC : MonoBehaviour
             else
             {
                 Debug.Log("Fim do didi!");
-
+                linhaP.NpcGeneral();
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 backGroundUI.SetActive(false);
@@ -118,6 +120,6 @@ public class NPC : MonoBehaviour
         {
             texto.SetActive(false);
         });
-       
+        
     }
 }

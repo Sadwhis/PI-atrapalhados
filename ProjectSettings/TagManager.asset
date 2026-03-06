@@ -15,6 +15,7 @@ TagManager:
   - Plataforma
   - ParedeEsq
   - ParedeDir
+  - Linha
   layers:
   - Default
   - TransparentFX
