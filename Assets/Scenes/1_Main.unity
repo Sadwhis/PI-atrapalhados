@@ -3700,7 +3700,7 @@ GameObject:
   - component: {fileID: 156907827}
   - component: {fileID: 156907826}
   - component: {fileID: 156907825}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: CanvasMark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4156,7 +4156,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 197024311}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: CameraRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10156,11 +10156,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9195483843252839461, guid: 6bf8d25279c35894eadeac182c196bf5, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8965499734928167545, guid: 6bf8d25279c35894eadeac182c196bf5, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6bf8d25279c35894eadeac182c196bf5, type: 3}
       propertyPath: m_LocalScale.z
@@ -10208,27 +10208,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8076122391185006288, guid: 6bf8d25279c35894eadeac182c196bf5, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -5113605996312675914, guid: 6bf8d25279c35894eadeac182c196bf5, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -3430107178323811812, guid: 6bf8d25279c35894eadeac182c196bf5, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -2227430681585417156, guid: 6bf8d25279c35894eadeac182c196bf5, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -1765204881387918702, guid: 6bf8d25279c35894eadeac182c196bf5, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -1751199605701750844, guid: 6bf8d25279c35894eadeac182c196bf5, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6bf8d25279c35894eadeac182c196bf5, type: 3}
       propertyPath: m_Name
@@ -10236,11 +10236,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6bf8d25279c35894eadeac182c196bf5, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1789714886166123194, guid: 6bf8d25279c35894eadeac182c196bf5, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2877666896716556490, guid: 6bf8d25279c35894eadeac182c196bf5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10256,19 +10256,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3850111279101665021, guid: 6bf8d25279c35894eadeac182c196bf5, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4985185789273264572, guid: 6bf8d25279c35894eadeac182c196bf5, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7036213049465896255, guid: 6bf8d25279c35894eadeac182c196bf5, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8357531306731727484, guid: 6bf8d25279c35894eadeac182c196bf5, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -16131,7 +16131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 486101767}
   - component: {fileID: 486101766}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: 'FPSCamera  '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16799,7 +16799,7 @@ GameObject:
   - component: {fileID: 504753184}
   - component: {fileID: 504753185}
   - component: {fileID: 504753187}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -24779,7 +24779,7 @@ GameObject:
   - component: {fileID: 851185224}
   - component: {fileID: 851185223}
   - component: {fileID: 851185229}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: 'TPSCamera '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28481,7 +28481,7 @@ GameObject:
   - component: {fileID: 1054523480}
   - component: {fileID: 1054523482}
   - component: {fileID: 1054523481}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: RawImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48949,7 +48949,7 @@ GameObject:
   - component: {fileID: 2019994346}
   - component: {fileID: 2019994347}
   - component: {fileID: 2019994348}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: LinhaNpc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49692,7 +49692,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2071063600}
   - component: {fileID: 2071063601}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Mixing Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
