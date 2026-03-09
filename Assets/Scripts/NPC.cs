@@ -1,9 +1,10 @@
 using Atrapalhados;
 using DG.Tweening;
 using System.Collections.Generic;
-using UnityEngine;
-using Cursor = UnityEngine.Cursor;
 using Unity.Cinemachine;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using Cursor = UnityEngine.Cursor;
 
 public class NPC : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class NPC : MonoBehaviour
     [Header("UI e Referências")]
     public GameObject buttonClicar;
     public GameObject backGroundUI;
+    public GameObject buttonMiniJogo;
 
     private GuiaPlayer linhaP;
     private FPController fPController;
@@ -112,16 +114,18 @@ public class NPC : MonoBehaviour
                     linhaP.NpcGeneral();
                 }
                 cameraPlayer.enabled = true;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = true;
+                //Cursor.lockState = CursorLockMode.Locked;
                 buttonClicar.SetActive(false);
 
                 fPController._lookSensitivity = new Vector2(0.1f, 0.1f);
                 backGroundUI.transform.DOKill();
+                buttonMiniJogo.transform.localScale = Vector3.one;
                 backGroundUI.transform.DOScale(0, tempoAnimacao).SetEase(Ease.InBack).OnComplete(() =>
                 {
                     backGroundUI.SetActive(false);
                 });
+               
             }
         });
     }
@@ -160,5 +164,9 @@ public class NPC : MonoBehaviour
         {
             texto.SetActive(false);
         });
+    }
+    public void PassarCena(string nomeDaCena)
+    {
+        SceneManager.LoadScene(nomeDaCena);
     }
 }
