@@ -25712,7 +25712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 979f6fc0461b38e4bbc7df94c9c24897, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.392
+      value: 13.127
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 979f6fc0461b38e4bbc7df94c9c24897, type: 3}
       propertyPath: m_LocalPosition.z
@@ -33080,8 +33080,10 @@ MonoBehaviour:
   - {fileID: 1606735432}
   - {fileID: 787265799}
   - {fileID: 1280307185}
+  poClicar: 1
   buttonClicar: {fileID: 1874141945}
   backGroundUI: {fileID: 688720487}
+  cameraPlayer: {fileID: 851185223}
 --- !u!65 &1323225460
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33102,7 +33104,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 14.425734, y: 1, z: 20.711628}
-  m_Center: {x: -1.7071251, y: 0, z: 0.0000004366015}
+  m_Center: {x: -1.7071251, y: 2.15, z: 0.0000004366015}
 --- !u!4 &1323225461 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 979f6fc0461b38e4bbc7df94c9c24897, type: 3}

@@ -1,32 +1,45 @@
+using Atrapalhados;
 using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
-
+using Unity.Cinemachine;
 
 public class NPC : MonoBehaviour
 {
     [Header("Configurações")]
     public float tempoAnimacao = 0.5f;
-    public float tempoPausa = 3f;
+    public float tempoPausa = 0.5f;
+
     public List<GameObject> _textos = new List<GameObject>();
 
     private int indiceAtual = 0;
-    private bool poClicar = true;
+    public bool poClicar = false;
 
+    [Header("UI e Referências")]
     public GameObject buttonClicar;
     public GameObject backGroundUI;
 
-    GuiaPlayer linhaP;
+    private GuiaPlayer linhaP;
+    private FPController fPController;
+    public CinemachineInputAxisController cameraPlayer;
+
+
     private void Start()
     {
+        
         linhaP = GameObject.FindWithTag("Linha").GetComponent<GuiaPlayer>();
+        fPController = GameObject.FindWithTag("Player").GetComponent<FPController>();
+
         foreach (var texto in _textos)
         {
             texto.transform.localScale = Vector3.zero;
             texto.SetActive(false);
         }
+        
+
+        if (backGroundUI != null) backGroundUI.SetActive(false);
+        if (buttonClicar != null) buttonClicar.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,13 +47,20 @@ public class NPC : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             indiceAtual = 0;
-            poClicar = true;
+
             buttonClicar.SetActive(true);
             backGroundUI.SetActive(true);
+
+            fPController._lookSensitivity = new Vector2(0, 0);
+            backGroundUI.transform.localScale = Vector3.zero;
+
             MostrarTextoAtual();
 
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+
+            cameraPlayer.enabled = false;
+
         }
     }
 
@@ -48,13 +68,20 @@ public class NPC : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            EsconderTextoAtual();
-            
+            poClicar = false;
             buttonClicar.SetActive(false);
+            fPController._lookSensitivity = new Vector2(0.1f, 0.1f);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+
+            EsconderTextoAtual();
+
+            cameraPlayer.enabled = true;
             backGroundUI.transform.DOKill();
-            backGroundUI.transform.DOScale(0, tempoAnimacao).SetEase(Ease.InBack);
+            backGroundUI.transform.DOScale(0, tempoAnimacao).SetEase(Ease.InBack).OnComplete(() =>
+            {
+                backGroundUI.SetActive(false);
+            });
         }
     }
 
@@ -63,13 +90,11 @@ public class NPC : MonoBehaviour
         
         if (!poClicar) return;
 
-        poClicar = false; 
+        poClicar = false;
         EsconderTextoAtual();
 
-       
         float tempoTotalDeEspera = tempoAnimacao + tempoPausa;
 
-        
         DOVirtual.DelayedCall(tempoTotalDeEspera, () =>
         {
             indiceAtual++;
@@ -77,20 +102,26 @@ public class NPC : MonoBehaviour
             if (indiceAtual < _textos.Count)
             {
                 MostrarTextoAtual();
-                poClicar = true; 
             }
             else
             {
-                Debug.Log("Fim do didi!");
-                linhaP.NpcGeneral();
+                Debug.Log("Fim do Diálogo!");
+
+                if (linhaP != null)
+                {
+                    linhaP.NpcGeneral();
+                }
+
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
-                backGroundUI.SetActive(false);
                 buttonClicar.SetActive(false);
 
+              
                 backGroundUI.transform.DOKill();
-                backGroundUI.transform.DOScale(0, tempoAnimacao).SetEase(Ease.InBack);
-
+                backGroundUI.transform.DOScale(0, tempoAnimacao).SetEase(Ease.InBack).OnComplete(() =>
+                {
+                    backGroundUI.SetActive(false);
+                });
             }
         });
     }
@@ -99,15 +130,24 @@ public class NPC : MonoBehaviour
     {
         if (_textos.Count == 0 || indiceAtual >= _textos.Count) return;
 
+        poClicar = false;
         GameObject texto = _textos[indiceAtual];
-        backGroundUI.SetActive (true);
+
+        backGroundUI.SetActive(true);
         texto.SetActive(true);
+
         backGroundUI.transform.DOKill();
         texto.transform.DOKill();
-        //backGroundUI.transform.localScale = Vector3.zero;
+
         texto.transform.localScale = Vector3.zero;
+
         backGroundUI.transform.DOScale(1, tempoAnimacao).SetEase(Ease.OutBack);
-        texto.transform.DOScale(1, tempoAnimacao).SetEase(Ease.OutBack);
+
+        
+        texto.transform.DOScale(1, tempoAnimacao).SetEase(Ease.OutBack).OnComplete(() =>
+        {
+            poClicar = true;
+        });
     }
 
     private void EsconderTextoAtual()
@@ -120,6 +160,5 @@ public class NPC : MonoBehaviour
         {
             texto.SetActive(false);
         });
-        
     }
 }
