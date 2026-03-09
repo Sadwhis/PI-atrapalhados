@@ -1,0 +1,263 @@
+fileFormatVersion: 2
+guid: e16579e40f659954089bbf073d7e59e1
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Hud marshimelow_17
+      rect:
+        serializedVersion: 2
+        x: 1246
+        y: 759
+        width: 346
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4773c6f73dd6674aa71b80964d1aa8b
+      internalID: 291517529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 6b87f6733fa4f01469e3d93c1c775842
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Hud marshimelow_0: 587429417
+      Hud marshimelow_1: 764137778
+      Hud marshimelow_10: 1554571884
+      Hud marshimelow_11: 1507176904
+      Hud marshimelow_12: 1225376879
+      Hud marshimelow_13: 1417540437
+      Hud marshimelow_14: -1631180228
+      Hud marshimelow_15: 2052520014
+      Hud marshimelow_16: 963086125
+      Hud marshimelow_17: 291517529
+      Hud marshimelow_18: 1555750051
+      Hud marshimelow_19: 938971828
+      Hud marshimelow_2: -200772147
+      Hud marshimelow_20: -304947348
+      Hud marshimelow_21: -743400495
+      Hud marshimelow_22: -563172790
+      Hud marshimelow_23: -1480490291
+      Hud marshimelow_24: 1588000445
+      Hud marshimelow_25: 1511621052
+      Hud marshimelow_26: 1721738827
+      Hud marshimelow_27: -1696872181
+      Hud marshimelow_28: 90226885
+      Hud marshimelow_29: -1128454812
+      Hud marshimelow_3: -1658089460
+      Hud marshimelow_30: -409062708
+      Hud marshimelow_31: 417125378
+      Hud marshimelow_32: 1548559794
+      Hud marshimelow_33: -1717556055
+      Hud marshimelow_34: -33305334
+      Hud marshimelow_35: 1613013773
+      Hud marshimelow_36: -304209294
+      Hud marshimelow_37: 1645159136
+      Hud marshimelow_38: 2003555806
+      Hud marshimelow_39: 1222156506
+      Hud marshimelow_4: 555661652
+      Hud marshimelow_40: 1668744153
+      Hud marshimelow_41: 1242482631
+      Hud marshimelow_42: 549677415
+      Hud marshimelow_43: -1776477536
+      Hud marshimelow_44: -1734454561
+      Hud marshimelow_45: -1134391780
+      Hud marshimelow_46: -1001835698
+      Hud marshimelow_47: -694034193
+      Hud marshimelow_48: 206579762
+      Hud marshimelow_49: 1019123814
+      Hud marshimelow_5: -727797243
+      Hud marshimelow_50: -1133220618
+      Hud marshimelow_51: 314904037
+      Hud marshimelow_52: 1843364330
+      Hud marshimelow_53: 1016534841
+      Hud marshimelow_54: 2078354613
+      Hud marshimelow_55: -1249931301
+      Hud marshimelow_56: -420047643
+      Hud marshimelow_57: -1115222623
+      Hud marshimelow_58: 77184571
+      Hud marshimelow_6: -232891589
+      Hud marshimelow_7: 1361536955
+      Hud marshimelow_8: -1948414937
+      Hud marshimelow_9: 662099701
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
