@@ -38,7 +38,7 @@ namespace Atrapalhados
         [SerializeField] float _cameraSprintFOV = 80f;
         [SerializeField] float _cameraFOVSmoothing = 1f;
 
-        //Mixing Camera |
+    
         [Header("Camera Switching")]
         [SerializeField] CinemachineMixingCamera _mixingCamera;
         [Tooltip("(CameraRoot")]
@@ -66,7 +66,7 @@ namespace Atrapalhados
         [SerializeField] CharacterController _charactercontroller;
         [SerializeField] Animator _animator;
 
-        // Referência para a câmera principal para calcular direção na 3ª pessoa
+        
         private Transform _mainCamTransform;
 
         #region Unity Methods
@@ -78,7 +78,7 @@ namespace Atrapalhados
 
         void Start()
         {
-            // Pega a referência da câmera principal (usada na lógica de 3ª pessoa)
+           
             if (Camera.main != null)
                 _mainCamTransform = Camera.main.transform;
         }
@@ -87,8 +87,8 @@ namespace Atrapalhados
         {
             MoveUpdate();
             LookUpdate();
-            CameraUpdate(); // Lida com FOV
-            CameraMixingUpdate(); // Lida com a troca de câmera
+            CameraUpdate(); 
+            CameraMixingUpdate(); 
         }
         #endregion
 
