@@ -1881,7 +1881,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1-1
+  m_text: "N\xE3o se preocupe com o caminho, Majestade. J\xE1 preparei a sinaliza\xE7\xE3o
+    real para que nada interrompa sua jornada."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
   m_sharedMaterial: {fileID: -5073119722458946513, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
@@ -1908,14 +1909,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.79
-  m_fontSizeBase: 59.79
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -17716,7 +17717,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: AMO COMER QUEIJO
+  m_text: Por favor, siga para a Vila imediatamente. O General a aguarda no castelo
+    para o conselho de guerra.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
   m_sharedMaterial: {fileID: -5073119722458946513, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
@@ -17743,14 +17745,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.79
-  m_fontSizeBase: 59.79
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -21806,7 +21808,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 200}
+  m_SizeDelta: {x: 700, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &689036007
 PrefabInstance:
@@ -27469,7 +27471,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "P\xC3O DE RINHO"
+  m_text: "Resolva este enigma agora, ou nossa vila virar\xE1 um rio de chocolate
+    quente!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
   m_sharedMaterial: {fileID: -5073119722458946513, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
@@ -27496,8 +27499,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.79
-  m_fontSizeBase: 59.79
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -33886,7 +33889,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LA ELE
+  m_text: "Pela gl\xF3ria do Reino Doce! Estaremos aqui protegendo as fronteiras
+    enquanto a senhora resolve esse impasse."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
   m_sharedMaterial: {fileID: -5073119722458946513, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
@@ -33913,14 +33917,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.79
-  m_fontSizeBase: 59.79
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -40674,9 +40678,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'TUDO BEM
-
-'
+  m_text: "Princesa, os relat\xF3rios do laborat\xF3rio estavam corretos: a instabilidade
+    t\xE9rmica est\xE1 afetando a estrutura da Vila de Chocolate."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
   m_sharedMaterial: {fileID: -5073119722458946513, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
@@ -40703,14 +40706,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.79
-  m_fontSizeBase: 59.79
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -43655,7 +43658,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TERCEIRA DIVISAO DO MOLESTAMENTO SUPREMO
+  m_text: Princesa! Finalmente. Achei que o calor fosse te derreter no caminho.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
   m_sharedMaterial: {fileID: -5073119722458946513, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
@@ -44575,7 +44578,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: O-O
+  m_text: "O General Chocolate enviou um mensageiro urgente. Ele disse que apenas
+    a sua mente brilhante pode calibrar a estrat\xE9gia de defesa agora."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
   m_sharedMaterial: {fileID: -5073119722458946513, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
@@ -44602,14 +44606,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.79
-  m_fontSizeBase: 59.79
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -46794,7 +46798,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SALVE O REINO E MOLESTE O PADEIRINHO
+  m_text: "Vossa Alteza! Que bom que a senhora chegou. Est\xE1vamos todos ansiosos
+    pela sua presen\xE7a!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
   m_sharedMaterial: {fileID: -5073119722458946513, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
@@ -46828,7 +46833,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
