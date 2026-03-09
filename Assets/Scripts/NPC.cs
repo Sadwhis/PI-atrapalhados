@@ -111,12 +111,12 @@ public class NPC : MonoBehaviour
                 {
                     linhaP.NpcGeneral();
                 }
-
+                cameraPlayer.enabled = true;
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 buttonClicar.SetActive(false);
 
-              
+                fPController._lookSensitivity = new Vector2(0.1f, 0.1f);
                 backGroundUI.transform.DOKill();
                 backGroundUI.transform.DOScale(0, tempoAnimacao).SetEase(Ease.InBack).OnComplete(() =>
                 {
