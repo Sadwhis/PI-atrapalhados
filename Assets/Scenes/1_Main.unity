@@ -13656,6 +13656,7 @@ RectTransform:
   - {fileID: 787265800}
   - {fileID: 1280307188}
   - {fileID: 1874141946}
+  - {fileID: 2114386719}
   m_Father: {fileID: 118884854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -17207,7 +17208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _acceleration: 20
   _walkSpeed: 3.5
-  _SprintSpeed: 20
+  _SprintSpeed: 25
   _turnSmoothTime: 0.1
   _jumpHeight: 2
   _lookSensitivity: {x: 0.1, y: 0.1}
@@ -26161,13 +26162,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 979f6fc0461b38e4bbc7df94c9c24897, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1323225459}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 979f6fc0461b38e4bbc7df94c9c24897, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1323225460}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 979f6fc0461b38e4bbc7df94c9c24897, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1323225462}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 979f6fc0461b38e4bbc7df94c9c24897, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1323225463}
   m_SourcePrefab: {fileID: 100100000, guid: 979f6fc0461b38e4bbc7df94c9c24897, type: 3}
 --- !u!1001 &902331930
 PrefabInstance:
@@ -33653,34 +33654,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 979f6fc0461b38e4bbc7df94c9c24897, type: 3}
   m_PrefabInstance: {fileID: 898114927}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1323225459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1323225458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8834805026f7db74b85f9556bcfe639d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tempoAnimacao: 0.5
-  tempoPausa: 0.2
-  _textos:
-  - {fileID: 1391027390}
-  - {fileID: 419877400}
-  - {fileID: 1747592676}
-  - {fileID: 1606735432}
-  - {fileID: 787265799}
-  - {fileID: 1280307185}
-  poClicar: 1
-  buttonFase: 0
-  buttonClicar: {fileID: 1874141945}
-  backGroundUI: {fileID: 688720487}
-  buttonMiniJogo: {fileID: 0}
-  cameraPlayer: {fileID: 851185223}
-  player: {fileID: 0}
 --- !u!65 &1323225460
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33730,6 +33703,34 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: -0.28, y: 1.47, z: 0}
+--- !u!114 &1323225463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323225458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8834805026f7db74b85f9556bcfe639d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tempoAnimacao: 0.5
+  tempoPausa: 0.2
+  _textos:
+  - {fileID: 1391027390}
+  - {fileID: 419877400}
+  - {fileID: 1747592676}
+  - {fileID: 1606735432}
+  - {fileID: 787265799}
+  - {fileID: 1280307185}
+  poClicar: 1
+  buttonFase: 0
+  buttonClicar: {fileID: 1874141945}
+  backGroundUI: {fileID: 688720487}
+  buttonMiniJogo: {fileID: 2114386718}
+  cameraPlayer: {fileID: 851185223}
+  player: {fileID: 0}
 --- !u!1001 &1331296106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42531,7 +42532,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 609, y: -431}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1697717645
@@ -46451,7 +46452,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1323225459}
+      - m_Target: {fileID: 1323225463}
         m_TargetAssemblyTypeName: NPC, Assembly-CSharp
         m_MethodName: ProximoDialogo
         m_Mode: 1
@@ -52340,6 +52341,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bec16a7dde9687b4697db2d3d74f7fcd, type: 3}
   m_PrefabInstance: {fileID: 2112300414}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2114386718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2114386719}
+  - component: {fileID: 2114386722}
+  m_Layer: 5
+  m_Name: Button_MiniJogo1 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2114386719
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114386718}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 383539124}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 609, y: -431}
+  m_SizeDelta: {x: 500, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2114386722
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114386718}
+  m_CullTransparentMesh: 1
 --- !u!1 &2115238610
 GameObject:
   m_ObjectHideFlags: 0

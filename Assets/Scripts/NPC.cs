@@ -84,6 +84,7 @@ public class NPC : MonoBehaviour
 
             cameraPlayer.enabled = true;
             backGroundUI.transform.DOKill();
+            backGroundUI.SetActive(false);
             backGroundUI.transform.DOScale(0, tempoAnimacao).SetEase(Ease.InBack).OnComplete(() =>
             {
                 backGroundUI.SetActive(false);
@@ -119,18 +120,32 @@ public class NPC : MonoBehaviour
                     linhaP.NpcGeneral();
                 }
                 cameraPlayer.enabled = true;
-                Cursor.visible = true;  
-                Cursor.lockState = CursorLockMode.Locked;
-                buttonClicar.SetActive(!buttonFase);
+
+                if (!buttonFase)
+                {
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+               
+                buttonClicar.SetActive(false);
+                buttonMiniJogo.SetActive(buttonFase);
 
                 Controller._lookSensitivity = new Vector2(0.1f, 0.1f);
                 backGroundUI.transform.DOKill();
                 buttonMiniJogo.transform.localScale = Vector3.one;
                 backGroundUI.transform.DOScale(0, tempoAnimacao).SetEase(Ease.InBack).OnComplete(() =>
                 {
+                    Debug.Log("Ola rapariga");
                     backGroundUI.SetActive(false);
                 });
-               
+
+                if (buttonFase) 
+                {
+                    Controller.enabled = false;
+                    Animator.enabled = false;
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                }
             }
         });
     }
