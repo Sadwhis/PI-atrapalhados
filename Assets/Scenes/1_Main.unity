@@ -33675,10 +33675,12 @@ MonoBehaviour:
   - {fileID: 787265799}
   - {fileID: 1280307185}
   poClicar: 1
+  buttonFase: 0
   buttonClicar: {fileID: 1874141945}
   backGroundUI: {fileID: 688720487}
   buttonMiniJogo: {fileID: 0}
   cameraPlayer: {fileID: 851185223}
+  player: {fileID: 0}
 --- !u!65 &1323225460
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50166,10 +50168,12 @@ MonoBehaviour:
   - {fileID: 637947430}
   - {fileID: 1371963715}
   poClicar: 1
+  buttonFase: 1
   buttonClicar: {fileID: 490357488}
   backGroundUI: {fileID: 1069344648}
   buttonMiniJogo: {fileID: 1697717643}
   cameraPlayer: {fileID: 851185223}
+  player: {fileID: 0}
 --- !u!1001 &2019893151
 PrefabInstance:
   m_ObjectHideFlags: 0

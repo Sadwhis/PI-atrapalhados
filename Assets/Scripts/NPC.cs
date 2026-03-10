@@ -16,23 +16,24 @@ public class NPC : MonoBehaviour
 
     private int indiceAtual = 0;
     public bool poClicar = false;
-
+    [SerializeField] bool buttonFase;
     [Header("UI e Referências")]
     public GameObject buttonClicar;
     public GameObject backGroundUI;
     public GameObject buttonMiniJogo;
 
     private GuiaPlayer linhaP;
-    private FPController fPController;
+    private FPController Controller;
     public CinemachineInputAxisController cameraPlayer;
-
+    public Player player;
+    private Animator Animator;
 
     private void Start()
     {
         
         linhaP = GameObject.FindWithTag("Linha").GetComponent<GuiaPlayer>();
-        fPController = GameObject.FindWithTag("Player").GetComponent<FPController>();
-
+        Controller = GameObject.FindWithTag("Player").GetComponent<FPController>();
+        Animator = GameObject.FindWithTag("Player").GetComponentInChildren<Animator>();
         foreach (var texto in _textos)
         {
             texto.transform.localScale = Vector3.zero;
@@ -53,15 +54,18 @@ public class NPC : MonoBehaviour
             buttonClicar.SetActive(true);
             backGroundUI.SetActive(true);
 
-            fPController._lookSensitivity = new Vector2(0, 0);
+            Controller._lookSensitivity = new Vector2(0, 0);
             backGroundUI.transform.localScale = Vector3.zero;
 
             MostrarTextoAtual();
 
+        
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
 
             cameraPlayer.enabled = false;
+            Controller.enabled = false;
+            Animator.enabled = false;
 
         }
     }
@@ -72,7 +76,7 @@ public class NPC : MonoBehaviour
         {
             poClicar = false;
             buttonClicar.SetActive(false);
-            fPController._lookSensitivity = new Vector2(0.1f, 0.1f);
+            Controller._lookSensitivity = new Vector2(0.1f, 0.1f);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
 
@@ -108,17 +112,18 @@ public class NPC : MonoBehaviour
             else
             {
                 Debug.Log("Fim do Diálogo!");
-
+                Controller.enabled = true;
+                Animator.enabled = true;
                 if (linhaP != null)
                 {
                     linhaP.NpcGeneral();
                 }
                 cameraPlayer.enabled = true;
-                Cursor.visible = true;
-                //Cursor.lockState = CursorLockMode.Locked;
-                buttonClicar.SetActive(false);
+                Cursor.visible = true;  
+                Cursor.lockState = CursorLockMode.Locked;
+                buttonClicar.SetActive(!buttonFase);
 
-                fPController._lookSensitivity = new Vector2(0.1f, 0.1f);
+                Controller._lookSensitivity = new Vector2(0.1f, 0.1f);
                 backGroundUI.transform.DOKill();
                 buttonMiniJogo.transform.localScale = Vector3.one;
                 backGroundUI.transform.DOScale(0, tempoAnimacao).SetEase(Ease.InBack).OnComplete(() =>
