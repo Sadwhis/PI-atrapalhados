@@ -2014,7 +2014,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _velocidadeNormal: 12
-  _velocidaFase4: 15
   _limiteX: 25.7
   _tamanhos:
   - {x: 6, y: 1, z: 1}
