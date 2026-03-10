@@ -19,6 +19,7 @@ public class GerenciadorFases : MonoBehaviour
     private float _tempoTotalJogo;
     private int _faseAtual = 1;
     private float _timerFase;
+    private float velocidadeFases;
 
     [SerializeField] TextMeshProUGUI _textoAnuncioFase;
     [SerializeField] RawImage RawImage;
@@ -28,8 +29,10 @@ public class GerenciadorFases : MonoBehaviour
     bool _isPaused;
     void Start()
     {
+        
         _princesa = GameObject.FindWithTag("Player").GetComponent<Princesa>();
         _plataforma = GameObject.FindWithTag("Plataforma").GetComponent<MovePlataforma>();
+        velocidadeFases = _plataforma._velocidadeNormal;
         _textoTempo.text = _tempoTotalJogo.ToString("F0") + "s";
         StartCoroutine(SequenciaMudancaFase(_faseAtual));
         _faseAtual++;
@@ -80,7 +83,8 @@ public class GerenciadorFases : MonoBehaviour
                 break;
 
             case 4:
-                
+                _plataforma._velocidadeNormal = 25f;
+                velocidadeFases = 25f;
                 _princesa.Gravidade(1.5f, 16f); 
                 break;
 
@@ -96,7 +100,8 @@ public class GerenciadorFases : MonoBehaviour
             case 7:
                 
                 _princesa.Gravidade(2.5f, 20f);
-                _plataforma._velocidadeNormal = 15f;
+                _plataforma._velocidadeNormal = 30f;
+                velocidadeFases = 30f;
                 break;
         }
     }
@@ -121,7 +126,7 @@ public class GerenciadorFases : MonoBehaviour
             yield return new WaitForSeconds(0.5f); 
         }
 
-        _plataforma._velocidadeNormal = 10f;
+        _plataforma._velocidadeNormal = velocidadeFases;
         Fases(nivel);
         _princesa.SetRigidBody2D(false);
     }
