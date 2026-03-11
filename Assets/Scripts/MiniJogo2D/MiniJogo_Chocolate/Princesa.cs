@@ -25,7 +25,7 @@ public class Princesa : MonoBehaviour
     void Start()
     {
        
-        SetRigidBody2D(true);
+      
     }
 
     private void Update()

@@ -16,6 +16,7 @@ TagManager:
   - ParedeEsq
   - ParedeDir
   - Linha
+  - fases
   layers:
   - Default
   - TransparentFX

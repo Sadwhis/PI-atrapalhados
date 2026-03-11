@@ -34,11 +34,17 @@ public class GerenciadorFases : MonoBehaviour
         _plataforma = GameObject.FindWithTag("Plataforma").GetComponent<MovePlataforma>();
         velocidadeFases = _plataforma._velocidadeNormal;
         _textoTempo.text = _tempoTotalJogo.ToString("F0") + "s";
-        StartCoroutine(SequenciaMudancaFase(_faseAtual));
-        _faseAtual++;
+       // //StartCoroutine(SequenciaMudancaFase(_faseAtual));
+        //_faseAtual++;
     }
 
-    
+    public void IniciarJogo()
+    {
+        _faseAtual = 1;
+        StartCoroutine(SequenciaMudancaFase(_faseAtual));
+        _faseAtual++; // Já prepara a próxima fase para o Update não repetir a 1
+        _timerFase = 0f; // Zera o cronômetro
+    }
     void Update()
     {
         if (!_princesa._pauseGame)
@@ -52,11 +58,12 @@ public class GerenciadorFases : MonoBehaviour
 
         if (_timerFase >= _tempoFase && _faseAtual <= 7)
         {
-            Fases(_faseAtual);
-            StartCoroutine(SequenciaMudancaFase(_faseAtual));
+            // APAGUE A LINHA "Fases(_faseAtual);" QUE FICAVA AQUI!
+
+            StartCoroutine(SequenciaMudancaFase(_faseAtual)); // A corrotina já chama o Fases() no final dela
             _faseAtual++;
-             
-            _timerFase = 0f; 
+
+            _timerFase = 0f;
         }
     }
 
