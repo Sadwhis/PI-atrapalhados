@@ -17,6 +17,7 @@ TagManager:
   - ParedeDir
   - Linha
   - fases
+  - GeradorInimigo
   layers:
   - Default
   - TransparentFX

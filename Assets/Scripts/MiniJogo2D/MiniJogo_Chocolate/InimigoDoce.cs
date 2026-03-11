@@ -22,7 +22,7 @@ public class InimigoDoce : MonoBehaviour
     {
         _direcao = indoParaDireita ? 1 : -1;
         
-        if (!indoParaDireita) transform.localScale = new Vector3(-1, 1, 1);
+        if (!indoParaDireita) transform.localScale = new Vector3(-2, 1, 1);
     }
 
   
