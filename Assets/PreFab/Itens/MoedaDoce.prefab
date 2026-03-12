@@ -87,6 +87,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tipo: 1
   valor: 1
+  somColetar: {fileID: 0}
+  particulaEfeito: {fileID: 8771972552311404799, guid: bbf9e36a48d6c5648a13889afab076fd, type: 3}
 --- !u!114 &532260519585149218
 MonoBehaviour:
   m_ObjectHideFlags: 0
