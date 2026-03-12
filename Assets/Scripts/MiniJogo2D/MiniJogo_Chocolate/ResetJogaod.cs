@@ -8,6 +8,7 @@ public class ResetJogaod : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+           
         }
     }
 }

@@ -8,18 +8,17 @@ public class GerenciadorFases : MonoBehaviour
 {
     [Header("Referências")]
     private MovePlataforma _plataforma;
-    // O Unity vai procurar o objeto com essa tag ou você pode arrastar no inspector
     [SerializeField] GeradorInimigos _geradorInimigos;
     private Princesa _princesa;
     [SerializeField] TextMeshProUGUI _textoTempo;
 
     [SerializeField] float _tempoFase;
 
-    private float _tempoTotalJogo;
+    [SerializeField] float _tempoTotalJogo;
     private int _faseAtual = 1;
     private float _timerFase;
     private float velocidadeFases;
-
+    private bool _jogoTerminou = false;
     [SerializeField] TextMeshProUGUI _textoAnuncioFase;
     [SerializeField] RawImage RawImage;
 
@@ -43,13 +42,23 @@ public class GerenciadorFases : MonoBehaviour
 
     void Update()
     {
-        if (!_princesa._pauseGame)
+        
+        if (!_princesa._pauseGame && !_jogoTerminou)
         {
             _tempoTotalJogo += Time.deltaTime;
             _timerFase += Time.deltaTime;
             _textoTempo.text = _tempoTotalJogo.ToString("F0") + "s";
+
+           
+            if (_tempoTotalJogo >= 120f)
+            {
+                _jogoTerminou = true; 
+                FindFirstObjectByType<GerenciadorCanvas>().MostrarFimDeJogo();
+                return; 
+            }
         }
 
+       
         if (_timerFase >= _tempoFase && _faseAtual <= 7)
         {
             StartCoroutine(SequenciaMudancaFase(_faseAtual));

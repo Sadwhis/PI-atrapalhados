@@ -6,10 +6,7 @@ public class GeradorInimigos : ObjectPool
     [Header("Locais de Spawn")]
     [SerializeField] List<Transform> _pontosDeSpawn;
 
-    // Removemos o _tempoEntreSpawns daqui, pois o Gerenciador de Fases vai controlar isso.
-    // private float _tempoEntreSpawns = 2f; 
-    // private float _timer;
-
+ 
     private float _frequenciaAtual = 0f;
     private float _timerSpawn = 0f;
     private bool _podeSpawnar = false;
@@ -23,7 +20,7 @@ public class GeradorInimigos : ObjectPool
 
     void Update()
     {
-        // Só tenta spawnar se estiver permitido, a frequência for maior que zero e o jogo não estiver pausado
+        
         if (_podeSpawnar && _frequenciaAtual > 0 && !_princesa._pauseGame)
         {
             _timerSpawn += Time.deltaTime;
@@ -36,12 +33,12 @@ public class GeradorInimigos : ObjectPool
         }
     }
 
-    // Método que o GerenciadorFases vai chamar para ligar/desligar e configurar a velocidade
+  
     public void ConfigurarSpawn(bool ativar, float tempoEntreSpawns = 0f)
     {
         _podeSpawnar = ativar;
         _frequenciaAtual = tempoEntreSpawns;
-        _timerSpawn = 0f; // Reseta o timer ao mudar de fase
+        _timerSpawn = 0f;
     }
 
     private void SpawnarInimigo()
@@ -51,7 +48,7 @@ public class GeradorInimigos : ObjectPool
         int indexAleatorio = Random.Range(0, _pontosDeSpawn.Count);
         Transform pontoEscolhido = _pontosDeSpawn[indexAleatorio];
 
-        GameObject inimigoObj = GetPooledObject(); // Lembre-se de usar o método correto da sua classe ObjectPool
+        GameObject inimigoObj = GetPooledObject(); 
 
         if (inimigoObj != null)
         {

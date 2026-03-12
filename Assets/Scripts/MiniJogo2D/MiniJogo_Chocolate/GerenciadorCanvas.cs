@@ -6,6 +6,7 @@ public class GerenciadorCanvas : MonoBehaviour
     [Header("Paineis")]
     [SerializeField] private GameObject _painelInicial;
     [SerializeField] private GameObject _painelMenu;
+    [SerializeField] private GameObject _painelFimDeJogo;
 
     private Princesa _princesa;
     private GerenciadorFases fases;
@@ -17,25 +18,27 @@ public class GerenciadorCanvas : MonoBehaviour
 
         _painelInicial.SetActive(true);
         _painelMenu.SetActive(false);
-        _princesa.SetRigidBody2D(true); // Garante que a Princesa comece congelada
+        _princesa.SetRigidBody2D(true);
+        _painelFimDeJogo.SetActive(false);
     }
 
     public void BotaoStart()
     {
         _painelInicial.SetActive(false);
-        fases.IniciarJogo(); // Substitua a linha antiga por essa!
+        
+            fases.IniciarJogo(); 
     }
 
     public void AbrirMenu()
     {
         _painelMenu.SetActive(true);
-        _princesa.SetRigidBody2D(true); // Pausa o jogo
+        _princesa.SetRigidBody2D(true); 
     }
 
     public void Continuar()
     {
         _painelMenu.SetActive(false);
-        _princesa.SetRigidBody2D(false); // Retoma o jogo
+        _princesa.SetRigidBody2D(false); 
     }
 
     public void Sair()
@@ -51,5 +54,17 @@ public class GerenciadorCanvas : MonoBehaviour
     public void ReiniciarCena()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void MostrarFimDeJogo()
+    {
+        _painelFimDeJogo.SetActive(true); 
+        _princesa.SetRigidBody2D(true);   
+    }
+
+    public void VoltarParaMenuPrincipal()
+    {
+        
+        SceneManager.LoadScene("Tela_Inicial");
     }
 }
