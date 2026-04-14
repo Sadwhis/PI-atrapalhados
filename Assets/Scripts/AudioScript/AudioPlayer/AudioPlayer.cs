@@ -4,12 +4,20 @@ using static UnityEngine.GraphicsBuffer;
 
 public class AudioPlayer : MonoBehaviour
 {
-    [SerializeField] SomInimigo somIni;
+    [SerializeField] AudioPlayerAsset somIni;
 
-
+    public static AudioPlayer Instance;
 
     private void Start()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject); 
+        }
         Invoke("SomStart", 1);
     }
     public void SomStart(int valueSom)
