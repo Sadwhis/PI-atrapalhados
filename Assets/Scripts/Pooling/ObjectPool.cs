@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    //public static ObjectPool SharedInstance;
+    public static ObjectPool SharedInstance;
     [SerializeField] protected List<GameObject> pooledObjects;
     [SerializeField] protected GameObject objectToPool;
     [SerializeField] protected int amountToPool;
@@ -11,7 +11,7 @@ public class ObjectPool : MonoBehaviour
     public virtual void Awake()
     {
        
-        //SharedInstance = this;
+        SharedInstance = this;
     }
 
     public virtual void Start()

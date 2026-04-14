@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9064e93ec7688b04c9129f0d5d535a9a, type: 3}
+  m_Name: Som Player
+  m_EditorClassIdentifier: 
+  hit: {fileID: 8300000, guid: cfd76be7023a5d645a6bdf015d50f2b0, type: 3}
+  morte: {fileID: 8300000, guid: b9c64ae5fe108634594e446e5e593169, type: 3}
+  explo: {fileID: 8300000, guid: 47acfaf12ec6d1247b891d3d39f4cf45, type: 3}
