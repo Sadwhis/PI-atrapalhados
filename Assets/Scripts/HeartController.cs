@@ -1,22 +1,15 @@
 using UnityEngine;
-using UnityEngine.ProBuilder.MeshOperations;
-using UnityEngine.UI;
 
 public class HeartController : MonoBehaviour
 {
+
     public int vida;
     public int vidaMaxima;
 
-    public Image[] coracao;
-    public Sprite cheio;
-    public Sprite vazio;
+    public GameObject[] coracoesCheios;
+    
+    public GameObject[] coracoesVazioObj;
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         HealthLogic();
@@ -24,29 +17,32 @@ public class HeartController : MonoBehaviour
 
     void HealthLogic()
     {
-        if(vida > vidaMaxima) 
-        { 
-            vida = vidaMaxima;
-        }
+        
+        if (vida > vidaMaxima) vida = vidaMaxima;
+        if (vida < 0) vida = 0;
 
-        for (int i = 0; i < coracao.Length; i++)
+        for (int i = 0; i < coracoesCheios.Length; i++)
         {
-            if (i < vida) 
-            {
-                coracao[i].sprite = cheio;
-            }
-            else
-            {
-                coracao[i].sprite = vazio;
-            }
-
+            
             if (i < vidaMaxima)
             {
-                coracao[i].enabled = true;
+               
+                if (i < vida)
+                {
+                    coracoesCheios[i].SetActive(true);
+                    coracoesVazioObj[i].SetActive(false);
+                }
+                else
+                {
+                   
+                    coracoesCheios[i].SetActive(false);
+                    coracoesVazioObj[i].SetActive(true);
+                }
             }
             else
             {
-                coracao[i].enabled = false;
+                coracoesCheios[i].SetActive(false);
+                coracoesVazioObj[i].SetActive(false);
             }
         }
     }
