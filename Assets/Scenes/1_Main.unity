@@ -21500,7 +21500,7 @@ MonoBehaviour:
   _sprintInput: 0
   _fpCamera: {fileID: 486101766}
   _charactercontroller: {fileID: 504753180}
-  _animator: {fileID: 0}
+  _animator: {fileID: 1264979693}
 --- !u!120 &504753187
 LineRenderer:
   serializedVersion: 2
@@ -40936,6 +40936,11 @@ CapsuleCollider:
   m_Height: 3.1576595
   m_Direction: 1
   m_Center: {x: -0.025642633, y: 0.32794094, z: 0.011970699}
+--- !u!1 &1167211447 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f107c9d7e939e39479db5060c97fe2d1, type: 3}
+  m_PrefabInstance: {fileID: 1264979691}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1167472579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44057,13 +44062,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f107c9d7e939e39479db5060c97fe2d1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1264979693}
   m_SourcePrefab: {fileID: 100100000, guid: f107c9d7e939e39479db5060c97fe2d1, type: 3}
 --- !u!4 &1264979692 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f107c9d7e939e39479db5060c97fe2d1, type: 3}
   m_PrefabInstance: {fileID: 1264979691}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1264979693
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167211447}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 92b703c01758cdc49b4a6b24942331a0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1270559088 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2800250516343163423, guid: 46ca58b55a32fe844ba446ed7a149017, type: 3}
@@ -45055,7 +45085,7 @@ MonoBehaviour:
   backGroundUI: {fileID: 688720487}
   buttonMiniJogo: {fileID: 2114386718}
   cameraPlayer: {fileID: 851185223}
-  player: {fileID: 0}
+  player: {fileID: 504753184}
 --- !u!1001 &1331296106
 PrefabInstance:
   m_ObjectHideFlags: 0
