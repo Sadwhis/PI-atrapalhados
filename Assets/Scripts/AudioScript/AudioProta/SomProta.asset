@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7af789fec86acd4bb233c8eb2da8f23, type: 3}
   m_Name: SomProta
   m_EditorClassIdentifier: 
-  andar: {fileID: 0}
+  andar: {fileID: 8300000, guid: efbbc2566658dbd4aadff1ac0f6241fc, type: 3}
   hitPlayer: {fileID: 0}
   puloPlayer: {fileID: 0}
   punchPlayer: {fileID: 0}
