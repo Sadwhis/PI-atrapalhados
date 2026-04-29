@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1067b15575738ca4fbda28a6608eab9e
+guid: 2268dcb0c5c49d445acb9ddb47a57819
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -22,7 +22,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -31,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|Armature|Andar
-      takeName: Armature|Armature|Andar
+      name: Armature|Armature|Idle (1)
+      takeName: Armature|Armature|Idle
       internalID: -2554735634427127379
       firstFrame: 0
-      lastFrame: 75
+      lastFrame: 47
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -129,7 +129,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -225,7 +225,106 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: PrincesaModelo3D(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Armature
+      parentName: PrincesaModelo3D(Clone)
+      position: {x: -0.044878483, y: 0.35170734, z: -0.09511084}
+      rotation: {x: -0.7071069, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 167.10269, y: 167.10269, z: 167.10269}
+    - name: body
+      parentName: Armature
+      position: {x: 0.000059656093, y: -0.0006006559, z: -0.001116187}
+      rotation: {x: 0.7186698, y: -0.0038032574, z: 0.004432538, w: 0.6953271}
+      scale: {x: 0.9999998, y: 0.99999994, z: 0.99999994}
+    - name: head
+      parentName: body
+      position: {x: 0.00007506798, y: 0.0025583324, z: -0.0005172194}
+      rotation: {x: -0.066880815, y: -0.007848943, z: -0.011032198, w: 0.9976691}
+      scale: {x: 0.99999994, y: 0.9999998, z: 1.0000002}
+    - name: head_end
+      parentName: head
+      position: {x: -7.566996e-12, y: 0.0012061977, z: 2.386514e-11}
+      rotation: {x: 0.0000000074505797, y: 0.0000000018626449, z: -0.0000000027357598,
+        w: 1}
+      scale: {x: 1.0000001, y: 0.9999997, z: 0.9999997}
+    - name: head_end_end
+      parentName: head_end
+      position: {x: -0, y: 0.0012061978, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: foot.l
+      parentName: body
+      position: {x: 0.00079689664, y: -0.0006462184, z: 0.00038631252}
+      rotation: {x: -0.72039896, y: -0.014251245, z: 0.02185676, w: 0.6930691}
+      scale: {x: 1, y: 1, z: 1}
+    - name: foot.l_end
+      parentName: foot.l
+      position: {x: -1.420267e-10, y: 0.0015018282, z: -1.9557773e-10}
+      rotation: {x: -0, y: -9.3132224e-10, z: -0.00000002887099, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: foot.l_end_end
+      parentName: foot.l_end
+      position: {x: -0, y: 0.0015018287, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: foot.r
+      parentName: body
+      position: {x: -0.0009451131, y: -0.0006842683, z: 0.00032650327}
+      rotation: {x: -0.7281577, y: -0.035302557, z: 0.0011889188, w: 0.6844989}
+      scale: {x: 0.9999997, y: 0.99999994, z: 0.9999999}
+    - name: foot.r_end
+      parentName: foot.r
+      position: {x: -2.561137e-11, y: 0.0015018285, z: 7.21775e-11}
+      rotation: {x: -0.00000020861623, y: -0.000000024214383, z: 0.000000020489095,
+        w: 1}
+      scale: {x: 1, y: 0.99999976, z: 0.99999994}
+    - name: foot.r_end_end
+      parentName: foot.r_end
+      position: {x: -0, y: 0.0015018284, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mao.r
+      parentName: body
+      position: {x: -0.0022796586, y: 0.001433447, z: -0.00020505696}
+      rotation: {x: 0.104514465, y: -0.0047777216, z: 0.9914595, w: 0.07785893}
+      scale: {x: 1.0000002, y: 0.99999994, z: 0.9999998}
+    - name: mao.r_end
+      parentName: mao.r
+      position: {x: 5.5879353e-11, y: 0.0010681964, z: -1.3969838e-10}
+      rotation: {x: 0.000000026077027, y: -0.00000007450579, z: -0.000000049360086,
+        w: 1}
+      scale: {x: 0.99999994, y: 1.0000001, z: 1.0000001}
+    - name: mao.r_end_end
+      parentName: mao.r_end
+      position: {x: -0, y: 0.0010681964, z: 0}
+      rotation: {x: -0.17955415, y: -0.00000017945833, z: -0.49936432, w: 0.8475822}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mao.l
+      parentName: body
+      position: {x: 0.0027315032, y: 0.0014741891, z: 0.0000463397}
+      rotation: {x: 0.23810527, y: 0.01172435, z: -0.9688464, w: 0.0671194}
+      scale: {x: 1, y: 1.0000001, z: 0.99999994}
+    - name: mao.l_end
+      parentName: mao.l
+      position: {x: 2.0954757e-10, y: 0.0011210444, z: -4.4237822e-11}
+      rotation: {x: 0.000000052154054, y: 0.000000052154054, z: -0.00000018253918,
+        w: 1}
+      scale: {x: 0.9999999, y: 0.99999994, z: 0.9999998}
+    - name: mao.l_end_end
+      parentName: mao.l_end
+      position: {x: -0, y: 0.001121044, z: 0}
+      rotation: {x: -0.28521731, y: 0.0000001149719, z: 0.41493335, w: 0.8639916}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cube.001
+      parentName: PrincesaModelo3D(Clone)
+      position: {x: 0.012624431, y: -0.03773654, z: 0.1150645}
+      rotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
+      scale: {x: 5.386423, y: 7.7658215, z: 3.414011}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -236,13 +335,13 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
