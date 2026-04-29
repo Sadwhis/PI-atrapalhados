@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Princesa-Parte-de-Cima
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 1
+  - m_Path: Armature/body
+    m_Weight: 1
+  - m_Path: Armature/body/foot.l
+    m_Weight: 0
+  - m_Path: Armature/body/foot.l/foot.l_end
+    m_Weight: 1
+  - m_Path: Armature/body/foot.l/foot.l_end/foot.l_end_end
+    m_Weight: 1
+  - m_Path: Armature/body/foot.r
+    m_Weight: 0
+  - m_Path: Armature/body/foot.r/foot.r_end
+    m_Weight: 1
+  - m_Path: Armature/body/foot.r/foot.r_end/foot.r_end_end
+    m_Weight: 1
+  - m_Path: Armature/body/head
+    m_Weight: 1
+  - m_Path: Armature/body/head/head_end
+    m_Weight: 1
+  - m_Path: Armature/body/head/head_end/head_end_end
+    m_Weight: 1
+  - m_Path: Armature/body/mao.l
+    m_Weight: 1
+  - m_Path: Armature/body/mao.l/mao.l_end
+    m_Weight: 1
+  - m_Path: Armature/body/mao.l/mao.l_end/mao.l_end_end
+    m_Weight: 1
+  - m_Path: Armature/body/mao.r
+    m_Weight: 1
+  - m_Path: Armature/body/mao.r/mao.r_end
+    m_Weight: 1
+  - m_Path: Armature/body/mao.r/mao.r_end/mao.r_end_end
+    m_Weight: 1
+  - m_Path: Cube.001
+    m_Weight: 0
