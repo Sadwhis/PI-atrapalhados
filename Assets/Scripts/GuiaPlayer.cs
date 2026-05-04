@@ -5,31 +5,60 @@ public class GuiaPlayer : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] Transform npcIni;
     [SerializeField] Transform general;
+
     private LineRenderer lineRenderer;
+    private Transform targetAtual; 
+
+    public float distanciaDoPlayer = 1.2f; 
+    public float tamanhoDaLinha = 0.8f;     
+    public float alturaLinha = 0.5f;       
+
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        NpcIni();
+        
+        targetAtual = npcIni;
+    }
+
+    void Update()
+    {
+        if (player != null && targetAtual != null)
+        {
+            AtualizarSeta();
+        }
+    }
+
+    void AtualizarSeta()
+    {
+      
+        Vector3 posPlayer = player.position;
+        Vector3 posAlvo = targetAtual.position;
+
+        
+        posAlvo.y = posPlayer.y;
+
+        Vector3 direcao = (posAlvo - posPlayer).normalized;
+
+        
+        Vector3 pontoInicial = posPlayer + (direcao * distanciaDoPlayer);
+        pontoInicial.y += alturaLinha; 
+
+        
+        Vector3 pontoFinal = pontoInicial + (direcao * tamanhoDaLinha);
+
+        
+        lineRenderer.SetPosition(0, pontoInicial);
+        lineRenderer.SetPosition(1, pontoFinal);
     }
 
     
-    void Update()
+    public void IrParaNpcIni()
     {
-        LinhaAtual();
-    }
-    void LinhaAtual()
-    {
-        lineRenderer.SetPosition(0, player.position);
-       
-    }
-    void NpcIni()
-    {
-        
-        lineRenderer.SetPosition(1, npcIni.position);
+        targetAtual = npcIni;
     }
 
-    public void NpcGeneral() 
+    public void NpcGeneral()
     {
-        lineRenderer.SetPosition(1, general.position);
+        targetAtual = general;
     }
 }

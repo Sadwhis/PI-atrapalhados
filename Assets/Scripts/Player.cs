@@ -60,9 +60,13 @@ namespace Atrapalhados
           
         }
 
-        private void OnTriggerEnter(Collider other)
+        
+        void OnAttack(InputValue value)
         {
-            
+            if (value.isPressed)
+            {
+                FPController.ClickSoco();
+            }
         }
     }
     #endregion

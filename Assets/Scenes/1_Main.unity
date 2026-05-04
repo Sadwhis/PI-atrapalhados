@@ -67480,6 +67480,9 @@ MonoBehaviour:
   player: {fileID: 504753183}
   npcIni: {fileID: 1323225461}
   general: {fileID: 1638322115}
+  distanciaDoPlayer: 1
+  tamanhoDaLinha: 2
+  alturaLinha: -0.13
 --- !u!120 &2019994348
 LineRenderer:
   serializedVersion: 2
@@ -67501,10 +67504,10 @@ LineRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: c965a6802e32f5847ad2bc4342b74778, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -67535,8 +67538,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.01424408
-        value: 0.044872284
+        time: 0.37568462
+        value: 0.7462407
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -67573,14 +67576,14 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
-    textureScale: {x: 1, y: 1}
+    textureMode: 1
+    textureScale: {x: 1.37, y: 1.5}
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0

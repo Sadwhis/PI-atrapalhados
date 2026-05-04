@@ -66,7 +66,8 @@ namespace Atrapalhados
         [SerializeField] CharacterController _charactercontroller;
         [SerializeField] Animator _animator;
 
-        
+    
+
         private Transform _mainCamTransform;
 
         #region Unity Methods
@@ -178,11 +179,20 @@ namespace Atrapalhados
             }
         }
 
+        public void ClickSoco()
+        {
+            if (_animator != null)
+            {
+                _animator.SetTrigger("Socar");
+
+            }
+        }
+
         void LookUpdate()
         {
             Vector2 input = new Vector2(_lookInput.x * _lookSensitivity.x, _lookInput.y * _lookSensitivity.y);
 
-            // Pitch (Olhar para cima e para baixo) - Acontece nos dois modos para mover a câmera
+            
             CurrentPitch -= input.y;
 
             if (_cameraRoot != null)
@@ -194,12 +204,12 @@ namespace Atrapalhados
                 _fpCamera.transform.localRotation = Quaternion.Euler(CurrentPitch, 0f, 0f);
             }
 
-            // Yaw (Girar o corpo esquerda/direita) - SÓ NA 1ª PESSOA
+            
             if (_isFirstPerson)
             {
                 transform.Rotate(Vector3.up * input.x);
             }
-            // Na 3ª pessoa, a rotação do corpo é controlada pelo MoveUpdate
+            
         }
 
         void CameraUpdate()
@@ -227,8 +237,7 @@ namespace Atrapalhados
             _mixingCamera.SetWeight(0, 1f - _cameraMixVal);
             _mixingCamera.SetWeight(1, _cameraMixVal);
 
-            // REMOVIDO: A linha que forçava a rotação para identity (0,0,0) foi apagada daqui.
-            // A rotação correta agora é tratada no MoveUpdate.
+            
         }
 
         #endregion
