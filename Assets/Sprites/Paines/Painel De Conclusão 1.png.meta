@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -160,7 +160,139 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: "Painel De Conclus\xE3o 1_0"
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 15
+        width: 1174
+        height: 1044
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f5aad17d3120864f810b8785b037f55
+      internalID: 408269182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Painel De Conclus\xE3o 1_1"
+      rect:
+        serializedVersion: 2
+        x: 1406
+        y: 892
+        width: 102
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3711c318654cd7c439138c41b90fc2fc
+      internalID: 1388178205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Painel De Conclus\xE3o 1_2"
+      rect:
+        serializedVersion: 2
+        x: 1513
+        y: 890
+        width: 99
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77c091fe552492b4a9609b6ef0e27113
+      internalID: -291296477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Painel De Conclus\xE3o 1_4"
+      rect:
+        serializedVersion: 2
+        x: 1619
+        y: 895
+        width: 124
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74f71e97dae09bd45abc11500781156b
+      internalID: 1553364527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Painel De Conclus\xE3o 1_6"
+      rect:
+        serializedVersion: 2
+        x: 1424
+        y: 391
+        width: 494
+        height: 460
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c06040697a23f8e4aa663a6ae5b46aba
+      internalID: -115009009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Painel De Conclus\xE3o 1_7"
+      rect:
+        serializedVersion: 2
+        x: 1315
+        y: 21
+        width: 785
+        height: 268
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29a7923c67eafca4e9c8aef134000b3c
+      internalID: 679072777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -174,7 +306,30 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "Painel De Conclus\xE3o 1_0": 408269182
+      "Painel De Conclus\xE3o 1_1": 1388178205
+      "Painel De Conclus\xE3o 1_10": -109227156
+      "Painel De Conclus\xE3o 1_11": 1617070265
+      "Painel De Conclus\xE3o 1_12": -2104389113
+      "Painel De Conclus\xE3o 1_13": 245496860
+      "Painel De Conclus\xE3o 1_14": 1795702340
+      "Painel De Conclus\xE3o 1_15": -976980478
+      "Painel De Conclus\xE3o 1_16": 280129609
+      "Painel De Conclus\xE3o 1_17": 306777911
+      "Painel De Conclus\xE3o 1_18": 1970888746
+      "Painel De Conclus\xE3o 1_19": -1823405874
+      "Painel De Conclus\xE3o 1_2": -291296477
+      "Painel De Conclus\xE3o 1_20": -1767091813
+      "Painel De Conclus\xE3o 1_21": 929593931
+      "Painel De Conclus\xE3o 1_22": 487172836
+      "Painel De Conclus\xE3o 1_3": 968141956
+      "Painel De Conclus\xE3o 1_4": 1553364527
+      "Painel De Conclus\xE3o 1_5": 204637074
+      "Painel De Conclus\xE3o 1_6": -115009009
+      "Painel De Conclus\xE3o 1_7": 679072777
+      "Painel De Conclus\xE3o 1_8": -2046555586
+      "Painel De Conclus\xE3o 1_9": 1791669311
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -160,7 +160,51 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Painel de tantar de novo_0
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 11
+        width: 1172
+        height: 1043
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 808f551b2abfe294e95df52a2f7a493e
+      internalID: 1847066078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Painel de tantar de novo_1
+      rect:
+        serializedVersion: 2
+        x: 1347
+        y: 857
+        width: 475
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebab3f269dfff564cbfb323bfc068953
+      internalID: 1276795468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -174,7 +218,21 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Painel de tantar de novo_0: 1847066078
+      Painel de tantar de novo_1: 1276795468
+      Painel de tantar de novo_10: 1531080248
+      Painel de tantar de novo_11: 1973046998
+      Painel de tantar de novo_12: -240948510
+      Painel de tantar de novo_13: 320091012
+      Painel de tantar de novo_2: -1917399978
+      Painel de tantar de novo_3: -1835559993
+      Painel de tantar de novo_4: -268796190
+      Painel de tantar de novo_5: 1095628681
+      Painel de tantar de novo_6: 1046470500
+      Painel de tantar de novo_7: -964696758
+      Painel de tantar de novo_8: 1257474181
+      Painel de tantar de novo_9: -1953382535
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
