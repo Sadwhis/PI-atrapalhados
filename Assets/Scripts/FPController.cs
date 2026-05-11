@@ -80,6 +80,7 @@ namespace Atrapalhados
         void Start()
         {
            
+            
             if (Camera.main != null)
                 _mainCamTransform = Camera.main.transform;
         }
@@ -89,7 +90,10 @@ namespace Atrapalhados
             MoveUpdate();
             LookUpdate();
             CameraUpdate(); 
-            CameraMixingUpdate(); 
+            CameraMixingUpdate();
+
+            float pitchNormalizado = _currentPitch / _pitchLimit;
+            _animator.SetFloat("MiraV", -pitchNormalizado);
         }
         #endregion
 
