@@ -25691,6 +25691,7 @@ MonoBehaviour:
   _painelInicial: {fileID: 1100897677}
   _painelMenu: {fileID: 178874156}
   _painelFimDeJogo: {fileID: 1479570947}
+  _painelFalha: {fileID: 0}
 --- !u!1001 &1184800305
 PrefabInstance:
   m_ObjectHideFlags: 0

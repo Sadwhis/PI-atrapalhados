@@ -7,6 +7,7 @@ public class GerenciadorCanvas : MonoBehaviour
     [SerializeField] private GameObject _painelInicial;
     [SerializeField] private GameObject _painelMenu;
     [SerializeField] private GameObject _painelFimDeJogo;
+    [SerializeField] private GameObject _painelFalha;
 
     private Princesa _princesa;
     private GerenciadorFases fases;
