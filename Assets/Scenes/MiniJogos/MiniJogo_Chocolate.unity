@@ -1907,7 +1907,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 100768560}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1182101185}
+        m_TargetAssemblyTypeName: GerenciadorCanvas, Assembly-CSharp
+        m_MethodName: MostrarFalha
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1182101185}
+        m_TargetAssemblyTypeName: GerenciadorCanvas, Assembly-CSharp
+        m_MethodName: ReiniciarCena
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &100768560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25691,7 +25715,7 @@ MonoBehaviour:
   _painelInicial: {fileID: 1100897677}
   _painelMenu: {fileID: 178874156}
   _painelFimDeJogo: {fileID: 1479570947}
-  _painelFalha: {fileID: 0}
+  _painelFalha: {fileID: 1556396830}
 --- !u!1001 &1184800305
 PrefabInstance:
   m_ObjectHideFlags: 0
