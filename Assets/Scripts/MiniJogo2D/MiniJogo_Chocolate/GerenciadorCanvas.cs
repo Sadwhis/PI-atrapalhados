@@ -1,3 +1,5 @@
+using JetBrains.Annotations;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,6 +23,8 @@ public class GerenciadorCanvas : MonoBehaviour
         _painelMenu.SetActive(false);
         _princesa.SetRigidBody2D(true);
         _painelFimDeJogo.SetActive(false);
+        _painelFalha.SetActive(false);
+
     }
 
     public void BotaoStart()
@@ -67,5 +71,14 @@ public class GerenciadorCanvas : MonoBehaviour
     {
         
         SceneManager.LoadScene("Tela_Inicial");
+    }
+
+    public void MostrarFalha()
+    {
+        
+        _painelFalha.SetActive(true);
+        _princesa.SetRigidBody2D(false);
+        
+
     }
 }
