@@ -5,17 +5,18 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class FlyEnemy : MonoBehaviour
 {
-    [Header("---- ALVOS ----")]
+    [Header("---- ALVO ----")]
     public Transform targetToDefend;
 
-    [Tooltip("O Jogador")]
+    [Tooltip("Player")]
     public Transform player;
 
    
-    [SerializeField] float _flightHeight = 3.0f; 
+    [SerializeField] float _flightHeight = 3.0f;
+    [SerializeField] float _flightLow = 3.0f;
     [SerializeField] float _moveSpeed = 3.5f;
-
-
+    private float _alturaAlvo;
+    public float velocidadeSuavizacao = 5.0f;
     [SerializeField] float _detectionRadius = 10f; 
 
     [SerializeField] LayerMask _obstaclesLayer;
@@ -45,10 +46,12 @@ public class FlyEnemy : MonoBehaviour
         if (CheckPlayer())
         {
             AttackPlayer();
+            VoandoBaixo();
         }
         else
         {
             Patrulhando();
+            VoandoAlto();
         }
 
         Voando();
@@ -149,10 +152,23 @@ public class FlyEnemy : MonoBehaviour
         }
     }
 
-    void Voando()
+    void VoandoAlto()
     {
-        _agent.baseOffset = _flightHeight + Mathf.Sin(Time.time * 2.0f) * 0.5f;
+        _alturaAlvo = _flightHeight;
 
+    }
+
+    void VoandoBaixo()
+    {
+        _alturaAlvo = _flightLow;
+
+    }
+
+    void Voando() 
+    {
+        float efeitoFlutuacao = Mathf.Sin(Time.time * 2.0f) * 0.5f;
+        float alturaDesejada = _alturaAlvo + efeitoFlutuacao;
+        _agent.baseOffset = Mathf.Lerp(_agent.baseOffset, alturaDesejada, Time.deltaTime * velocidadeSuavizacao);
     }
 
     void OnDrawGizmosSelected()
