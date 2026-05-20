@@ -4,6 +4,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public int moedas;
+    public float _puloMARHS;
+
+
 
     private void Awake()
     {
@@ -24,4 +27,15 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public void UsarItem()
+    {
+        
+
+
+
+    }
+
+
+
 }
