@@ -209,9 +209,9 @@ TextureImporter:
       name: Painel de Pause_2
       rect:
         serializedVersion: 2
-        x: 865
+        x: 869
         y: 368
-        width: 928
+        width: 924
         height: 198
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

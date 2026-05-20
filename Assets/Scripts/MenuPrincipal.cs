@@ -5,6 +5,9 @@ public class MenuPrincipal : MonoBehaviour
 {
     [Header("Nome da fase que vai abrir")]
     public string nomeDaCenaDoJogo = "1_Main";
+    [SerializeField] public GameObject _TelaDeOpcoes;
+
+
 
     // Coloque essa função no evento OnClick do botão START/INICIAR
     public void IniciarJogo()
@@ -29,8 +32,14 @@ public class MenuPrincipal : MonoBehaviour
 
     public void OpcoeDoJogo()
     {
+       _TelaDeOpcoes.SetActive(true);
+        
 
-
+    }
+    
+    public void SairDasOpcoes()
+    {
+      _TelaDeOpcoes.SetActive(false);
 
     }
 
