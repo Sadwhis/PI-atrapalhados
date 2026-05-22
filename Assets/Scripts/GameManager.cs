@@ -28,10 +28,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void UsarItem()
+    public void Marshmelow()
     {
         
-
 
 
     }
