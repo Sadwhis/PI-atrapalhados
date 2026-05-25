@@ -1,14 +1,20 @@
+using Atrapalhados;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 using UnityEngine.UIElements;
 
+[RequireComponent(typeof(Player))]
 public class ItemPrimarios : MonoBehaviour
 {
+    [Header("Items")]
+    [SerializeField] Player Player;
+
 
     [SerializeField] int _ItemAtivo;
-    [SerializeField] GameObject _Player;
+    public GameObject _pplayer;
     public float _marshMelow;
-    
+    string returnValue = "OnJump()";
     
     void Start()
     {
@@ -21,23 +27,15 @@ public class ItemPrimarios : MonoBehaviour
         
     }
 
-    public void Marshmellow()
+    public void Marshmellow(InputValue value)
     {
         
         if (_ItemAtivo > 0)
         {
            
-            if ()
-            {   
-                if (_Player.CompareTag("Player"))
-                {
-
-                    _marshMelow = 4f;
+            Player.OnJump(value);
 
 
-                }
-
-            }
         }
 
 
