@@ -27,17 +27,7 @@ public class ItemPrimarios : MonoBehaviour
         if (_ItemAtivo > 0)
         {
            
-            if ()
-            {   
-                if (_Player.CompareTag("Player"))
-                {
-
-                    _marshMelow = 4f;
-
-
-                }
-
-            }
+           
         }
 
 

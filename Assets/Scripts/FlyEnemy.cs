@@ -1,3 +1,4 @@
+using Atrapalhados;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine.AI;
 
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class FlyEnemy : MonoBehaviour, IHitable
+public class FlyEnemy : MonoBehaviour
 {
     [Header("---- ALVO ----")]
     public Transform targetToDefend;
@@ -23,8 +24,9 @@ public class FlyEnemy : MonoBehaviour, IHitable
     [SerializeField] float _detectionRadius = 10f;
     public float forcaDoEmpurrao = 10.0f;
     public float tempoDoEmpurrao = 0.2f;
-
+    [Range(0.001f, 0.1f)][SerializeField] private float StillThreshold = 0.05f;
     [SerializeField] LayerMask _obstaclesLayer;
+    [SerializeField] private float MaxKnockbackTime = 0.5f;
 
     [Header("---- PATRULHA ----")]
     [SerializeField] float _patrolRadius = 5f; 
@@ -34,6 +36,8 @@ public class FlyEnemy : MonoBehaviour, IHitable
     private NavMeshAgent _agent;
     private float _waitTimer;
     private bool _isPerseguindo = false;
+
+    private Coroutine MoveCoroutine;
 
     void Start()
     {
@@ -68,49 +72,38 @@ public class FlyEnemy : MonoBehaviour, IHitable
 
     }
 
-    public void Execute(Transform executionSource)
+    public void GetKnockedBack(Vector3 force)
     {
-        // Inicia a coroutine para gerenciar o tempo do empurrão
-        StartCoroutine(RotinaKnockback(executionSource));
+        
+        StartCoroutine(ApplyKnockback(force));
     }
 
-    private IEnumerator RotinaKnockback(Transform executionSource)
+    private IEnumerator ApplyKnockback(Vector3 force)
     {
-        // 1. Desliga o agente para a física agir
+        yield return null;
         _agent.enabled = false;
+        //rb.useGravity = true;
         rb.isKinematic = false;
+        rb.AddForce(force);
 
-        // 2. Calcula e aplica a força do empurrão
-        Vector3 dir = (transform.position - executionSource.position).normalized;
-        dir.y = 0; // Evita empurrar para o chão ou para o céu
+        yield return new WaitForFixedUpdate();
+        float knockbackTime = Time.time;
+        yield return new WaitUntil(
+            () => rb.linearVelocity.magnitude < StillThreshold || Time.time > knockbackTime + MaxKnockbackTime
+        );
+        yield return new WaitForSeconds(0.25f);
 
-        rb.AddForce(dir * forcaDoEmpurrao, ForceMode.Impulse);
-
-        // 3. Espera o tempo do empurrão
-        yield return new WaitForSeconds(tempoDoEmpurrao);
-
-        // 4. Trava a física novamente
         rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+       // rb.useGravity = false;
         rb.isKinematic = true;
-
-        // 5. 🔴 A MÁGICA ACONTECE AQUI 🔴
-        _agent.enabled = true; // Religa o agente primeiro
-
-        // Força a memória interna do agente a sincronizar com a posição atual do corpo
         _agent.Warp(transform.position);
+        _agent.enabled = true;
 
-        // Se ele estiver em uma área válida, limpa a rota antiga para recalcular do zero
-        if (_agent.isOnNavMesh)
-        {
-            _agent.ResetPath();
-        }
+        yield return null;
     }
 
-    private void KnockBackEntity(Transform executionSource) 
-    {
-        Vector3 dir = (transform.position - executionSource.transform.position).normalized;
-        rb.AddForce(dir * forcaDoEmpurrao, ForceMode.Impulse);
-    }
+
     bool CheckPlayer()
     {
       

@@ -65,22 +65,29 @@ namespace Atrapalhados
         [SerializeField] CinemachineCamera _fpCamera;
         [SerializeField] CharacterController _charactercontroller;
         [SerializeField] Animator _animator;
+        [SerializeField] FlyEnemy flyEnemy;
 
-    
 
         private Transform _mainCamTransform;
+
+        public Vector3 _KnockBackForce;
+
+        ColliderSoco soco;
 
         #region Unity Methods
         void OnValidate()
         {
+           
+
             if (_charactercontroller == null)
                 _charactercontroller = GetComponent<CharacterController>();
         }
 
         void Start()
         {
-           
-            
+            flyEnemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<FlyEnemy>();
+            soco = GameObject.FindGameObjectWithTag("Soco").GetComponent<ColliderSoco>();
+
             if (Camera.main != null)
                 _mainCamTransform = Camera.main.transform;
         }
@@ -95,6 +102,7 @@ namespace Atrapalhados
             float pitchNormalizado = _currentPitch / _pitchLimit;
             _animator.SetFloat("MiraV", -pitchNormalizado);
         }
+
         #endregion
 
         #region Controller Methods
@@ -110,12 +118,17 @@ namespace Atrapalhados
                 _animator.SetTrigger("Pular");
             }
         }
-
+       
         public void ToggleCameraView()
         {
             _isFirstPerson = !_isFirstPerson;
         }
 
+        public void KnockBack() 
+        {
+            if (!soco.acertouInimigo) return;
+            flyEnemy.GetKnockedBack(_KnockBackForce);
+        }
         void MoveUpdate()
         {
             Vector3 motion = Vector3.zero;
@@ -243,6 +256,7 @@ namespace Atrapalhados
 
             
         }
+
 
         #endregion
     }

@@ -18,6 +18,8 @@ TagManager:
   - Linha
   - fases
   - GeradorInimigo
+  - Enemy
+  - Soco
   layers:
   - Default
   - TransparentFX

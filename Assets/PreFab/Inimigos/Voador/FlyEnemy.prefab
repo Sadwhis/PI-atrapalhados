@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6450834320131584895}
   m_Layer: 0
   m_Name: FlyEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,11 +126,17 @@ MonoBehaviour:
   targetToDefend: {fileID: 0}
   player: {fileID: 0}
   _flightHeight: 3
+  _flightLow: 3
   _moveSpeed: 3.5
+  velocidadeSuavizacao: 5
   _detectionRadius: 9.7
+  forcaDoEmpurrao: 10
+  tempoDoEmpurrao: 0.2
+  StillThreshold: 0.05
   _obstaclesLayer:
     serializedVersion: 2
     m_Bits: 0
+  MaxKnockbackTime: 0.5
   _patrolRadius: 4.58
   _patrolWaitTime: 2
 --- !u!195 &6450834320131584895
