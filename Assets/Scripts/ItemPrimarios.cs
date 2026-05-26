@@ -18,7 +18,7 @@ public class ItemPrimarios : MonoBehaviour
     
     void Start()
     {
-        
+       
     }
 
     
