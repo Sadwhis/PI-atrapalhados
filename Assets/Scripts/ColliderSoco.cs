@@ -1,27 +1,23 @@
+using Atrapalhados;
 using UnityEngine;
 
 public class ColliderSoco : MonoBehaviour
 {
+    [HideInInspector] public FlyEnemy inimigoNoAlcance;
 
-    public bool acertouInimigo = false;
-
-    
     private void OnTriggerEnter(Collider other)
     {
-       
         if (other.CompareTag("Enemy"))
         {
-            acertouInimigo = true;
-            Debug.Log("O soco acertou!");
-
-           
+            inimigoNoAlcance = other.GetComponent<FlyEnemy>();
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
-            acertouInimigo = false;
+            inimigoNoAlcance = null;
         }
     }
 }
