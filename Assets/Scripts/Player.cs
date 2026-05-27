@@ -29,7 +29,7 @@ namespace Atrapalhados
             Debug.Log($"Sprint Input mudou para: {FPController._sprintInput}");
         }
 
-        void OnJump(InputValue value)
+       public void OnJump(InputValue value)
         {
             if (value.isPressed)
             {
@@ -37,7 +37,7 @@ namespace Atrapalhados
             }
         }
 
-        void OnSwitchCamera(InputValue value)
+        public void OnSwitchCamera(InputValue value)
         {
             if (value.isPressed)
             {
