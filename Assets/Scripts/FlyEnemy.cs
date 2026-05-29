@@ -82,16 +82,16 @@ public class FlyEnemy : MonoBehaviour
     {
         yield return null;
         _agent.enabled = false;
-        rb.useGravity = true;
+        //rb.useGravity = true;
         rb.isKinematic = false;
         rb.AddForce(new Vector3(0,0,5),ForceMode.Impulse);
 
        
-        yield return new WaitForSeconds(.25f);
+        yield return new WaitForSeconds(.5f);
         Debug.Log("ApplyKnockback");
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        rb.useGravity = false;
+       // rb.useGravity = false;
         rb.isKinematic = true;
         _agent.Warp(transform.position);
         _agent.enabled = true;
@@ -232,7 +232,7 @@ public class FlyEnemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 3)// layer Player
+        if (other.gameObject.layer == 8)// layer Player
         {
             Debug.Log("Hit");
             StartCoroutine(ApplyKnockback(transform.position));
