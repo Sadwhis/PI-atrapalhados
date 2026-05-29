@@ -84,15 +84,11 @@ public class FlyEnemy : MonoBehaviour
         _agent.enabled = false;
         //rb.useGravity = true;
         rb.isKinematic = false;
-        rb.AddForce(force);
+        rb.AddForce(new Vector3(0,0,5),ForceMode.Impulse);
 
-        yield return new WaitForFixedUpdate();
-        float knockbackTime = Time.time;
-        yield return new WaitUntil(
-            () => rb.linearVelocity.magnitude < StillThreshold || Time.time > knockbackTime + MaxKnockbackTime
-        );
-        yield return new WaitForSeconds(0.25f);
-
+       
+        yield return new WaitForSeconds(.25f);
+        Debug.Log("ApplyKnockback");
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
        // rb.useGravity = false;
@@ -231,6 +227,15 @@ public class FlyEnemy : MonoBehaviour
             bool isVisible = CheckPlayer();
             Gizmos.color = isVisible ? Color.green : Color.yellow;
             Gizmos.DrawLine(transform.position, player.position);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 3)// layer Player
+        {
+            Debug.Log("Hit");
+            StartCoroutine(ApplyKnockback(transform.position));
         }
     }
 }
