@@ -82,7 +82,7 @@ public class FlyEnemy : MonoBehaviour
     {
         yield return null;
         _agent.enabled = false;
-        //rb.useGravity = true;
+        rb.useGravity = true;
         rb.isKinematic = false;
         rb.AddForce(new Vector3(0,0,5),ForceMode.Impulse);
 
@@ -91,7 +91,7 @@ public class FlyEnemy : MonoBehaviour
         Debug.Log("ApplyKnockback");
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-       // rb.useGravity = false;
+        rb.useGravity = false;
         rb.isKinematic = true;
         _agent.Warp(transform.position);
         _agent.enabled = true;

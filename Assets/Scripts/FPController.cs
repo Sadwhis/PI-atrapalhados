@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Cinemachine;
+using System.Collections;
 
 namespace Atrapalhados
 {
@@ -27,6 +28,11 @@ namespace Atrapalhados
         public float _pitchLimit = 85f;
         [SerializeField] float _currentPitch = 0f;
 
+
+        [Header("Configurações do Soco")]
+        [SerializeField] private GameObject objetoDoSoco; 
+        [SerializeField] private float tempoAteOImpacto = 0.2f; 
+        [SerializeField] private float duracaoDoSoco = 0.1f; //
         public float CurrentPitch
         {
             get => _currentPitch;
@@ -124,11 +130,42 @@ namespace Atrapalhados
             _isFirstPerson = !_isFirstPerson;
         }
 
-        public void KnockBack() 
+
+        public void ClickSoco()
         {
-            if (!soco.acertouInimigo) return;
-            flyEnemy.GetKnockedBack(_KnockBackForce);
+            if (_animator != null)
+            {
+                _animator.SetTrigger("Socar");
+
+                
+                StartCoroutine(RotinaDoSoco());
+            }
         }
+
+        private IEnumerator RotinaDoSoco()
+        {
+           
+            yield return new WaitForSeconds(tempoAteOImpacto);
+
+           
+            objetoDoSoco.SetActive(true);
+
+           
+            if (soco != null && soco.inimigoNoAlcance != null)
+            {
+                flyEnemy.GetKnockedBack(_KnockBackForce);
+                Debug.Log("SOCO CORTINA");
+            }
+
+            
+            yield return new WaitForSeconds(duracaoDoSoco);
+
+            
+            objetoDoSoco.SetActive(false);
+        }
+
+
+
         void MoveUpdate()
         {
             Vector3 motion = Vector3.zero;
@@ -196,14 +233,6 @@ namespace Atrapalhados
             }
         }
 
-        public void ClickSoco()
-        {
-            if (_animator != null)
-            {
-                _animator.SetTrigger("Socar");
-
-            }
-        }
 
         void LookUpdate()
         {

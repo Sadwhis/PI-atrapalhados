@@ -9,7 +9,7 @@ namespace Atrapalhados
     {
         [Header("Components")]
         [SerializeField] FPController FPController;
-
+        public bool click;
 
         #region Input Handling
 
@@ -26,7 +26,7 @@ namespace Atrapalhados
         void OnSprint(InputValue value)
         {
             FPController._sprintInput = value.isPressed;
-            Debug.Log($"Sprint Input mudou para: {FPController._sprintInput}");
+            //Debug.Log($"Sprint Input mudou para: {FPController._sprintInput}");
         }
 
        public void OnJump(InputValue value)
@@ -61,18 +61,21 @@ namespace Atrapalhados
 
         }
 
-        
+
         void OnAttack(InputValue value)
         {
             if (value.isPressed)
             {
-                FPController.ClickSoco();
-                FPController.KnockBack();
-               
+                click = true;
+                FPController.ClickSoco(); 
+            }
+            else
+            {
+                click = false;
             }
         }
 
-       
+
     }
     #endregion
 }
