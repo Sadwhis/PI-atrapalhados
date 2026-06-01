@@ -232,7 +232,7 @@ public class FlyEnemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 8)// layer Player
+        if (other.gameObject.layer == 8)//s layer Player
         {
             Debug.Log("Hit");
             StartCoroutine(ApplyKnockback(transform.position));
