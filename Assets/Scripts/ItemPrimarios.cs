@@ -24,13 +24,17 @@ public class ItemPrimarios : MonoBehaviour
     public void Marshmellow()
     {
         
-        if (_ItemAtivo > 0)
-        {
-           
-           
-        }
+        
 
 
 
     }
+
+    public void Jump2()
+    {
+
+
+
+    }
+
 }
