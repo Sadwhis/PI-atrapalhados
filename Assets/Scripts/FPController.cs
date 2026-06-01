@@ -78,7 +78,7 @@ namespace Atrapalhados
 
         public Vector3 _KnockBackForce;
 
-        ColliderSoco soco;
+      
 
         #region Unity Methods
         void OnValidate()
@@ -92,7 +92,7 @@ namespace Atrapalhados
         void Start()
         {
             flyEnemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<FlyEnemy>();
-            soco = GameObject.FindGameObjectWithTag("Soco").GetComponent<ColliderSoco>();
+           
 
             if (Camera.main != null)
                 _mainCamTransform = Camera.main.transform;
@@ -138,31 +138,11 @@ namespace Atrapalhados
                 _animator.SetTrigger("Socar");
 
                 
-                StartCoroutine(RotinaDoSoco());
+                
             }
         }
 
-        private IEnumerator RotinaDoSoco()
-        {
-           
-            yield return new WaitForSeconds(tempoAteOImpacto);
-
-           
-            objetoDoSoco.SetActive(true);
-
-           
-            if (soco != null && soco.inimigoNoAlcance != null)
-            {
-                flyEnemy.GetKnockedBack(_KnockBackForce);
-                Debug.Log("SOCO CORTINA");
-            }
-
-            
-            yield return new WaitForSeconds(duracaoDoSoco);
-
-            
-            objetoDoSoco.SetActive(false);
-        }
+       
 
 
 
