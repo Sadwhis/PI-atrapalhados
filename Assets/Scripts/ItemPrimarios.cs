@@ -30,11 +30,6 @@ public class ItemPrimarios : MonoBehaviour
 
     }
 
-    public void Jump2()
-    {
-
-
-
-    }
+   
 
 }
