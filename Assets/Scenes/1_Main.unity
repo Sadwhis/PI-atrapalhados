@@ -1120,7 +1120,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &36665858
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19497,7 +19497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &389161596
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24759,6 +24759,12 @@ MonoBehaviour:
   - {fileID: 894028307}
   - {fileID: 401107858}
   - {fileID: 219383057}
+  _fundoDaBarra: {fileID: 173511446}
+  _rostoDoce: {fileID: 334029354}
+  _duracaoFundo: 0.8
+  _duracaoRostoGiro: 0.5
+  _duracaoBrotoCoracao: 0.5
+  _atrasoEntreCoracoes: 0.1
 --- !u!1001 &507188645
 PrefabInstance:
   m_ObjectHideFlags: 0

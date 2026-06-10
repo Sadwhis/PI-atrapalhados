@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class HeartController : MonoBehaviour
 {
@@ -10,30 +11,40 @@ public class HeartController : MonoBehaviour
     public GameObject[] coracoesCheios;
     public GameObject[] coracoesVazioObj;
 
+    [Header("Componentes para Animação de Entrada")]
+    [SerializeField] private RectTransform _fundoDaBarra; 
+    [SerializeField] private RectTransform _rostoDoce;    
+
+    [Header("Ajustes de Tempo")]
+    [SerializeField] private float _duracaoFundo = 0.6f;
+    [SerializeField] private float _duracaoRostoGiro = 0.5f;
+    [SerializeField] private float _duracaoBrotoCoracao = 0.35f;
+    [SerializeField] private float _atrasoEntreCoracoes = 0.12f;
+
     void Start()
     {
-        // Inicia o jogo com vida cheia se preferir
         vida = vidaMaxima;
-        AtualizarInterface();
+
+        
+        AtualizarInterfaceSemAnimar();
+
+        
+        IniciarAnimacaoIntroducao();
     }
 
-    // ESTA É A FUNÇÃO DE TOMAR DANO
     public void TomarDano(int quantidade)
     {
-        if (vida <= 0) return; // Se já morreu, não faz nada
+        if (vida <= 0) return;
 
         vida -= quantidade;
 
-        // 1. Toca o som de Hit (usando o sistema que criamos antes)
         if (AudioPlayer.Instance != null)
         {
-            AudioPlayer.Instance.SomStart(1); // 1 = Som de Hit no seu ScriptableObject
+            AudioPlayer.Instance.SomStart(1);
         }
 
-        // 2. Atualiza os corações na tela
-        AtualizarInterface();
+        AtualizarInterfaceSemAnimar();
 
-        // 3. Verifica se o player morreu
         if (vida <= 0)
         {
             Morrer();
@@ -42,14 +53,11 @@ public class HeartController : MonoBehaviour
 
     void Morrer()
     {
-        Debug.Log("O Player morreu!");
-        // Toca som de morte
+        Debug.Log("O Player morreu");
         AudioPlayer.Instance.SomStart(2);
-
-        // Aqui você pode carregar o Game Over ou reiniciar a fase
     }
 
-    public void AtualizarInterface()
+    public void AtualizarInterfaceSemAnimar()
     {
         for (int i = 0; i < coracoesCheios.Length; i++)
         {
@@ -64,6 +72,93 @@ public class HeartController : MonoBehaviour
                 coracoesCheios[i].SetActive(false);
                 coracoesVazioObj[i].SetActive(false);
             }
+        }
+    }
+
+    private void IniciarAnimacaoIntroducao()
+    {
+        Sequence seq = DOTween.Sequence();
+
+        //ANIMAÇÃO DO FUNDO
+        if (_fundoDaBarra != null)
+        {
+            Vector2 posicaoFinalFundo = _fundoDaBarra.anchoredPosition;
+            _fundoDaBarra.anchoredPosition = new Vector2(-Screen.width, posicaoFinalFundo.y);
+            seq.Append(_fundoDaBarra.DOAnchorPos(posicaoFinalFundo, _duracaoFundo).SetEase(Ease.OutCubic));
+        }
+
+        //ANIMAÇÃO DO ROSTO
+        if (_rostoDoce != null)
+        {
+            
+            Vector3 escalaOriginalRosto = _rostoDoce.localScale;
+            _rostoDoce.localScale = Vector3.zero;
+            seq.Append(_rostoDoce.DOScale(escalaOriginalRosto, 0.2f).SetEase(Ease.OutBack));
+            seq.Append(_rostoDoce.DORotate(new Vector3(0, 0, -360f), _duracaoRostoGiro, RotateMode.FastBeyond360).SetEase(Ease.OutQuad));
+        }
+
+ 
+        float[] posicoesYOriginais = new float[coracoesCheios.Length];
+
+  
+        for (int i = 0; i < coracoesCheios.Length; i++)
+        {
+            GameObject coracaoAtual = coracoesCheios[i].activeSelf ? coracoesCheios[i] : coracoesVazioObj[i];
+
+            if (coracaoAtual != null)
+            {
+                RectTransform rect = coracaoAtual.GetComponent<RectTransform>();
+                posicoesYOriginais[i] = rect.anchoredPosition.y;
+
+                rect.localScale = Vector3.zero;
+                rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, posicoesYOriginais[i] - 30f);
+            }
+        }
+
+        seq.AppendInterval(0.05f);
+
+        for (int i = 0; i < coracoesCheios.Length; i++)
+        {
+            GameObject coracaoAtual = coracoesCheios[i].activeSelf ? coracoesCheios[i] : coracoesVazioObj[i];
+
+            if (coracaoAtual != null)
+            {
+                RectTransform rectCoracao = coracaoAtual.GetComponent<RectTransform>();
+
+                float tempoDeEspera = i * _atrasoEntreCoracoes;
+                float metadeDoTempo = _duracaoBrotoCoracao / 2f;
+
+          
+                seq.Join(rectCoracao.DOScale(1f, _duracaoBrotoCoracao)
+                    .SetEase(Ease.OutBack)
+                    .SetDelay(tempoDeEspera));
+
+         
+                seq.Join(rectCoracao.DOAnchorPosY(posicoesYOriginais[i] + 50f, metadeDoTempo)
+                    .SetEase(Ease.OutQuad)
+                    .SetDelay(tempoDeEspera));
+
+                seq.Join(rectCoracao.DOAnchorPosY(posicoesYOriginais[i], metadeDoTempo)
+                    .SetEase(Ease.InQuad)
+                    .SetDelay(tempoDeEspera + metadeDoTempo));
+            }
+        }
+
+        seq.OnComplete(() =>
+        {
+            RostoMovimento();
+        });
+
+    }
+
+    private void RostoMovimento()
+    {
+        if (_rostoDoce != null)
+        {
+            _rostoDoce.DOComplete();
+            _rostoDoce.DORotate(new Vector3(0, 0, 4f), 2f)
+                .SetEase(Ease.InOutSine)
+                .SetLoops(-1, LoopType.Yoyo);
         }
     }
 }
