@@ -3448,6 +3448,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   somIni: {fileID: 11400000, guid: afeb82d2c5301004da89c9e497e317a6, type: 2}
+--- !u!1001 &99760454
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 55b44a3d2def59a4e813eb7959cdfd16, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 55b44a3d2def59a4e813eb7959cdfd16, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 55b44a3d2def59a4e813eb7959cdfd16, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.9
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 55b44a3d2def59a4e813eb7959cdfd16, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 55b44a3d2def59a4e813eb7959cdfd16, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 55b44a3d2def59a4e813eb7959cdfd16, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 55b44a3d2def59a4e813eb7959cdfd16, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 55b44a3d2def59a4e813eb7959cdfd16, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 55b44a3d2def59a4e813eb7959cdfd16, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 55b44a3d2def59a4e813eb7959cdfd16, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 55b44a3d2def59a4e813eb7959cdfd16, type: 3}
+      propertyPath: m_Name
+      value: Lollipop House.2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 55b44a3d2def59a4e813eb7959cdfd16, type: 3}
 --- !u!1001 &100919727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82999,7 +83056,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 774592668f3917d49a8a8120e203882a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.75
+      value: 14.51
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 774592668f3917d49a8a8120e203882a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -92284,3 +92341,4 @@ SceneRoots:
   - {fileID: 1962994659}
   - {fileID: 1377177651}
   - {fileID: 439741219}
+  - {fileID: 99760454}
