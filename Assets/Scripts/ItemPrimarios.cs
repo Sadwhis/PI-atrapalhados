@@ -21,14 +21,7 @@ public class ItemPrimarios : MonoBehaviour
         
     }
 
-    public void Marshmellow()
-    {
-        
-        
-
-
-
-    }
+    
 
    
 
