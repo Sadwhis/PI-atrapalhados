@@ -4,46 +4,93 @@ using TMPro;
 
 public class HudManager : MonoBehaviour
 {
-    public static HudManager instance; // Permite que outros scripts achem o HUD fácil
+    public static HudManager instance;
 
     [Header("Configuração do Painel")]
     [SerializeField] private CanvasGroup _painelInstrucoes;
+    [SerializeField] private RectTransform _painelTutorial; 
+    [SerializeField] private RectTransform _botaoDuvidaPos;
     [SerializeField] private float _tempoVisivel = 5f;
     [SerializeField] private float _tempoParaSumir = 1f;
 
     [Header("Pontuação na Tela")]
     [SerializeField] private TextMeshProUGUI _textoPontuacao;
 
+    private bool _tutorialAberto = false;
+    private Vector3 _posicaoOriginalPainel;
+
     void Awake()
     {
-        instance = this; // Liga a instância quando o jogo começa
+        instance = this;
     }
 
     void Start()
     {
+        
+        if (_painelTutorial != null)
+        {
+            _posicaoOriginalPainel = _painelTutorial.localPosition;
+            _painelTutorial.gameObject.SetActive(false);
+            _painelTutorial.localScale = Vector3.zero; 
+        }
+
+      
         if (_painelInstrucoes != null)
         {
             _painelInstrucoes.gameObject.SetActive(true);
             _painelInstrucoes.alpha = 1f;
-            _painelInstrucoes.DOFade(0, _tempoParaSumir)
-                             .SetDelay(_tempoVisivel)
+            _painelInstrucoes.DOFade(0, _tempoParaSumir).SetDelay(_tempoVisivel)
                              .OnComplete(() => _painelInstrucoes.gameObject.SetActive(false));
         }
 
-        // Deixa o texto em 0 logo que o jogo começa
-        if (_textoPontuacao != null)
-            _textoPontuacao.text = "0";
+        if (_textoPontuacao != null) _textoPontuacao.text = "0";
+
+        TravarMouse();
     }
 
-    // O GameManager vai chamar essa função quando a Princesa pegar a moeda!
-    public void AnimarTextoPontos(int totalMoedas)
+    void Update()
     {
-        if (_textoPontuacao != null)
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
         {
-            _textoPontuacao.text = totalMoedas.ToString(); // Atualiza o número
-
-            // O efeito mágico do DOTween: dá um "soco/pulo" na escala e volta ao normal
-            _textoPontuacao.transform.DOPunchScale(new Vector3(0.5f, 0.5f, 0), 0.3f, 10, 1);
+            AtivaPainelDuvida();
         }
     }
+
+    public void AtivaPainelDuvida()
+    {
+        if (_painelTutorial == null || _botaoDuvidaPos == null) return;
+
+        _tutorialAberto = !_tutorialAberto;
+
+        
+        _painelTutorial.DOKill();
+
+        if (_tutorialAberto)
+        {
+            _painelTutorial.gameObject.SetActive(true);
+            DestravarMouse();
+
+            
+            _painelTutorial.position = _botaoDuvidaPos.position;
+            _painelTutorial.localScale = Vector3.zero; 
+
+          
+            _painelTutorial.DOLocalMove(Vector3.zero, 1f).SetEase(Ease.OutBack).SetUpdate(true);
+            _painelTutorial.DOScale(1f, 0.5f).SetEase(Ease.OutBack).SetUpdate(true);
+            _painelTutorial.GetComponent<CanvasGroup>().DOFade(1f, 0.3f).SetUpdate(true);
+        }
+        else
+        {
+            TravarMouse();
+
+            
+            _painelTutorial.DOMove(_botaoDuvidaPos.position, 0.4f).SetEase(Ease.InBack).SetUpdate(true);
+            _painelTutorial.DOScale(0f, 0.4f).SetEase(Ease.InBack).SetUpdate(true);
+            _painelTutorial.GetComponent<CanvasGroup>().DOFade(0f, 0.3f).SetUpdate(true)
+                           .OnComplete(() => _painelTutorial.gameObject.SetActive(false));
+        }
+    }
+
+    private void TravarMouse() { Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false; }
+    private void DestravarMouse() { Cursor.lockState = CursorLockMode.None; Cursor.visible = true; }
 }

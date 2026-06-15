@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
             // Avisa o HudManager para atualizar o texto e fazer ele pular!
             if (HudManager.instance != null)
             {
-                HudManager.instance.AnimarTextoPontos(moedas);
+                //HudManager.instance.AnimarTextoPontos(moedas);
             }
         }
     }
