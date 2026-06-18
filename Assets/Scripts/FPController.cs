@@ -91,7 +91,7 @@ namespace Atrapalhados
 
         void Start()
         {
-            flyEnemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<FlyEnemy>();
+            //flyEnemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<FlyEnemy>();
            
 
             if (Camera.main != null)
