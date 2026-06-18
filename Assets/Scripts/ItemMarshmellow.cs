@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(FPController))]
 [RequireComponent(typeof(Player))]
-public class ItemMarshmellow : MonoBehaviour
+public class ItemMarshmellow : Player
 {
     [Header("Components")]
     [SerializeField] FPController _FPCtroller;
@@ -31,15 +31,15 @@ public class ItemMarshmellow : MonoBehaviour
     {
         
 
-       //if (Player.OnJump() = value.isPressed)
-       //{
-          //  if (value.isPressed)
-          //  {
-            //    _FPCtroller.TryJump();
-           // }
+       if (Player.OnJump() = value.isPressed)
+       {
+            if (value.isPressed)
+            {
+                _FPCtroller.TryJump();
+            }
 
 
-      // } 
+       } 
          
     }
 
