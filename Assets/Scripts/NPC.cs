@@ -22,7 +22,6 @@ public class NPC : MonoBehaviour
     public GameObject backGroundUI;
     public GameObject buttonMiniJogo;
 
-    private GuiaPlayer linhaP;
     private FPController Controller;
     public CinemachineInputAxisController cameraPlayer;
     public Player player;
@@ -31,7 +30,6 @@ public class NPC : MonoBehaviour
     private void Start()
     {
         
-        linhaP = GameObject.FindWithTag("Linha").GetComponent<GuiaPlayer>();
         Controller = GameObject.FindWithTag("Player").GetComponent<FPController>();
         Animator = GameObject.FindWithTag("Player").GetComponentInChildren<Animator>();
         foreach (var texto in _textos)
@@ -52,10 +50,18 @@ public class NPC : MonoBehaviour
             indiceAtual = 0;
 
             buttonClicar.SetActive(true);
-            backGroundUI.SetActive(true);
+            if (backGroundUI != null)  
+            {
+                backGroundUI.SetActive(true);
+            }
+            
 
             Controller._lookSensitivity = new Vector2(0, 0);
-            backGroundUI.transform.localScale = Vector3.zero;
+            if (backGroundUI != null)
+            {
+                backGroundUI.transform.localScale = Vector3.zero;
+            }
+           
 
             MostrarTextoAtual();
 
@@ -83,12 +89,16 @@ public class NPC : MonoBehaviour
             EsconderTextoAtual();
 
             cameraPlayer.enabled = true;
-            backGroundUI.transform.DOKill();
-            backGroundUI.SetActive(false);
-            backGroundUI.transform.DOScale(0, tempoAnimacao).SetEase(Ease.InBack).OnComplete(() =>
+            if (backGroundUI != null) 
             {
+                backGroundUI.transform.DOKill();
                 backGroundUI.SetActive(false);
-            });
+                backGroundUI.transform.DOScale(0, tempoAnimacao).SetEase(Ease.InBack).OnComplete(() =>
+                {
+                    backGroundUI.SetActive(false);
+                });
+            }
+            
         }
     }
 
@@ -115,10 +125,6 @@ public class NPC : MonoBehaviour
                 Debug.Log("Fim do Diálogo!");
                 Controller.enabled = true;
                 Animator.enabled = true;
-                if (linhaP != null)
-                {
-                    linhaP.NpcGeneral();
-                }
                 cameraPlayer.enabled = true;
 
                 if (!buttonFase)
@@ -157,16 +163,25 @@ public class NPC : MonoBehaviour
         poClicar = false;
         GameObject texto = _textos[indiceAtual];
 
-        backGroundUI.SetActive(true);
+        if (backGroundUI != null)
+        {
+            backGroundUI.SetActive(true);
+        }
+        
         texto.SetActive(true);
-
-        backGroundUI.transform.DOKill();
+        if (backGroundUI != null)
+        {
+            backGroundUI.transform.DOKill();
+        }
+        
         texto.transform.DOKill();
 
         texto.transform.localScale = Vector3.zero;
-
-        backGroundUI.transform.DOScale(1, tempoAnimacao).SetEase(Ease.OutBack);
-
+        if (backGroundUI != null)
+        {
+            backGroundUI.transform.DOScale(1, tempoAnimacao).SetEase(Ease.OutBack);
+        }
+        
         
         texto.transform.DOScale(1, tempoAnimacao).SetEase(Ease.OutBack).OnComplete(() =>
         {
