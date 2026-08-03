@@ -1,6 +1,7 @@
-using UnityEngine;
+using Atrapalhados;
 using DG.Tweening;
 using TMPro;
+using UnityEngine;
 
 public class HudManager : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class HudManager : MonoBehaviour
     [SerializeField] private RectTransform _botaoDuvidaPos;
     [SerializeField] private float _tempoVisivel = 5f;
     [SerializeField] private float _tempoParaSumir = 1f;
-
+    FPController _moveScript;
     [Header("Pontuação na Tela")]
     [SerializeField] private TextMeshProUGUI _textoPontuacao;
 
@@ -22,11 +23,12 @@ public class HudManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        _moveScript = GameObject.FindWithTag("Player").GetComponent<FPController>();
     }
 
     void Start()
     {
-        
+       
         Invoke("DestravarMouse", 1f);
         if (_painelTutorial != null)
         {
@@ -40,7 +42,7 @@ public class HudManager : MonoBehaviour
         {
             _painelInstrucoes.gameObject.SetActive(true);
             _painelInstrucoes.alpha = 1f;
-
+            _moveScript._walkSpeed = 0f;
             DestravarMouse();
         }
 
@@ -70,6 +72,8 @@ public class HudManager : MonoBehaviour
         });
 
         Debug.Log("esta clicando");
+
+        _moveScript._walkSpeed = 5f;
     }
 
     public void AtivaPainelDuvida()

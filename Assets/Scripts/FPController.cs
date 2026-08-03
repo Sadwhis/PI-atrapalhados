@@ -10,7 +10,7 @@ namespace Atrapalhados
         [Header("Movement Parameters")]
         [SerializeField] float _maxSpeed => _sprintInput ? _SprintSpeed : _walkSpeed;
         [SerializeField] float _acceleration = 20f;
-        [SerializeField] float _walkSpeed = 3.5f;
+        public float _walkSpeed = 3.5f;
         [SerializeField] float _SprintSpeed = 8f;
 
         
