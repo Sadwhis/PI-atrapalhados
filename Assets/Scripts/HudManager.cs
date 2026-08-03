@@ -27,6 +27,7 @@ public class HudManager : MonoBehaviour
     void Start()
     {
         
+        Invoke("DestravarMouse", 1f);
         if (_painelTutorial != null)
         {
             _posicaoOriginalPainel = _painelTutorial.localPosition;
@@ -34,26 +35,41 @@ public class HudManager : MonoBehaviour
             _painelTutorial.localScale = Vector3.zero; 
         }
 
-      
+
         if (_painelInstrucoes != null)
         {
             _painelInstrucoes.gameObject.SetActive(true);
             _painelInstrucoes.alpha = 1f;
-            _painelInstrucoes.DOFade(0, _tempoParaSumir).SetDelay(_tempoVisivel)
-                             .OnComplete(() => _painelInstrucoes.gameObject.SetActive(false));
+
+            DestravarMouse();
         }
 
-        if (_textoPontuacao != null) _textoPontuacao.text = "0";
+       
 
-        TravarMouse();
+        
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
         {
-            AtivaPainelDuvida();
+            //AtivaPainelDuvida();
         }
+
+       
+    }
+
+    public void FecharTutorialInicial()
+    {
+        if (_painelInstrucoes == null) return;
+
+        _painelInstrucoes.DOFade(0f, 0.3f).OnComplete(() =>
+        {
+            _painelInstrucoes.gameObject.SetActive(false);
+            TravarMouse();
+        });
+
+        Debug.Log("esta clicando");
     }
 
     public void AtivaPainelDuvida()
@@ -81,7 +97,7 @@ public class HudManager : MonoBehaviour
         }
         else
         {
-            TravarMouse();
+            
 
             
             _painelTutorial.DOMove(_botaoDuvidaPos.position, 0.4f).SetEase(Ease.InBack).SetUpdate(true);
