@@ -3,7 +3,42 @@ guid: 2b9f20e54fd7fef4b8ade6fec3d6237f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Caramelo
+    second: {fileID: 2100000, guid: 30833fe9a6eaa6a47b3bc892ea567061, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cinto
+    second: {fileID: 2100000, guid: 9b5413e6f82124448900a4c69fd9cafb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Colher de Plastico.1
+    second: {fileID: 2100000, guid: a7b1d3f8f86ea7845bc31d4ac80a051e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cone.1
+    second: {fileID: 2100000, guid: f5a17a38ce87da04fb1a9ff9f2befa80, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 56a844f08a993314a9dc38e9e2d84d8f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Medalhao
+    second: {fileID: 2100000, guid: 0bce27ce487a1e249aaa2e329e86f419, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Preto.1
+    second: {fileID: 2100000, guid: 3230ea15ec9702942a21b05bc57e098f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -9,6 +9,7 @@ public class HudManager : MonoBehaviour
 
     [Header("Configuração do Painel")]
     [SerializeField] private CanvasGroup _painelInstrucoes;
+    [SerializeField] private CanvasGroup _painelInstrucoes2;
     [SerializeField] private RectTransform _painelTutorial; 
     [SerializeField] private RectTransform _botaoDuvidaPos;
     [SerializeField] private float _tempoVisivel = 5f;
@@ -16,7 +17,8 @@ public class HudManager : MonoBehaviour
     FPController _moveScript;
     [Header("Pontuação na Tela")]
     [SerializeField] private TextMeshProUGUI _textoPontuacao;
-
+    bool poAbri;
+    Animator animatorPlayer;
     private bool _tutorialAberto = false;
     private Vector3 _posicaoOriginalPainel;
 
@@ -24,6 +26,7 @@ public class HudManager : MonoBehaviour
     {
         instance = this;
         _moveScript = GameObject.FindWithTag("Player").GetComponent<FPController>();
+        animatorPlayer = GameObject.FindWithTag("Player").GetComponentInChildren<Animator>();
     }
 
     void Start()
@@ -42,25 +45,40 @@ public class HudManager : MonoBehaviour
         {
             _painelInstrucoes.gameObject.SetActive(true);
             _painelInstrucoes.alpha = 1f;
-            _moveScript._walkSpeed = 0f;
+            _moveScript.enabled = false;
             DestravarMouse();
         }
 
-       
 
-        
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             //AtivaPainelDuvida();
+            FecharTutorialsecundario();
         }
 
-       
+        if (poAbri)
+        {
+            Invoke("AbrirPainelSecundario", 3f);
+            poAbri = false;
+        }
+
     }
 
+    public void AbrirPainelSecundario()
+    {
+        _painelInstrucoes2.gameObject.SetActive(true);
+        _painelInstrucoes2.alpha = 1f;
+
+        _moveScript.enabled = false; 
+
+        DestravarMouse();
+        animatorPlayer.Rebind();
+        animatorPlayer.Update(0f);
+    }
     public void FecharTutorialInicial()
     {
         if (_painelInstrucoes == null) return;
@@ -73,7 +91,22 @@ public class HudManager : MonoBehaviour
 
         Debug.Log("esta clicando");
 
-        _moveScript._walkSpeed = 5f;
+        _moveScript.enabled = true;
+        poAbri = true;
+    }
+
+    public void FecharTutorialsecundario()
+    {
+        if (_painelInstrucoes2 == null) return;
+
+        _painelInstrucoes2.DOFade(0f, 0.3f).OnComplete(() =>
+        {
+            _painelInstrucoes2.gameObject.SetActive(false);
+
+            _moveScript.enabled = true; 
+
+            TravarMouse();
+        });
     }
 
     public void AtivaPainelDuvida()

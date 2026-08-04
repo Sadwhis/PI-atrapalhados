@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Tela_Inicial.unity
     guid: cafb91a54f4472e449e94b7e28ce14d6
   - enabled: 1
-    path: Assets/Scenes/Main_Antiga.unity
-    guid: 6a66722e6ae1d244aacaec2353d1b2af
+    path: Assets/Scenes/Hub_Inicial.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Mundo_Chocolate.unity
+    guid: e58c9fb42a0299040b1cdb3f017029e4
   - enabled: 1
     path: Assets/Scenes/MiniJogos/MiniJogo_Chocolate.unity
     guid: 6faccd9ade239d64bbea15a7883b7708
