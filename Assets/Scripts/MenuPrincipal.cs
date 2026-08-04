@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement; // Essencial para trocar de cena!
 public class MenuPrincipal : MonoBehaviour
 {
     [Header("Nome da fase que vai abrir")]
-    public string nomeDaCenaDoJogo = "1_Main";
-    [SerializeField] public GameObject _TelaDeOpcoes;
+    public string nomeDaCenaDoJogo = "Hub_Inicial";
+    public GameObject _TelaDeOpcoes;
 
 
 
