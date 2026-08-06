@@ -48678,6 +48678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _painelInstrucoes: {fileID: 36665861}
+  _painelInstrucoes2: {fileID: 0}
   _painelTutorial: {fileID: 0}
   _botaoDuvidaPos: {fileID: 0}
   _tempoVisivel: 2
