@@ -17,4 +17,9 @@ public class Portal : MonoBehaviour
             FadeManager.Instance.TrocarCena(nomeCena);
         }
     }
+
+    public void trocarCena(string nomeCenaa) 
+    {
+        FadeManager.Instance.TrocarCena(nomeCenaa);
+    }
 }

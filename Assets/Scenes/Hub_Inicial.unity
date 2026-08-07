@@ -782,7 +782,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00051116943, y: 0}
+  m_AnchoredPosition: {x: 0.000022888, y: -8}
   m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &56202658
@@ -805,8 +805,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Vossa Alteza! Que bom que a senhora chegou. Estavamos todos ansiosos pela
-    sua presenca!
+  m_text: O General de Chocolate precisa da sua ajuda. Uma grande missao surgiu,
+    e somente alguem com a sua coragem pode resolve-la.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
   m_sharedMaterial: {fileID: -5073119722458946513, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
@@ -1995,8 +1995,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00051116943, y: 0}
-  m_SizeDelta: {x: 800, y: 100}
+  m_AnchoredPosition: {x: 51.27993, y: -37}
+  m_SizeDelta: {x: 902.5588, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &261805637
 MonoBehaviour:
@@ -2018,8 +2018,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Vossa Alteza! Que bom que a senhora chegou. Estavamos todos ansiosos pela
-    sua presenca!
+  m_text: Ola, princesa do Reino Doce! Que bom ver voce por aqui.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
   m_sharedMaterial: {fileID: -5073119722458946513, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
@@ -10437,6 +10436,9 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a562ca1f47f8fa941bbbdf97ae3043fc, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1285290223}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a562ca1f47f8fa941bbbdf97ae3043fc, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 784818608}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a562ca1f47f8fa941bbbdf97ae3043fc, type: 3}
@@ -11183,6 +11185,115 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277575828}
   m_CullTransparentMesh: 1
+--- !u!1 &1285290222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1285290223}
+  - component: {fileID: 1285290226}
+  - component: {fileID: 1285290225}
+  - component: {fileID: 1285290224}
+  m_Layer: 0
+  m_Name: Plane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1285290223
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285290222}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.48786417, y: 0.510208, z: -0.47978282, w: 0.521042}
+  m_LocalPosition: {x: -0.083944425, y: -0.18109067, z: -0.030718416}
+  m_LocalScale: {x: 0.035330098, y: 0.079762645, z: 0.025041612}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1511683671}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!64 &1285290224
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285290222}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1285290225
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285290222}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: -876546973899608171, guid: d6a9cf553dad0544096e5b7b0800e06a, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1285290226
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285290222}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!65 &1303454146
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15704,8 +15815,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Vossa Alteza! Que bom que a senhora chegou. Estavamos todos ansiosos pela
-    sua presenca!
+  m_text: Boa sorte, princesa! Todo o Reino Doce esta contando com voce!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
   m_sharedMaterial: {fileID: -5073119722458946513, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
@@ -16133,8 +16243,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Vossa Alteza! Que bom que a senhora chegou. Estavamos todos ansiosos pela
-    sua presenca!
+  m_text: Siga para a esquerda e atravesse o Portal de Chocolate. Do outro lado,
+    procure o General de Chocolate e converse com ele. Ele explicara tudo o que precisa
+    ser feito.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
   m_sharedMaterial: {fileID: -5073119722458946513, guid: b6bc3341ca806914dbe62b93c5ca25f6, type: 2}
