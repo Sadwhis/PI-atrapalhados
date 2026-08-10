@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
             moedas += valor;
             Debug.Log("Moedas: " + moedas);
 
-            // Avisa o HudManager para atualizar o texto e fazer ele pular!
+            
             if (HudManager.instance != null)
             {
                 //HudManager.instance.AnimarTextoPontos(moedas);
