@@ -10,7 +10,7 @@ public class HudManager : MonoBehaviour
     public static HudManager instance;
 
     [Header("Configuração do Painel")]
-    [SerializeField] private GameObject[] _botaoFechar;
+    [SerializeField] public GameObject[] _botaoFechar;
     [SerializeField] private CanvasGroup _painelInstrucoes;
     [SerializeField] private CanvasGroup _painelInstrucoes2;
     [SerializeField] private RectTransform _painelTutorial; 

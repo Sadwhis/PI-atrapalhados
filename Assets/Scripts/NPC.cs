@@ -3,6 +3,7 @@ using DG.Tweening;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using Cursor = UnityEngine.Cursor;
 
@@ -26,10 +27,12 @@ public class NPC : MonoBehaviour
     public CinemachineInputAxisController cameraPlayer;
     public Player player;
     private Animator Animator;
+    HudManager HudManager;
 
     private void Start()
     {
-        
+        HudManager = GameObject.FindWithTag("HudManager").GetComponent<HudManager>();
+       
         Controller = GameObject.FindWithTag("Player").GetComponent<FPController>();
         Animator = GameObject.FindWithTag("Player").GetComponentInChildren<Animator>();
         foreach (var texto in _textos)
@@ -119,6 +122,7 @@ public class NPC : MonoBehaviour
             if (indiceAtual < _textos.Count)
             {
                 MostrarTextoAtual();
+                EventSystem.current.SetSelectedGameObject(HudManager._botaoFechar[2]);
             }
             else
             {
@@ -131,6 +135,7 @@ public class NPC : MonoBehaviour
                 {
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.Locked;
+
                 }
                
                 buttonClicar.SetActive(false);
@@ -152,6 +157,8 @@ public class NPC : MonoBehaviour
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
                 }
+
+                EventSystem.current.SetSelectedGameObject(HudManager._botaoFechar[2]);
             }
         });
     }
@@ -162,7 +169,7 @@ public class NPC : MonoBehaviour
 
         poClicar = false;
         GameObject texto = _textos[indiceAtual];
-
+        EventSystem.current.SetSelectedGameObject(HudManager._botaoFechar[2]);
         if (backGroundUI != null)
         {
             backGroundUI.SetActive(true);
