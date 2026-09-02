@@ -2,6 +2,7 @@ using Atrapalhados;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class HudManager : MonoBehaviour
 {
@@ -21,12 +22,13 @@ public class HudManager : MonoBehaviour
     Animator animatorPlayer;
     private bool _tutorialAberto = false;
     private Vector3 _posicaoOriginalPainel;
-
+    PlayerInput player;
     void Awake()
     {
         instance = this;
         _moveScript = GameObject.FindWithTag("Player").GetComponent<FPController>();
         animatorPlayer = GameObject.FindWithTag("Player").GetComponentInChildren<Animator>();
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerInput>();
     }
 
     void Start()
@@ -45,7 +47,8 @@ public class HudManager : MonoBehaviour
         {
             _painelInstrucoes.gameObject.SetActive(true);
             _painelInstrucoes.alpha = 1f;
-            _moveScript.enabled = false;
+            //_moveScript.enabled = false;
+            player.enabled = false;
             DestravarMouse();
         }
 
@@ -73,8 +76,8 @@ public class HudManager : MonoBehaviour
         _painelInstrucoes2.gameObject.SetActive(true);
         _painelInstrucoes2.alpha = 1f;
 
-        _moveScript.enabled = false; 
-
+        //_moveScript.enabled = false; 
+        player.enabled = false;
         DestravarMouse();
         animatorPlayer.Rebind();
         animatorPlayer.Update(0f);
@@ -91,7 +94,8 @@ public class HudManager : MonoBehaviour
 
         Debug.Log("esta clicando");
 
-        _moveScript.enabled = true;
+        //_moveScript.enabled = true;
+        player.enabled = true;
         poAbri = true;
     }
 
@@ -103,8 +107,8 @@ public class HudManager : MonoBehaviour
         {
             _painelInstrucoes2.gameObject.SetActive(false);
 
-            _moveScript.enabled = true; 
-
+           // _moveScript.enabled = true;
+            player.enabled = true;
             TravarMouse();
         });
     }
