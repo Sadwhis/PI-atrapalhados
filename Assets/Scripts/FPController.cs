@@ -127,7 +127,7 @@ namespace Atrapalhados
        
         public void ToggleCameraView()
         {
-            _isFirstPerson = !_isFirstPerson;
+            //_isFirstPerson = !_isFirstPerson;
         }
 
 

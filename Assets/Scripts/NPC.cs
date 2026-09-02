@@ -169,7 +169,7 @@ public class NPC : MonoBehaviour
 
         poClicar = false;
         GameObject texto = _textos[indiceAtual];
-        EventSystem.current.SetSelectedGameObject(HudManager._botaoFechar[2]);
+        //EventSystem.current.SetSelectedGameObject(HudManager._botaoFechar[2]);
         if (backGroundUI != null)
         {
             backGroundUI.SetActive(true);
