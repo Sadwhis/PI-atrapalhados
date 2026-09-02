@@ -253,15 +253,15 @@ namespace Atrapalhados
 
         void CameraMixingUpdate()
         {
-            if (_mixingCamera == null) return;
+           // if (_mixingCamera == null) return;
 
-            float targetMix = _isFirstPerson ? 0f : 1f;
+            //float targetMix = _isFirstPerson ? 0f : 1f;
 
-            _cameraMixVal = Mathf.MoveTowards(_cameraMixVal, targetMix, _switchSpeed * Time.deltaTime);
+            //_cameraMixVal = Mathf.MoveTowards(_cameraMixVal, targetMix, _switchSpeed * Time.deltaTime);
 
             // Index 0 = FPS Camera, Index 1 = TPS Camera
-            _mixingCamera.SetWeight(0, 1f - _cameraMixVal);
-            _mixingCamera.SetWeight(1, _cameraMixVal);
+            //_mixingCamera.SetWeight(0, 1f - _cameraMixVal);
+            //_mixingCamera.SetWeight(1, _cameraMixVal);
 
             
         }

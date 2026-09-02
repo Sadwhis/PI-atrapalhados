@@ -230,7 +230,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 478.52, y: 203.224}
-  m_SizeDelta: {x: 106.4923, y: 110.4486}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9290440
 MonoBehaviour:
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -1169,7 +1169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &75671142
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1200,7 +1200,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75671141}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -3018,8 +3018,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.020715823, z: 0, w: 0.9997854}
-  m_LocalPosition: {x: -5.009156, y: 1.4029796, z: -46.44149}
+  m_LocalRotation: {x: 0.2534014, y: -0.0000000019998736, z: 5.2386917e-10, w: 0.9673612}
+  m_LocalPosition: {x: -5.01, y: 3.16, z: -51.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25415,6 +25415,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d43a6518eeffa3a4c990a9e31a70d254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _botaoFechar:
+  - {fileID: 9290438}
+  - {fileID: 950746204}
   _painelInstrucoes: {fileID: 75671143}
   _painelInstrucoes2: {fileID: 629903215}
   _painelTutorial: {fileID: 0}
@@ -26755,7 +26758,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1178712395740308734, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
       propertyPath: _walkSpeed
-      value: 20
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1178712395740308734, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
       propertyPath: _SprintSpeed
@@ -26763,11 +26766,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1178712395740308734, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
       propertyPath: _acceleration
-      value: 2
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2972699681466464498, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
       propertyPath: m_DefaultControlScheme
       value: Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799569040615151210, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
+      propertyPath: Weight0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799569040615151210, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
+      propertyPath: Weight1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7276270706405868793, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
       propertyPath: m_Name

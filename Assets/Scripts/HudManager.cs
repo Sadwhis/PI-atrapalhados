@@ -2,6 +2,7 @@ using Atrapalhados;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class HudManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class HudManager : MonoBehaviour
     public static HudManager instance;
 
     [Header("Configuração do Painel")]
+    [SerializeField] private GameObject[] _botaoFechar;
     [SerializeField] private CanvasGroup _painelInstrucoes;
     [SerializeField] private CanvasGroup _painelInstrucoes2;
     [SerializeField] private RectTransform _painelTutorial; 
@@ -50,6 +52,7 @@ public class HudManager : MonoBehaviour
             //_moveScript.enabled = false;
             player.enabled = false;
             DestravarMouse();
+            EventSystem.current.SetSelectedGameObject(_botaoFechar[0]);
         }
 
 
@@ -81,6 +84,7 @@ public class HudManager : MonoBehaviour
         DestravarMouse();
         animatorPlayer.Rebind();
         animatorPlayer.Update(0f);
+        EventSystem.current.SetSelectedGameObject(_botaoFechar[1]);
     }
     public void FecharTutorialInicial()
     {
@@ -111,6 +115,8 @@ public class HudManager : MonoBehaviour
             player.enabled = true;
             TravarMouse();
         });
+
+
     }
 
     public void AtivaPainelDuvida()
