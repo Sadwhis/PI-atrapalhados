@@ -278,24 +278,54 @@ namespace Atrapalhados
 
             Vector2 input = _lookInput;
 
-            bool usingGamepad = Gamepad.current != null &&
-                                Gamepad.current.rightStick.ReadValue().sqrMagnitude > 0.01f;
+            if (input.sqrMagnitude < 0.0001f)
+                return;
 
-            float sensitivity = usingGamepad
-                ? controllerLookSensitivity
-                : _lookSensitivity.x;
+            // Verifica se o movimento veio do controle
+            bool usandoControle = Gamepad.current != null &&
+                                  Gamepad.current.rightStick.ReadValue().sqrMagnitude > 0.01f;
 
-            // Vertical da câmera
-            CurrentPitch -= input.y * sensitivity * Time.deltaTime;
+            float sensibilidadeX;
+            float sensibilidadeY;
+
+            if (usandoControle)
+            {
+                // CONTROLE
+                sensibilidadeX = 120f;
+                sensibilidadeY = 120f;
+
+                // Analógico precisa de DeltaTime
+                input *= Time.deltaTime;
+
+                // Rotação horizontal do PLAYER
+                transform.Rotate(
+                    Vector3.up * input.x * sensibilidadeX
+                );
+
+                // Rotação vertical da CÂMERA
+                CurrentPitch -= input.y * sensibilidadeY;
+
+            }
+            else
+            {
+                // MOUSE
+                sensibilidadeX = _lookSensitivity.x;
+                sensibilidadeY = _lookSensitivity.y;
+
+                // Mouse NÃO usa DeltaTime
+                transform.Rotate(
+                    Vector3.up * input.x * sensibilidadeX
+                );
+
+                CurrentPitch -= input.y * sensibilidadeY;
+            }
+
+            // Limita a câmera para não virar de cabeça para baixo
             CurrentPitch = Mathf.Clamp(CurrentPitch, -80f, 80f);
 
+            // Aplica rotação vertical na câmera
             _cameraRoot.localRotation =
                 Quaternion.Euler(CurrentPitch, 0f, 0f);
-
-            // Horizontal: player acompanha a câmera
-            transform.Rotate(
-                Vector3.up * input.x * sensitivity * Time.deltaTime
-            );
         }
 
         void CameraUpdate()
