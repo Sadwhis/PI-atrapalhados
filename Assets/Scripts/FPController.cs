@@ -26,6 +26,7 @@ namespace Atrapalhados
         public Vector2 _lookSensitivity = new Vector2(0.1f, 0.1f);
         public float _pitchLimit = 85f;
         [SerializeField] float _currentPitch = 0f;
+        [SerializeField] float _currentYaw = 0f;
 
         [Header("Controle")]
         public bool MovementLocked { get; set; }
@@ -281,7 +282,6 @@ namespace Atrapalhados
             if (input.sqrMagnitude < 0.0001f)
                 return;
 
-            // Verifica se o movimento veio do controle
             bool usandoControle = Gamepad.current != null &&
                                   Gamepad.current.rightStick.ReadValue().sqrMagnitude > 0.01f;
 
@@ -294,17 +294,10 @@ namespace Atrapalhados
                 sensibilidadeX = 120f;
                 sensibilidadeY = 120f;
 
-                // Analógico precisa de DeltaTime
                 input *= Time.deltaTime;
 
-                // Rotação horizontal do PLAYER
-                transform.Rotate(
-                    Vector3.up * input.x * sensibilidadeX
-                );
-
-                // Rotação vertical da CÂMERA
-                CurrentPitch -= input.y * sensibilidadeY;
-
+                _currentYaw += input.x * sensibilidadeX;
+                _currentPitch -= input.y * sensibilidadeY;
             }
             else
             {
@@ -312,20 +305,24 @@ namespace Atrapalhados
                 sensibilidadeX = _lookSensitivity.x;
                 sensibilidadeY = _lookSensitivity.y;
 
-                // Mouse NÃO usa DeltaTime
-                transform.Rotate(
-                    Vector3.up * input.x * sensibilidadeX
-                );
-
-                CurrentPitch -= input.y * sensibilidadeY;
+                _currentYaw += input.x * sensibilidadeX;
+                _currentPitch -= input.y * sensibilidadeY;
             }
 
-            // Limita a câmera para não virar de cabeça para baixo
-            CurrentPitch = Mathf.Clamp(CurrentPitch, -80f, 80f);
+            // Limita a câmera para cima/baixo
+            _currentPitch = Mathf.Clamp(
+                _currentPitch,
+                -_pitchLimit,
+                _pitchLimit
+            );
 
-            // Aplica rotação vertical na câmera
-            _cameraRoot.localRotation =
-                Quaternion.Euler(CurrentPitch, 0f, 0f);
+            // Agora SOMENTE a câmera gira.
+            // O personagem não recebe mais transform.Rotate().
+            _cameraRoot.localRotation = Quaternion.Euler(
+                _currentPitch,
+                _currentYaw,
+                0f
+            );
         }
 
         void CameraUpdate()

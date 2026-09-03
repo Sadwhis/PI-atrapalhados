@@ -26891,6 +26891,10 @@ PrefabInstance:
       propertyPath: _acceleration
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 1178712395740308734, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
+      propertyPath: _cameraSprintFOV
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 2157386385459728452, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
       propertyPath: Composition.ScreenPosition.y
       value: 0.2
