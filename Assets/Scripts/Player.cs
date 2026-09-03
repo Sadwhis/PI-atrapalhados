@@ -9,6 +9,7 @@ namespace Atrapalhados
     {
         [Header("Components")]
         [SerializeField] FPController FPController;
+
         public bool click;
 
         #region Input Handling
@@ -21,15 +22,16 @@ namespace Atrapalhados
         void OnLook(InputValue value)
         {
             FPController._lookInput = value.Get<Vector2>();
+
+            
         }
 
         void OnSprint(InputValue value)
         {
             FPController._sprintInput = value.isPressed;
-            //Debug.Log($"Sprint Input mudou para: {FPController._sprintInput}");
         }
 
-       public void OnJump(InputValue value)
+        public void OnJump(InputValue value)
         {
             if (value.isPressed)
             {
@@ -45,29 +47,12 @@ namespace Atrapalhados
             }
         }
 
-        #endregion
-
-        #region Unity Methods
-
-        private void OnValidate()
-        {
-            if (FPController == null) FPController = GetComponent<FPController>();
-        }
-
-        void Start()
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-
-        }
-
-
         void OnAttack(InputValue value)
         {
             if (value.isPressed)
             {
                 click = true;
-                FPController.ClickSoco(); 
+                FPController.ClickSoco();
             }
             else
             {
@@ -75,7 +60,38 @@ namespace Atrapalhados
             }
         }
 
+        
+        public void OnDialogueNext(InputValue value)
+        {
+            if (value.isPressed)
+            {
+                
+                NPC npc = FindFirstObjectByType<NPC>();
 
+                if (npc != null)
+                {
+                    npc.ProximoDialogo();
+                }
+            }
+        }
+
+        #endregion
+
+        #region Unity Methods
+
+        private void OnValidate()
+        {
+            if (FPController == null)
+                FPController = GetComponent<FPController>();
+        }
+
+        void Start()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
+        #endregion
     }
-    #endregion
 }
+

@@ -1,6 +1,6 @@
-using UnityEngine;
 using Unity.Cinemachine;
-using System.Collections;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Atrapalhados
 {
@@ -13,7 +13,6 @@ namespace Atrapalhados
         public float _walkSpeed = 3.5f;
         [SerializeField] float _SprintSpeed = 8f;
 
-        
         [Header("Rotation Parameters (TPS)")]
         [SerializeField] float _turnSmoothTime = 0.1f;
         float _turnSmoothVelocity;
@@ -28,38 +27,39 @@ namespace Atrapalhados
         public float _pitchLimit = 85f;
         [SerializeField] float _currentPitch = 0f;
 
+        [Header("Controle")]
+        public bool MovementLocked { get; set; }
+        public bool LookLocked { get; set; }
 
-        [Header("Configurações do Soco")]
-        [SerializeField] private GameObject objetoDoSoco; 
-        [SerializeField] private float tempoAteOImpacto = 0.2f; 
-        [SerializeField] private float duracaoDoSoco = 0.1f; //
         public float CurrentPitch
         {
             get => _currentPitch;
             set => _currentPitch = Mathf.Clamp(value, -_pitchLimit, _pitchLimit);
         }
 
+        [Header("Configurações do Soco")]
+        [SerializeField] private GameObject objetoDoSoco;
+        [SerializeField] private float tempoAteOImpacto = 0.2f;
+        [SerializeField] private float duracaoDoSoco = 0.1f;
+
         [Header("Camera Parameters")]
         [SerializeField] float _cameraNormalFOV = 60f;
         [SerializeField] float _cameraSprintFOV = 80f;
         [SerializeField] float _cameraFOVSmoothing = 1f;
 
-    
-        [Header("Camera Switching")]
-        [SerializeField] CinemachineMixingCamera _mixingCamera;
-        [Tooltip("(CameraRoot")]
+        [Header("Camera TPS")]
+        [Tooltip("Objeto que controla a inclinação vertical da câmera.")]
         [SerializeField] Transform _cameraRoot;
-        [SerializeField] float _switchSpeed = 5f;
-        private bool _isFirstPerson = true;
-        private float _cameraMixVal = 0f; // 0 = FPS, 1 = TPS
 
-        float TargetCameraFOV => Sprinting ? _cameraSprintFOV : _cameraNormalFOV;
+        public Transform CameraRoot => _cameraRoot;
 
         [Header("Physics Parameters")]
         [SerializeField] float _gravityScale = 3f;
         public float _verticalVelocity = 0f;
+
         public Vector3 _currentVelocity { get; private set; }
         public float _currentSpeed { get; private set; }
+
         public bool IsGrounded => _charactercontroller.isGrounded;
 
         [Header("Input")]
@@ -68,45 +68,38 @@ namespace Atrapalhados
         public bool _sprintInput;
 
         [Header("Components")]
-        [SerializeField] CinemachineCamera _fpCamera;
+        [SerializeField] CinemachineCamera _tpsCamera;
         [SerializeField] CharacterController _charactercontroller;
         [SerializeField] Animator _animator;
         [SerializeField] FlyEnemy flyEnemy;
 
-
-        private Transform _mainCamTransform;
-
         public Vector3 _KnockBackForce;
 
-      
-
+        [SerializeField] private float controllerLookSensitivity = 120f;
         #region Unity Methods
+
         void OnValidate()
         {
-           
-
             if (_charactercontroller == null)
                 _charactercontroller = GetComponent<CharacterController>();
         }
 
         void Start()
         {
-            //flyEnemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<FlyEnemy>();
-           
-
-            if (Camera.main != null)
-                _mainCamTransform = Camera.main.transform;
+            // flyEnemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<FlyEnemy>();
         }
 
         void Update()
         {
             MoveUpdate();
             LookUpdate();
-            CameraUpdate(); 
-            CameraMixingUpdate();
+            CameraUpdate();
 
-            float pitchNormalizado = _currentPitch / _pitchLimit;
-            _animator.SetFloat("MiraV", -pitchNormalizado);
+            if (_animator != null)
+            {
+                float pitchNormalizado = _currentPitch / _pitchLimit;
+                _animator.SetFloat("MiraV", -pitchNormalizado);
+            }
         }
 
         #endregion
@@ -115,158 +108,227 @@ namespace Atrapalhados
 
         public void TryJump()
         {
-            if (!IsGrounded) return;
+            if (MovementLocked)
+                return;
 
-            _verticalVelocity = Mathf.Sqrt(_jumpHeight * -2f * Physics.gravity.y * _gravityScale);
+            if (!IsGrounded)
+                return;
+
+            _verticalVelocity = Mathf.Sqrt(
+                _jumpHeight * -2f * Physics.gravity.y * _gravityScale
+            );
 
             if (_animator != null)
             {
                 _animator.SetTrigger("Pular");
             }
         }
-       
+
         public void ToggleCameraView()
         {
-            //_isFirstPerson = !_isFirstPerson;
+            // O jogo permanece sempre em terceira pessoa.
         }
-
 
         public void ClickSoco()
         {
+            if (MovementLocked)
+                return;
+
             if (_animator != null)
             {
                 _animator.SetTrigger("Socar");
-
-                
-                
             }
         }
-
-       
-
-
 
         void MoveUpdate()
         {
+            // Durante diálogo/interação:
+            // não permite movimento, mas mantém o Controller ativo.
+            if (MovementLocked)
+            {
+                _currentVelocity = Vector3.MoveTowards(
+                    _currentVelocity,
+                    Vector3.zero,
+                    _acceleration * Time.deltaTime
+                );
+
+                ApplyGravity();
+
+                Vector3 lockedVelocity = new Vector3(
+                    0f,
+                    _verticalVelocity,
+                    0f
+                );
+
+                _charactercontroller.Move(
+                    lockedVelocity * Time.deltaTime
+                );
+
+                _currentSpeed = 0f;
+
+                UpdateAnimations(false);
+
+                return;
+            }
+
             Vector3 motion = Vector3.zero;
 
-           
-            if (_isFirstPerson)
+            // Movimento relativo à orientação do personagem.
+            Vector3 direction = new Vector3(
+                _moveInput.x,
+                0f,
+                _moveInput.y
+            );
+
+            if (direction.sqrMagnitude > 0.01f)
             {
-               
-                
-                motion = transform.forward * _moveInput.y + transform.right * _moveInput.x;
-            }
-            else
-            {
-               
-                Vector3 direction = new Vector3(_moveInput.x, 0f, _moveInput.y).normalized;
+                direction.Normalize();
 
-                if (direction.magnitude >= 0.1f && _mainCamTransform != null)
-                {
-                    
-                    float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + _mainCamTransform.eulerAngles.y;
+                motion =
+                    transform.forward * direction.z +
+                    transform.right * direction.x;
 
-                  
-                    float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVelocity, _turnSmoothTime);
-
-                  
-                    transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
-                    
-                    Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                    motion = moveDir;
-                }
+                motion.Normalize();
             }
 
-            
             motion.y = 0f;
-            motion.Normalize();
 
+            // Aceleração
             if (motion.sqrMagnitude >= 0.01f)
-                _currentVelocity = Vector3.MoveTowards(_currentVelocity, motion * _maxSpeed, _acceleration * Time.deltaTime);
-            else
-                _currentVelocity = Vector3.MoveTowards(_currentVelocity, Vector3.zero, _acceleration * Time.deltaTime);
-
-            
-            if (IsGrounded && _verticalVelocity <= 0.01f)
-                _verticalVelocity = -3f;
-            else
-                _verticalVelocity += Physics.gravity.y * _gravityScale * Time.deltaTime;
-
-            Vector3 fullVelocity = new Vector3(_currentVelocity.x, _verticalVelocity, _currentVelocity.z);
-            _charactercontroller.Move(fullVelocity * Time.deltaTime);
-            _currentSpeed = _currentVelocity.magnitude;
-
-            // Animação
-
-            _currentSpeed = _currentVelocity.magnitude;
-
-            if (_animator != null)
             {
-                bool estaAndando = _currentSpeed > 0.1f;
-                _animator.SetBool("TaAndando", estaAndando);
-                _animator.SetBool("NoChao", IsGrounded);
+                _currentVelocity = Vector3.MoveTowards(
+                    _currentVelocity,
+                    motion * _maxSpeed,
+                    _acceleration * Time.deltaTime
+                );
+            }
+            else
+            {
+                _currentVelocity = Vector3.MoveTowards(
+                    _currentVelocity,
+                    Vector3.zero,
+                    _acceleration * Time.deltaTime
+                );
+            }
 
-                float multiplicador = _currentSpeed / _walkSpeed;
-                _animator.SetFloat("VelocidadeAnim", multiplicador);
+            ApplyGravity();
+
+            Vector3 fullVelocity = new Vector3(
+                _currentVelocity.x,
+                _verticalVelocity,
+                _currentVelocity.z
+            );
+
+            _charactercontroller.Move(
+                fullVelocity * Time.deltaTime
+            );
+
+            _currentSpeed = _currentVelocity.magnitude;
+
+            UpdateAnimations(true);
+        }
+
+        void ApplyGravity()
+        {
+            if (IsGrounded && _verticalVelocity <= 0.01f)
+            {
+                _verticalVelocity = -3f;
+            }
+            else
+            {
+                _verticalVelocity +=
+                    Physics.gravity.y *
+                    _gravityScale *
+                    Time.deltaTime;
             }
         }
 
-
-        void LookUpdate()
+        void UpdateAnimations(bool allowMovement)
         {
-            Vector2 input = new Vector2(_lookInput.x * _lookSensitivity.x, _lookInput.y * _lookSensitivity.y);
+            if (_animator == null)
+                return;
 
-            
-            CurrentPitch -= input.y;
+            bool estaAndando =
+                allowMovement &&
+                _currentSpeed > 0.1f;
 
-            if (_cameraRoot != null)
-            {
-                _cameraRoot.localRotation = Quaternion.Euler(CurrentPitch, 0f, 0f);
-            }
-            else if (_fpCamera != null)
-            {
-                _fpCamera.transform.localRotation = Quaternion.Euler(CurrentPitch, 0f, 0f);
-            }
+            _animator.SetBool(
+                "TaAndando",
+                estaAndando
+            );
 
-            
-            if (_isFirstPerson)
-            {
-                transform.Rotate(Vector3.up * input.x);
-            }
-            
+            _animator.SetBool(
+                "NoChao",
+                IsGrounded
+            );
+
+            float multiplicador =
+                _currentSpeed / _walkSpeed;
+
+            _animator.SetFloat(
+                "VelocidadeAnim",
+                multiplicador
+            );
+        }
+
+        private void LookUpdate()
+        {
+            if (LookLocked)
+                return;
+
+            Vector2 input = _lookInput;
+
+            bool usingGamepad = Gamepad.current != null &&
+                                Gamepad.current.rightStick.ReadValue().sqrMagnitude > 0.01f;
+
+            float sensitivity = usingGamepad
+                ? controllerLookSensitivity
+                : _lookSensitivity.x;
+
+            // Vertical da câmera
+            CurrentPitch -= input.y * sensitivity * Time.deltaTime;
+            CurrentPitch = Mathf.Clamp(CurrentPitch, -80f, 80f);
+
+            _cameraRoot.localRotation =
+                Quaternion.Euler(CurrentPitch, 0f, 0f);
+
+            // Horizontal: player acompanha a câmera
+            transform.Rotate(
+                Vector3.up * input.x * sensitivity * Time.deltaTime
+            );
         }
 
         void CameraUpdate()
         {
-            if (_fpCamera == null) return;
+            if (_tpsCamera == null)
+                return;
 
             float targetFOV = _cameraNormalFOV;
+
             if (Sprinting)
             {
-                float speedRatio = _currentSpeed / _SprintSpeed;
-                targetFOV = Mathf.Lerp(_cameraNormalFOV, _cameraSprintFOV, speedRatio);
+                float speedRatio =
+                    Mathf.Clamp01(
+                        _currentSpeed / _SprintSpeed
+                    );
+
+                targetFOV = Mathf.Lerp(
+                    _cameraNormalFOV,
+                    _cameraSprintFOV,
+                    speedRatio
+                );
             }
-            _fpCamera.Lens.FieldOfView = Mathf.Lerp(_fpCamera.Lens.FieldOfView, targetFOV, _cameraFOVSmoothing * Time.deltaTime);
+
+            _tpsCamera.Lens.FieldOfView =
+                Mathf.Lerp(
+                    _tpsCamera.Lens.FieldOfView,
+                    targetFOV,
+                    _cameraFOVSmoothing *
+                    Time.deltaTime
+                );
         }
-
-        void CameraMixingUpdate()
-        {
-           // if (_mixingCamera == null) return;
-
-            //float targetMix = _isFirstPerson ? 0f : 1f;
-
-            //_cameraMixVal = Mathf.MoveTowards(_cameraMixVal, targetMix, _switchSpeed * Time.deltaTime);
-
-            // Index 0 = FPS Camera, Index 1 = TPS Camera
-            //_mixingCamera.SetWeight(0, 1f - _cameraMixVal);
-            //_mixingCamera.SetWeight(1, _cameraMixVal);
-
-            
-        }
-
 
         #endregion
     }
 }
+
