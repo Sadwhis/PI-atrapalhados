@@ -33,7 +33,6 @@ public class MenuPause : MonoBehaviour
     }
     public void VoltarMenu()
     {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("1-Tela_Inicial");
+        Application.Quit();
     }
 }
