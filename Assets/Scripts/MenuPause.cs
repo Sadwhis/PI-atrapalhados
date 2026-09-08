@@ -1,38 +1,34 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
+using UnityEngine.ScenenManagement;
 public class MenuPause : MonoBehaviour
 {
     public GameObject painel_do_menu;
-    
+  
     void Start()
     {
         painel_do_menu.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.P))
+  void Update()
+  {
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
-            PausaJogo();
+            PauseJoga();
         }
-    }
-    private void PausaJogo()
-    {
-        if (Time.timeScale ==1)
+  }
+  private void PauseJoga()
+  {
+        if (Time.timeScale == 1)
         {
             Time.timeScale = 0;
             painel_do_menu.SetActive(true);
         }
-        else if (Time.timeScale == 0)
+        else if (Time.timeScale == 0) 
         {
             Time.timeScale = 1;
             painel_do_menu.SetActive(false);
         }
-    }
-    public void VoltarMenu()
-    {
-        Application.Quit();
-    }
+  }
+
+
 }
