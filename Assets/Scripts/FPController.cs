@@ -68,6 +68,7 @@ namespace Atrapalhados
         public Vector2 _lookInput;
         public bool _sprintInput;
 
+
         [Header("Components")]
         [SerializeField] CinemachineCamera _tpsCamera;
         [SerializeField] CharacterController _charactercontroller;
@@ -174,11 +175,10 @@ namespace Atrapalhados
 
             Vector3 motion = Vector3.zero;
 
-            // Movimento relativo à orientação do personagem.
             Vector3 direction = new Vector3(
                 _moveInput.x,
-                0f,
-                _moveInput.y
+             0f,
+            _moveInput.y
             );
 
             if (direction.sqrMagnitude > 0.01f)

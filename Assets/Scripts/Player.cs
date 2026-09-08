@@ -10,13 +10,39 @@ namespace Atrapalhados
         [Header("Components")]
         [SerializeField] FPController FPController;
 
+        [Header("Auto Run")]
+        [SerializeField] private bool autoRun = true;
+        [SerializeField] private bool autoSprint = true;
+
         public bool click;
 
         #region Input Handling
 
+        [Header("Corrida Automática")]
+        [SerializeField] private float tempoParaCorrer = 3f;
+
+        private float tempoAndando = 0f;
         void OnMove(InputValue value)
         {
             FPController._moveInput = value.Get<Vector2>();
+        }
+
+        void Update()
+        {
+            if (FPController._moveInput.sqrMagnitude > 0.01f)
+            {
+                tempoAndando += Time.deltaTime;
+
+                if (tempoAndando >= tempoParaCorrer)
+                {
+                    FPController._sprintInput = true;
+                }
+            }
+            else
+            {
+                tempoAndando = 0f;
+                FPController._sprintInput = false;
+            }
         }
 
         void OnLook(InputValue value)
@@ -28,7 +54,14 @@ namespace Atrapalhados
 
         void OnSprint(InputValue value)
         {
-            FPController._sprintInput = value.isPressed;
+            if (autoSprint)
+            {
+                FPController._sprintInput = true;
+            }
+            else
+            {
+                FPController._sprintInput = value.isPressed;
+            }
         }
 
         public void OnJump(InputValue value)

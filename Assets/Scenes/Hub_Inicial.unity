@@ -27411,6 +27411,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1178712395740308734, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
+      propertyPath: _turnSmoothTime
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178712395740308734, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
       propertyPath: _cameraSprintFOV
       value: 60
       objectReference: {fileID: 0}
@@ -27437,6 +27441,14 @@ PrefabInstance:
     - target: {fileID: 5799569040615151210, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
       propertyPath: Weight1
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6289580210796607972, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
+      propertyPath: autoRun
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6289580210796607972, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
+      propertyPath: tempoParaCorrer
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6907430683533012021, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
       propertyPath: m_LocalPosition.x
