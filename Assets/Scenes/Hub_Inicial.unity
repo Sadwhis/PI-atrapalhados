@@ -13685,6 +13685,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c8f1434133971419895c235f1dffea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuPause
+  painel_do_menu: {fileID: 52972502}
+  nomeDaFase: 1-Tela_Inicial
 --- !u!1001 &1108234307
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27072,7 +27074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2128118430
 RectTransform:
   m_ObjectHideFlags: 0
