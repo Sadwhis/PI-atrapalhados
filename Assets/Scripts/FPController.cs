@@ -316,11 +316,24 @@ namespace Atrapalhados
                 _pitchLimit
             );
 
-            // Agora SOMENTE a câmera gira.
-            // O personagem não recebe mais transform.Rotate().
+            // Rotação da câmera
             _cameraRoot.localRotation = Quaternion.Euler(
                 _currentPitch,
                 _currentYaw,
+                0f
+            );
+
+            // Rotação suave do personagem
+            float smoothYaw = Mathf.SmoothDampAngle(
+                transform.eulerAngles.y,
+                _currentYaw,
+                ref _turnSmoothVelocity,
+                _turnSmoothTime
+            );
+
+            transform.rotation = Quaternion.Euler(
+                0f,
+                smoothYaw,
                 0f
             );
         }
