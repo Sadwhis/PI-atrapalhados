@@ -1,48 +1,72 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MenuPause : MonoBehaviour
 {
-    public GameObject painel_do_menu;
-    //public string nomeDaFase;
+    public GameObject _MenuPause;
+
+    private bool paused = false;
+
     void Start()
     {
-        painel_do_menu.SetActive(false);
+        HideMenuPause();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            PauseJoga();
+            if (paused)
+            {
+                HideMenuPause();
+            }
+            else
+            {
+                ShowMenuPause();
+            }
         }
-        if (Input.GetKeyDown(KeyCode.P))
+    }
+
+    private void ShowMenuPause()
+    {
+        paused = true;
+
+        if (_MenuPause != null)
         {
-            CarregarNovaFase();
+            _MenuPause.SetActive(true);
         }
+
+        Time.timeScale = 0f;
     }
-    private void PauseJoga()
+
+    private void HideMenuPause()
     {
-        if (Time.timeScale == 1)
+        paused = false;
+
+        if (_MenuPause != null)
         {
-            Time.timeScale = 0;
-            painel_do_menu.SetActive(true);
+            _MenuPause.SetActive(false);
         }
-        else if (Time.timeScale == 0)
-        {
-            Time.timeScale = 1;
-            painel_do_menu.SetActive(false);
-        }
+
+        Time.timeScale = 1f;
     }
-    public void Conitinuar()
+
+    // Botão Continuar
+    public void BTN_Resume()
     {
-        PauseJoga();
+        HideMenuPause();
     }
-    public void CarregarNovaFase()
+
+    // Botão Sair
+    public void BTN_Quit()
     {
-        SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
+
+        Application.Quit();
+
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#endif
     }
-    public void config()
-    {
-    Debug.Log("Abrindo configurações");
-    }
+
 }
