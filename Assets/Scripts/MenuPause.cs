@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 public class MenuPause : MonoBehaviour
 {
     public GameObject painel_do_menu;
-    public string nomeDaFase;
+    //public string nomeDaFase;
     void Start()
     {
         painel_do_menu.SetActive(false);
@@ -37,9 +37,9 @@ public class MenuPause : MonoBehaviour
     {
         PauseJoga();
     }
-    private void CarregarNovaFase()
+    public void CarregarNovaFase()
     {
-        SceneManager.LoadScene(nomeDaFase);
+        SceneManager.LoadScene(0);
     }
     public void config()
     {
