@@ -24,7 +24,10 @@ public class MenuPause : MonoBehaviour
             {
                 ShowMenuPause();
             }
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
+        
     }
 
     private void ShowMenuPause()
@@ -64,9 +67,10 @@ public class MenuPause : MonoBehaviour
 
         Application.Quit();
 
+
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
 #endif
     }
-
+    
 }
