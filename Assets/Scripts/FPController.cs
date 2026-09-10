@@ -13,6 +13,9 @@ namespace Atrapalhados
         public float _walkSpeed = 3.5f;
         [SerializeField] float _SprintSpeed = 8f;
 
+        [SerializeField] float _movementSmoothTime = 0.12f;
+        Vector2 _smoothMoveInput;
+
         [Header("Rotation Parameters (TPS)")]
         [SerializeField] float _turnSmoothTime = 0.1f;
         float _turnSmoothVelocity;
@@ -142,89 +145,123 @@ namespace Atrapalhados
             }
         }
 
-        void MoveUpdate()
+        private void MoveUpdate()
         {
-            // Durante diálogo/interação:
-            // não permite movimento, mas mantém o Controller ativo.
             if (MovementLocked)
             {
-                _currentVelocity = Vector3.MoveTowards(
-                    _currentVelocity,
-                    Vector3.zero,
-                    _acceleration * Time.deltaTime
-                );
-
+                _currentSpeed = 0f;
                 ApplyGravity();
 
-                Vector3 lockedVelocity = new Vector3(
+                _currentVelocity = new Vector3(
                     0f,
                     _verticalVelocity,
                     0f
                 );
 
                 _charactercontroller.Move(
-                    lockedVelocity * Time.deltaTime
+                    _currentVelocity * Time.deltaTime
                 );
 
-                _currentSpeed = 0f;
-
                 UpdateAnimations(false);
-
                 return;
             }
 
-            Vector3 motion = Vector3.zero;
+            _smoothMoveInput = Vector2.Lerp(
+     _smoothMoveInput,
+     _moveInput,
+     1f - Mathf.Exp(-1f / _movementSmoothTime * Time.deltaTime)
+ );
 
             Vector3 direction = new Vector3(
-                _moveInput.x,
-             0f,
-            _moveInput.y
+                _smoothMoveInput.x,
+                0f,
+                _smoothMoveInput.y
             );
+
+            Vector3 motion = Vector3.zero;
 
             if (direction.sqrMagnitude > 0.01f)
             {
                 direction.Normalize();
 
+                // Direção horizontal da câmera
+                float yaw = _currentYaw * Mathf.Deg2Rad;
+
+                Vector3 cameraForward = new Vector3(
+                    Mathf.Sin(yaw),
+                    0f,
+                    Mathf.Cos(yaw)
+                );
+
+                Vector3 cameraRight = new Vector3(
+                    Mathf.Cos(yaw),
+                    0f,
+                    -Mathf.Sin(yaw)
+                );
+
+                // Movimento relativo à câmera
                 motion =
-                    transform.forward * direction.z +
-                    transform.right * direction.x;
+                    cameraForward * direction.z +
+                    cameraRight * direction.x;
 
                 motion.Normalize();
-            }
 
-            motion.y = 0f;
+                // Rotaciona o personagem para a direção que está andando
+                float targetAngle =
+                    Mathf.Atan2(motion.x, motion.z) * Mathf.Rad2Deg;
 
-            // Aceleração
-            if (motion.sqrMagnitude >= 0.01f)
-            {
-                _currentVelocity = Vector3.MoveTowards(
-                    _currentVelocity,
-                    motion * _maxSpeed,
-                    _acceleration * Time.deltaTime
+                float smoothAngle = Mathf.SmoothDampAngle(
+                    transform.eulerAngles.y,
+                    targetAngle,
+                    ref _turnSmoothVelocity,
+                    _turnSmoothTime
                 );
-            }
-            else
-            {
-                _currentVelocity = Vector3.MoveTowards(
-                    _currentVelocity,
-                    Vector3.zero,
-                    _acceleration * Time.deltaTime
+
+                transform.rotation = Quaternion.Euler(
+                    0f,
+                    smoothAngle,
+                    0f
                 );
             }
 
-            ApplyGravity();
+            // Velocidade desejada
+            Vector3 targetVelocity =
+                motion * _maxSpeed;
 
-            Vector3 fullVelocity = new Vector3(
+            // Aceleração/desaceleração
+            Vector3 horizontalVelocity = new Vector3(
                 _currentVelocity.x,
-                _verticalVelocity,
+                0f,
                 _currentVelocity.z
             );
 
-            _charactercontroller.Move(
-                fullVelocity * Time.deltaTime
+            horizontalVelocity = Vector3.MoveTowards(
+                horizontalVelocity,
+                targetVelocity,
+                _acceleration * Time.deltaTime
             );
 
-            _currentSpeed = _currentVelocity.magnitude;
+            // Gravidade
+            ApplyGravity();
+
+            // Junta movimento horizontal + vertical
+            _currentVelocity = new Vector3(
+                horizontalVelocity.x,
+                _verticalVelocity,
+                horizontalVelocity.z
+            );
+
+            // Move o CharacterController
+            _charactercontroller.Move(
+                _currentVelocity * Time.deltaTime
+            );
+
+            // Velocidade usada pela animação/FOV
+            _currentSpeed = new Vector3(
+                _currentVelocity.x,
+                0f,
+                _currentVelocity.z
+            ).magnitude;
 
             UpdateAnimations(true);
         }
@@ -277,63 +314,31 @@ namespace Atrapalhados
             if (LookLocked)
                 return;
 
-            Vector2 input = _lookInput;
-
-            if (input.sqrMagnitude < 0.0001f)
+            if (Gamepad.current == null)
                 return;
 
-            bool usandoControle = Gamepad.current != null &&
-                                  Gamepad.current.rightStick.ReadValue().sqrMagnitude > 0.01f;
+            Vector2 input = Gamepad.current.rightStick.ReadValue();
 
-            float sensibilidadeX;
-            float sensibilidadeY;
+            if (input.sqrMagnitude < 0.01f)
+                return;
 
-            if (usandoControle)
-            {
-                // CONTROLE
-                sensibilidadeX = 120f;
-                sensibilidadeY = 120f;
+            float sensibilidadeX = 120f;
+            float sensibilidadeY = 120f;
 
-                input *= Time.deltaTime;
+            input *= Time.deltaTime;
 
-                _currentYaw += input.x * sensibilidadeX;
-                _currentPitch -= input.y * sensibilidadeY;
-            }
-            else
-            {
-                // MOUSE
-                sensibilidadeX = _lookSensitivity.x;
-                sensibilidadeY = _lookSensitivity.y;
+            _currentYaw += input.x * sensibilidadeX;
+            _currentPitch -= input.y * sensibilidadeY;
 
-                _currentYaw += input.x * sensibilidadeX;
-                _currentPitch -= input.y * sensibilidadeY;
-            }
-
-            // Limita a câmera para cima/baixo
             _currentPitch = Mathf.Clamp(
                 _currentPitch,
                 -_pitchLimit,
                 _pitchLimit
             );
 
-            // Rotação da câmera
             _cameraRoot.localRotation = Quaternion.Euler(
                 _currentPitch,
                 _currentYaw,
-                0f
-            );
-
-            // Rotação suave do personagem
-            float smoothYaw = Mathf.SmoothDampAngle(
-                transform.eulerAngles.y,
-                _currentYaw,
-                ref _turnSmoothVelocity,
-                _turnSmoothTime
-            );
-
-            transform.rotation = Quaternion.Euler(
-                0f,
-                smoothYaw,
                 0f
             );
         }
