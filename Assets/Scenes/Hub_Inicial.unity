@@ -12240,7 +12240,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1556138708}
         m_TargetAssemblyTypeName: MenuPause, Assembly-CSharp
-        m_MethodName: BTN_Quit
+        m_MethodName: ClickToHome
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

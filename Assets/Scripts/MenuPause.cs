@@ -61,15 +61,15 @@ public class MenuPause : MonoBehaviour
     }
 
     // Botão Sair
-    public void BTN_Quit()
+    public void ClickToHome()
     {
         Time.timeScale = 1f;
 
-        Application.Quit();
+        SceneManager.LoadScene(0);
 
 
 #if UNITY_EDITOR
-        EditorApplication.ExitPlaymode();
+        //EditorApplication.ExitPlaymode();
 #endif
     }
     
