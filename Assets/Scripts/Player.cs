@@ -44,7 +44,7 @@ namespace Atrapalhados
                 FPController._sprintInput = false;
             }
         }
-
+        
         void OnLook(InputValue value)
         {
             FPController._lookInput = value.Get<Vector2>();
@@ -59,8 +59,7 @@ namespace Atrapalhados
                 FPController._sprintInput = true;
             }
             else
-            {
-                FPController._sprintInput = value.isPressed;
+            {                FPController._sprintInput = value.isPressed;
             }
         }
 
