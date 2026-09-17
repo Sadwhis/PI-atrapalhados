@@ -12209,8 +12209,8 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 1002111763}
-    m_SelectOnDown: {fileID: 631738891}
+    m_SelectOnUp: {fileID: 631738891}
+    m_SelectOnDown: {fileID: 1002111763}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -27728,7 +27728,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2972699681466464498, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: Gamepad
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2972699681466464498, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5799569040615151210, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
       propertyPath: Weight0
