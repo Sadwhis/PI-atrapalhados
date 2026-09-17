@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 public class MenuPause : MonoBehaviour
 {
@@ -14,20 +15,32 @@ public class MenuPause : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        // Teclado: ESC
+        if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            if (paused)
-            {
-                HideMenuPause();
-            }
-            else
-            {
-                ShowMenuPause();
-            }
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            AlternarPause();
         }
-        
+
+        // Gamepad: botão Start/Menu
+        if (Gamepad.current != null && Gamepad.current.startButton.wasPressedThisFrame)
+        {
+            AlternarPause();
+        }
+    }
+
+    private void AlternarPause()
+    {
+        if (paused)
+        {
+            HideMenuPause();
+        }
+        else
+        {
+            ShowMenuPause();
+        }
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private void ShowMenuPause()
@@ -66,11 +79,6 @@ public class MenuPause : MonoBehaviour
         Time.timeScale = 1f;
 
         SceneManager.LoadScene(0);
-
-
-#if UNITY_EDITOR
-        //EditorApplication.ExitPlaymode();
-#endif
     }
-    
+
 }
