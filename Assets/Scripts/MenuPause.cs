@@ -39,8 +39,8 @@ public class MenuPause : MonoBehaviour
             ShowMenuPause();
         }
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = true;
     }
 
     private void ShowMenuPause()
