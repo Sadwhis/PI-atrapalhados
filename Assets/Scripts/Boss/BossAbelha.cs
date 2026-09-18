@@ -4,124 +4,166 @@ namespace Atrapalhados
 {
     public class BossAbelha : MonoBehaviour
     {
-        [Header("Movement Points")]
-        [SerializeField] private Transform[] _points;
+        [Header("Pontos (cantos da arena)")]
+        [SerializeField] private Transform _p0;
+        [SerializeField] private Transform _p1;
+        [SerializeField] private Transform _p2;
+        [SerializeField] private Transform _p3;
 
-        [Header("Movement")]
-        [SerializeField] private float _speed = 4f;
-        [SerializeField] private float _waitTime = 2f;
+        [Header("Movimento")]
+        [SerializeField] private float _speed = 15f;
+        [SerializeField] private float _tempoEmCadaLado = 20f;
+        [SerializeField] private float _height = 10f;
+        [SerializeField] private float _rotationSpeed = 8f;
+        [SerializeField] private float _arriveThreshold = 0.15f;
 
-        [Header("Change Side")]
-        [SerializeField] private float _changeSideTime = 10f;
+        [Header("Orientação")]
+        [Tooltip("Opcional. Se não definir, o centro é calculado automaticamente como a média dos 4 pontos.")]
+        [SerializeField] private Transform _arenaCenter;
 
-        private int _pointA;
-        private int _pointB;
+        private Vector3 _centerPosition;
 
-        private int _targetPoint;
-        private float _waitTimer;
-        private float _sideTimer;
+        private enum State { Patrolling, ReturningToAnchor, MovingToNextAnchor }
 
-        private bool _isWaiting;
+        // Cada índice define um "lado": um ponto-âncora e o ponto parceiro
+        // com quem ele oscila. A ordem aqui já reproduz exatamente a
+        // sequência do seu diagrama, sempre andando pela borda:
+        // P2<->P3, depois P1<->P0, depois P0<->P3, depois P3<->P2, e repete.
+        private Transform[] _anchors;
+        private Transform[] _partners;
+        private int _sideIndex;
+
+        private State _state;
+        private bool _movingToPartner;
+        private float _timer;
 
         private void Start()
         {
-            if (_points == null || _points.Length < 4)
-            {
-                Debug.LogWarning("Configure 4 pontos de movimento.");
-                enabled = false;
-                return;
-            }
+            _anchors = new[] { _p2, _p1, _p0, _p3 };
+            _partners = new[] { _p3, _p0, _p3, _p2 };
 
-            _pointA = 0;
-            _pointB = 1;
+            _sideIndex = 0;
+            _state = State.Patrolling;
+            _movingToPartner = true;
+            _timer = 0f;
 
-            transform.position = _points[_pointA].position;
+            _centerPosition = _arenaCenter != null
+                ? GetPosition(_arenaCenter)
+                : new Vector3(
+                    (_p0.position.x + _p1.position.x + _p2.position.x + _p3.position.x) / 4f,
+                    _height,
+                    (_p0.position.z + _p1.position.z + _p2.position.z + _p3.position.z) / 4f);
 
-            _targetPoint = _pointB;
+            transform.position = GetPosition(_anchors[_sideIndex]);
         }
 
         private void Update()
         {
-            _sideTimer += Time.deltaTime;
-
-            if (_sideTimer >= _changeSideTime)
+            switch (_state)
             {
-                ChangeSide();
-                _sideTimer = 0f;
+                case State.Patrolling:
+                    UpdatePatrolling();
+                    break;
+                case State.ReturningToAnchor:
+                    UpdateReturningToAnchor();
+                    break;
+                case State.MovingToNextAnchor:
+                    UpdateMovingToNextAnchor();
+                    break;
             }
 
-            if (_isWaiting)
+            FaceCenter();
+        }
+
+        private void UpdatePatrolling()
+        {
+            _timer += Time.deltaTime;
+
+            if (_timer >= _tempoEmCadaLado)
             {
-                _waitTimer += Time.deltaTime;
-
-                if (_waitTimer >= _waitTime)
-                {
-                    _isWaiting = false;
-                    _waitTimer = 0f;
-
-                    ChangeTarget();
-                }
-
+                _state = State.ReturningToAnchor;
                 return;
             }
 
-            MoveBoss();
+            Transform anchor = _anchors[_sideIndex];
+            Transform partner = _partners[_sideIndex];
+            Transform target = _movingToPartner ? partner : anchor;
+
+            MoveTowards(target);
+
+            if (HasArrived(target))
+            {
+                transform.position = GetPosition(target);
+                _movingToPartner = !_movingToPartner;
+            }
         }
 
-        private void MoveBoss()
+        private void UpdateReturningToAnchor()
         {
-            Transform target = _points[_targetPoint];
+            Transform anchor = _anchors[_sideIndex];
 
-            Vector3 direction = target.position - transform.position;
+            MoveTowards(anchor);
 
+            if (HasArrived(anchor))
+            {
+                transform.position = GetPosition(anchor);
+
+                _sideIndex = (_sideIndex + 1) % _anchors.Length;
+                _state = State.MovingToNextAnchor;
+            }
+        }
+
+        private void UpdateMovingToNextAnchor()
+        {
+            Transform nextAnchor = _anchors[_sideIndex];
+
+            MoveTowards(nextAnchor);
+
+            if (HasArrived(nextAnchor))
+            {
+                transform.position = GetPosition(nextAnchor);
+
+                _timer = 0f;
+                _movingToPartner = true;
+                _state = State.Patrolling;
+            }
+        }
+
+        private bool HasArrived(Transform target)
+        {
+            return Vector3.Distance(transform.position, GetPosition(target)) <= _arriveThreshold;
+        }
+
+        private void MoveTowards(Transform target)
+        {
+            Vector3 targetPosition = GetPosition(target);
+            Vector3 direction = targetPosition - transform.position;
+
+            if (direction.sqrMagnitude < 0.0001f)
+                return;
+
+            direction.Normalize();
+
+            transform.position += direction * _speed * Time.deltaTime;
+        }
+
+        private void FaceCenter()
+        {
+            Vector3 direction = _centerPosition - transform.position;
             direction.y = 0f;
 
-            if (direction.sqrMagnitude > 0.01f)
-            {
-                direction.Normalize();
+            if (direction.sqrMagnitude < 0.0001f)
+                return;
 
-                transform.position += direction * _speed * Time.deltaTime;
+            direction.Normalize();
 
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-
-                transform.rotation = Quaternion.Slerp(
-                    transform.rotation,
-                    targetRotation,
-                    8f * Time.deltaTime
-                );
-            }
-
-            if (Vector3.Distance(transform.position, target.position) <= 0.15f)
-            {
-                transform.position = new Vector3(
-                    target.position.x,
-                    transform.position.y,
-                    target.position.z
-                );
-
-                _isWaiting = true;
-                _waitTimer = 0f;
-            }
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
         }
 
-        private void ChangeTarget()
+        private Vector3 GetPosition(Transform point)
         {
-            if (_targetPoint == _pointA)
-                _targetPoint = _pointB;
-            else
-                _targetPoint = _pointA;
-        }
-
-        private void ChangeSide()
-        {
-            // Troca para o lado oposto do quadrado.
-            _pointA = (_pointA + 2) % 4;
-            _pointB = (_pointB + 2) % 4;
-
-            _targetPoint = _pointA;
-
-            _isWaiting = true;
-            _waitTimer = 0f;
+            return new Vector3(point.position.x, _height, point.position.z);
         }
     }
 }
