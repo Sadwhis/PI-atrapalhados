@@ -343,7 +343,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2838996724534039661, guid: acbe9585e10799b4da0ac0816d475767, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1168690315}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acbe9585e10799b4da0ac0816d475767, type: 3}
 --- !u!1001 &337749608
@@ -1210,6 +1213,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1168690314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1168690315}
+  - component: {fileID: 1168690317}
+  - component: {fileID: 1168690316}
+  m_Layer: 0
+  m_Name: HitBoss
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1168690315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168690314}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.449, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1736641861}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1168690316
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168690314}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1281389, y: 1.3736039, z: 2.3655841}
+  m_Center: {x: 0.06406915, y: -0.1911012, z: -0.037784223}
+--- !u!114 &1168690317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168690314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2c2a80459641eb44bfa69475278c265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossHitbox
+  _boss: {fileID: 1736641859}
 --- !u!1 &1213069847 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8416272007918961125, guid: 16a8dceb7645506439a50f4435525e35, type: 3}
@@ -1402,6 +1472,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd894b61cd09b44783a3070eef10ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Atrapalhados.BossAbelha
+--- !u!4 &1736641861 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2838996724534039661, guid: acbe9585e10799b4da0ac0816d475767, type: 3}
+  m_PrefabInstance: {fileID: 273800514}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1830046362
 GameObject:
   m_ObjectHideFlags: 0

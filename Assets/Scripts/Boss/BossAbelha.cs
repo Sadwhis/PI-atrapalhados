@@ -44,6 +44,16 @@ namespace Atrapalhados
         [Tooltip("Distância do player considerada 'alcançou', que já faz ela desviar pro ponto final.")]
         [SerializeField] private float _chargePlayerArriveThreshold = 2f;
 
+        [Header("Hit no player")]
+        [Tooltip("Força horizontal aplicada no player quando o hitbox do boss encosta nele.")]
+        [SerializeField] private float _hitKnockbackForce = 15f;
+        [Tooltip("Força vertical (pra cima), pra dar um arco no knockback.")]
+        [SerializeField] private float _hitKnockbackUpward = 4f;
+        [Tooltip("Tempo mínimo entre dois hits, pra não aplicar força toda hora enquanto os colliders se sobrepõem.")]
+        [SerializeField] private float _hitCooldown = 1f;
+
+        private float _hitCooldownTimer;
+
         private Transform[] _points;
         private int _pointIndex;
         private int _chargeLandingIndex;
@@ -84,6 +94,9 @@ namespace Atrapalhados
 
         private void Update()
         {
+            if (_hitCooldownTimer > 0f)
+                _hitCooldownTimer -= Time.deltaTime;
+
             switch (_state)
             {
                 case State.Idle:
@@ -244,6 +257,32 @@ namespace Atrapalhados
             _sideTimer = 0f;
             _chargeTimer = 0f;
             _state = State.Patrolling;
+        }
+
+        /// <summary>
+        /// Chamado pelo BossHitbox quando o collider dele toca o player.
+        /// Empurra o player pra longe do boss, com um cooldown pra não
+        /// aplicar força repetidamente enquanto os colliders se sobrepõem.
+        /// </summary>
+        public void HitPlayer(Collider playerCollider)
+        {
+            if (_hitCooldownTimer > 0f)
+                return;
+
+            _hitCooldownTimer = _hitCooldown;
+
+            Vector3 direction = Flat(playerCollider.transform.position - transform.position);
+
+            if (direction.sqrMagnitude < 0.0001f)
+                direction = Flat(transform.forward);
+
+            direction.Normalize();
+
+            Vector3 force = direction * _hitKnockbackForce + Vector3.up * _hitKnockbackUpward;
+
+            FPController playerController = playerCollider.GetComponent<FPController>();
+            if (playerController != null)
+                playerController.ApplyKnockback(force);
         }
 
         private bool HasArrived(Vector3 targetPosition)

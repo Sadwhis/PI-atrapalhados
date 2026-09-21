@@ -47,7 +47,7 @@ namespace Atrapalhados
         
         void OnLook(InputValue value)
         {
-            FPController._lookInput = value.Get<Vector2>();
+            //FPController._lookInput = value.Get<Vector2>();
 
             
         }
