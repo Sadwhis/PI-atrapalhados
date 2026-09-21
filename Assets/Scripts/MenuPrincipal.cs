@@ -1,13 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuPrincipal : MonoBehaviour
 {
     [Header("Nome da fase que vai abrir")]
     public string nomeDaCenaDoJogo = "Hub_Inicial";
     public GameObject _TelaDeOpcoes;
-
-
+    //public Button primarybutton;
+    private void Start()
+    {
+       // primarybutton.Select();
+    }
 
     // Coloque essa função no evento OnClick do botão START/INICIAR
     public void IniciarJogo()
