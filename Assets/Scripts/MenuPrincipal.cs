@@ -10,7 +10,9 @@ public class MenuPrincipal : MonoBehaviour
     //public Button primarybutton;
     private void Start()
     {
-       // primarybutton.Select();
+        // primarybutton.Select();
+        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Coloque essa função no evento OnClick do botão START/INICIAR
@@ -33,7 +35,14 @@ public class MenuPrincipal : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
     }
-
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
     public void OpcoeDoJogo()
     {
         _TelaDeOpcoes.SetActive(true);
