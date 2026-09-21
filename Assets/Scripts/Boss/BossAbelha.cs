@@ -54,6 +54,21 @@ namespace Atrapalhados
 
         private float _hitCooldownTimer;
 
+        [Header("Vida")]
+        [SerializeField] private int _maxLives = 3;
+        [SerializeField] private Color _damageFlashColor = Color.red;
+        [SerializeField] private float _damageFlashDuration = 0.2f;
+        [Tooltip("Tempo mínimo entre dois hits no ponto fraco (topo), pra não descontar várias vidas de uma vez.")]
+        [SerializeField] private float _weakPointHitCooldown = 0.5f;
+        [SerializeField] private UnityEngine.Events.UnityEvent _onDefeated;
+
+        private int _currentLives;
+        private bool _isDefeated;
+        private float _weakPointCooldownTimer;
+        private Renderer[] _renderers;
+        private Color[] _originalColors;
+        private Coroutine _flashCoroutine;
+
         private Transform[] _points;
         private int _pointIndex;
         private int _chargeLandingIndex;
@@ -90,12 +105,28 @@ namespace Atrapalhados
             _sideTimer = 0f;
             _chargeTimer = 0f;
             _state = State.Idle;
+
+            _currentLives = _maxLives;
+            _isDefeated = false;
+
+            _renderers = GetComponentsInChildren<Renderer>();
+            _originalColors = new Color[_renderers.Length];
+            for (int i = 0; i < _renderers.Length; i++)
+            {
+                _originalColors[i] = _renderers[i].material.color;
+            }
         }
 
         private void Update()
         {
+            if (_isDefeated)
+                return;
+
             if (_hitCooldownTimer > 0f)
                 _hitCooldownTimer -= Time.deltaTime;
+
+            if (_weakPointCooldownTimer > 0f)
+                _weakPointCooldownTimer -= Time.deltaTime;
 
             switch (_state)
             {
@@ -115,6 +146,9 @@ namespace Atrapalhados
 
         private void LateUpdate()
         {
+            if (_isDefeated)
+                return;
+
             // Balanço vertical de voo, por cima de qualquer movimento/estado.
             // Não mexe em X/Z, só sobrepõe um sobe-e-desce no Y.
             float bob = Mathf.Sin(Time.time * _bobSpeed) * _bobHeight;
@@ -283,6 +317,56 @@ namespace Atrapalhados
             FPController playerController = playerCollider.GetComponent<FPController>();
             if (playerController != null)
                 playerController.ApplyKnockback(force);
+        }
+
+        /// <summary>
+        /// Chamado pelo BossWeakPoint (o hitbox de cima) quando o player
+        /// pisa nela. Desconta uma vida, pisca vermelho, e derrota ela se
+        /// acabarem as vidas.
+        /// </summary>
+        public void TakeDamage()
+        {
+            if (_isDefeated)
+                return;
+
+            if (_weakPointCooldownTimer > 0f)
+                return;
+
+            _weakPointCooldownTimer = _weakPointHitCooldown;
+            _currentLives--;
+
+            if (_flashCoroutine != null)
+                StopCoroutine(_flashCoroutine);
+            _flashCoroutine = StartCoroutine(FlashDamage());
+
+            if (_currentLives <= 0)
+            {
+                Defeat();
+            }
+        }
+
+        private System.Collections.IEnumerator FlashDamage()
+        {
+            for (int i = 0; i < _renderers.Length; i++)
+            {
+                if (_renderers[i] != null)
+                    _renderers[i].material.color = _damageFlashColor;
+            }
+
+            yield return new WaitForSeconds(_damageFlashDuration);
+
+            for (int i = 0; i < _renderers.Length; i++)
+            {
+                if (_renderers[i] != null)
+                    _renderers[i].material.color = _originalColors[i];
+            }
+        }
+
+        private void Defeat()
+        {
+            _isDefeated = true;
+            _state = State.Idle;
+            _onDefeated?.Invoke();
         }
 
         private bool HasArrived(Vector3 targetPosition)

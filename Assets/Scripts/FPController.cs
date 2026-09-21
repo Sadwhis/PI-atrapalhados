@@ -129,6 +129,23 @@ namespace Atrapalhados
             }
         }
 
+        /// <summary>
+        /// Pulo automático (ex: ao pisar no ponto fraco do boss), que
+        /// funciona mesmo no ar — não depende de IsGrounded como o
+        /// TryJump normal.
+        /// </summary>
+        public void Bounce(float height)
+        {
+            _verticalVelocity = Mathf.Sqrt(
+                height * -2f * Physics.gravity.y * _gravityScale
+            );
+
+            if (_animator != null)
+            {
+                _animator.SetTrigger("Pular");
+            }
+        }
+
         public void ApplyKnockback(Vector3 force)
         {
             _KnockBackForce += force;
