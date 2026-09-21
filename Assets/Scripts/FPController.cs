@@ -1,6 +1,5 @@
 using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Atrapalhados
 {
@@ -26,26 +25,11 @@ namespace Atrapalhados
         public bool Sprinting => _sprintInput && _currentSpeed > 0.1f;
 
         [Header("Look Parameters")]
-        public Vector2 _lookSensitivity = new Vector2(0.1f, 0.1f);
+        [Tooltip("Usado só para normalizar a animação de mira (MiraV) a partir do pitch real da câmera.")]
         public float _pitchLimit = 85f;
-        [SerializeField] float _currentPitch = 0f;
-        [SerializeField] float _currentYaw = 0f;
-
-        [Tooltip("Suaviza o input do analógico direito, pra tirar tremedeira/jitter.")]
-        [SerializeField] float _lookSmoothTime = 0.05f;
-        [Tooltip("Abaixo disso, o input do analógico é ignorado (evita drift no repouso).")]
-        [SerializeField] float _lookDeadzone = 0.15f;
-        Vector2 _smoothLookInput;
 
         [Header("Controle")]
         public bool MovementLocked { get; set; }
-        public bool LookLocked { get; set; }
-
-        public float CurrentPitch
-        {
-            get => _currentPitch;
-            set => _currentPitch = Mathf.Clamp(value, -_pitchLimit, _pitchLimit);
-        }
 
         [Header("Configurações do Soco")]
         [SerializeField] private GameObject objetoDoSoco;
@@ -58,10 +42,16 @@ namespace Atrapalhados
         [SerializeField] float _cameraFOVSmoothing = 1f;
 
         [Header("Camera TPS")]
-        [Tooltip("Objeto que controla a inclinação vertical da câmera.")]
+        [Tooltip("Transform que serve de referência de altura dos olhos, seguido pela Cinemachine.")]
         [SerializeField] Transform _cameraRoot;
 
         public Transform CameraRoot => _cameraRoot;
+
+        /// <summary>
+        /// Pitch atual da câmera (lido direto da câmera renderizada, controlada pela Cinemachine),
+        /// normalizado pra quem só quer ler o valor (ex: animação de mira).
+        /// </summary>
+        public float CurrentPitch => GetCameraPitch();
 
         [Header("Physics Parameters")]
         [SerializeField] float _gravityScale = 3f;
@@ -73,10 +63,9 @@ namespace Atrapalhados
         public bool IsGrounded => _charactercontroller.isGrounded;
 
         [Header("Input")]
+        [Tooltip("Preenchido pelo sistema de input externo (ex: PlayerInput). O olhar em si não passa mais por aqui — é 100% Cinemachine.")]
         public Vector2 _moveInput;
-        public Vector2 _lookInput;
         public bool _sprintInput;
-
 
         [Header("Components")]
         [SerializeField] CinemachineCamera _tpsCamera;
@@ -85,8 +74,10 @@ namespace Atrapalhados
         [SerializeField] FlyEnemy flyEnemy;
 
         public Vector3 _KnockBackForce;
+        [SerializeField] float _knockbackDrag = 5f;
 
-        [SerializeField] private float controllerLookSensitivity = 120f;
+        Camera _mainCamera;
+
         #region Unity Methods
 
         void OnValidate()
@@ -97,18 +88,21 @@ namespace Atrapalhados
 
         void Start()
         {
+            _mainCamera = Camera.main;
             // flyEnemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<FlyEnemy>();
         }
 
         void Update()
         {
+            if (_mainCamera == null)
+                _mainCamera = Camera.main;
+
             MoveUpdate();
-            LookUpdate();
             CameraUpdate();
 
             if (_animator != null)
             {
-                float pitchNormalizado = _currentPitch / _pitchLimit;
+                float pitchNormalizado = GetCameraPitch() / _pitchLimit;
                 _animator.SetFloat("MiraV", -pitchNormalizado);
             }
         }
@@ -133,6 +127,11 @@ namespace Atrapalhados
             {
                 _animator.SetTrigger("Pular");
             }
+        }
+
+        public void ApplyKnockback(Vector3 force)
+        {
+            _KnockBackForce += force;
         }
 
         public void ToggleCameraView()
@@ -165,7 +164,13 @@ namespace Atrapalhados
                 );
 
                 _charactercontroller.Move(
-                    _currentVelocity * Time.deltaTime
+                    (_currentVelocity + _KnockBackForce) * Time.deltaTime
+                );
+
+                _KnockBackForce = Vector3.MoveTowards(
+                    _KnockBackForce,
+                    Vector3.zero,
+                    _knockbackDrag * Time.deltaTime
                 );
 
                 UpdateAnimations(false);
@@ -190,20 +195,22 @@ namespace Atrapalhados
             {
                 direction.Normalize();
 
-                // Direção horizontal da câmera
-                float yaw = _currentYaw * Mathf.Deg2Rad;
+                // Direção horizontal da câmera, lida direto da câmera
+                // renderizada (controlada pela Cinemachine), não mais
+                // calculada na mão a partir de um yaw guardado aqui.
+                Vector3 cameraForward = Vector3.forward;
+                Vector3 cameraRight = Vector3.right;
 
-                Vector3 cameraForward = new Vector3(
-                    Mathf.Sin(yaw),
-                    0f,
-                    Mathf.Cos(yaw)
-                );
+                if (_mainCamera != null)
+                {
+                    cameraForward = _mainCamera.transform.forward;
+                    cameraForward.y = 0f;
+                    cameraForward.Normalize();
 
-                Vector3 cameraRight = new Vector3(
-                    Mathf.Cos(yaw),
-                    0f,
-                    -Mathf.Sin(yaw)
-                );
+                    cameraRight = _mainCamera.transform.right;
+                    cameraRight.y = 0f;
+                    cameraRight.Normalize();
+                }
 
                 // Movimento relativo à câmera
                 motion =
@@ -259,7 +266,13 @@ namespace Atrapalhados
 
             // Move o CharacterController
             _charactercontroller.Move(
-                _currentVelocity * Time.deltaTime
+                (_currentVelocity + _KnockBackForce) * Time.deltaTime
+            );
+
+            _KnockBackForce = Vector3.MoveTowards(
+                _KnockBackForce,
+                Vector3.zero,
+                _knockbackDrag * Time.deltaTime
             );
 
             // Velocidade usada pela animação/FOV
@@ -315,63 +328,17 @@ namespace Atrapalhados
             );
         }
 
-        private void LookUpdate()
+        float GetCameraPitch()
         {
-            if (LookLocked)
-                return;
+            if (_mainCamera == null)
+                return 0f;
 
-            if (Gamepad.current == null)
-                return;
+            float pitch = _mainCamera.transform.eulerAngles.x;
 
-            Vector2 rawInput = Gamepad.current.rightStick.ReadValue();
+            if (pitch > 180f)
+                pitch -= 360f;
 
-            // Deadzone maior: evita que ruído do analógico em repouso
-            // fique "vazando" pro _smoothLookInput e gerando drift/jitter.
-            if (rawInput.magnitude < _lookDeadzone)
-                rawInput = Vector2.zero;
-
-            // Suaviza o input bruto do analógico (mesmo esquema usado no
-            // movimento), isso é o que resolve a rotação "não suave".
-            _smoothLookInput = Vector2.Lerp(
-                _smoothLookInput,
-                rawInput,
-                1f - Mathf.Exp(-1f / _lookSmoothTime * Time.deltaTime)
-            );
-
-            if (_smoothLookInput.sqrMagnitude < 0.0001f)
-                return;
-
-            Vector2 input = _smoothLookInput * controllerLookSensitivity * Time.deltaTime;
-
-            _currentYaw += input.x;
-            _currentPitch -= input.y;
-
-            // Mantém o yaw sempre entre -180 e 180. Sem isso, girar a
-            // câmera muito tempo faz esse número crescer sem limite
-            // (milhares de graus), e o float perde precisão — é isso
-            // que causa o "aperto pra frente e ele vai de lado" depois
-            // de mexer bastante a câmera.
-            _currentYaw = Mathf.Repeat(_currentYaw + 180f, 360f) - 180f;
-
-            _currentPitch = Mathf.Clamp(
-                _currentPitch,
-                -_pitchLimit,
-                _pitchLimit
-            );
-
-            // IMPORTANTE: rotação em espaço de MUNDO (não localRotation).
-            // _cameraRoot é filho do personagem, e o personagem já gira
-            // sozinho em MoveUpdate() pra acompanhar a direção do
-            // movimento. Se a câmera usasse localRotation, esse giro do
-            // corpo se somaria ao giro do analógico e a câmera "perderia"
-            // a frente do personagem toda vez que ele virasse andando.
-            // Com rotação de mundo, a câmera ignora a rotação do corpo e
-            // fica sempre exatamente onde o analógico mandou.
-            _cameraRoot.rotation = Quaternion.Euler(
-                _currentPitch,
-                _currentYaw,
-                0f
-            );
+            return pitch;
         }
 
         void CameraUpdate()

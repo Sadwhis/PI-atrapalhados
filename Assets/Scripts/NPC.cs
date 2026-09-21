@@ -81,7 +81,7 @@ public class NPC : MonoBehaviour
         if (Controller != null)
         {
             Controller.MovementLocked = true;
-            Controller.LookLocked = true;
+           
         }
 
         if (cameraPlayer != null)
@@ -118,9 +118,7 @@ public class NPC : MonoBehaviour
         if (Controller != null)
         {
             Controller.MovementLocked = false;
-            Controller.LookLocked = false;
-            Controller._lookSensitivity =
-                new Vector2(0.1f, 0.1f);
+           
         }
 
         Cursor.visible = false;
@@ -183,10 +181,10 @@ public class NPC : MonoBehaviour
                     if (Controller != null)
                     {
                         Controller.MovementLocked = false;
-                        Controller.LookLocked = false;
+                        //Controller.LookLocked = false;
 
-                        Controller._lookSensitivity =
-                            new Vector2(0.1f, 0.1f);
+                        //Controller._lookSensitivity =
+                        //    new Vector2(0.1f, 0.1f);
                     }
 
                     if (Animator != null)
@@ -237,7 +235,7 @@ public class NPC : MonoBehaviour
                         if (Controller != null)
                         {
                             Controller.MovementLocked = true;
-                            Controller.LookLocked = true;
+                            //Controller.LookLocked = true;
                         }
 
                         if (Animator != null)
