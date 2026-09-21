@@ -4,147 +4,264 @@ namespace Atrapalhados
 {
     public class BossAbelha : MonoBehaviour
     {
-        [Header("Pontos (cantos da arena)")]
-        [SerializeField] private Transform _p0;
-        [SerializeField] private Transform _p1;
-        [SerializeField] private Transform _p2;
-        [SerializeField] private Transform _p3;
+        private enum State { Idle, Patrolling, Charging }
+
+        [Header("Pontos do percurso (na ordem do ciclo A -> B -> C -> D -> A)")]
+        [SerializeField] private Transform _pointA;
+        [SerializeField] private Transform _pointB;
+        [SerializeField] private Transform _pointC;
+        [SerializeField] private Transform _pointD;
+
+        [Header("Ativação")]
+        [Tooltip("Onde o boss fica parado no topo da montanha até o player entrar no trigger. Se vazio, usa o Ponto A.")]
+        [SerializeField] private Transform _homePoint;
+        [Tooltip("Se não arrastar aqui, tenta achar automaticamente um objeto com a tag Player.")]
+        [SerializeField] private Transform _player;
 
         [Header("Movimento")]
         [SerializeField] private float _speed = 15f;
-        [SerializeField] private float _tempoEmCadaLado = 20f;
+        [SerializeField] private float _tempoPorLado = 5f;
         [SerializeField] private float _height = 10f;
-        [SerializeField] private float _rotationSpeed = 8f;
         [SerializeField] private float _arriveThreshold = 0.15f;
+        [SerializeField] private float _rotationSpeed = 8f;
+
+        [Header("Voo (balanço vertical)")]
+        [Tooltip("Quanto ela sobe/desce enquanto voa.")]
+        [SerializeField] private float _bobHeight = 1f;
+        [Tooltip("Velocidade do balanço de subir/descer.")]
+        [SerializeField] private float _bobSpeed = 2f;
 
         [Header("Orientação")]
-        [Tooltip("Opcional. Se não definir, o centro é calculado automaticamente como a média dos 4 pontos.")]
+        [Tooltip("Opcional. Se vazio, o centro é calculado automaticamente como a média dos 4 pontos.")]
         [SerializeField] private Transform _arenaCenter;
 
+        [Header("Ataque de investida")]
+        [SerializeField] private float _chargeCooldown = 10f;
+        [SerializeField] private float _chargeSpeed = 30f;
+        [SerializeField] private float _chargeArriveThreshold = 0.5f;
+        [Tooltip("Por quanto tempo ela persegue o player antes de desviar pro ponto final, mesmo se não alcançar.")]
+        [SerializeField] private float _chargeChaseTime = 1.5f;
+        [Tooltip("Distância do player considerada 'alcançou', que já faz ela desviar pro ponto final.")]
+        [SerializeField] private float _chargePlayerArriveThreshold = 2f;
+
+        private Transform[] _points;
+        private int _pointIndex;
+        private int _chargeLandingIndex;
+        private bool _chargePhaseLanding;
+        private float _chargePhaseTimer;
+        private float _sideTimer;
+        private float _chargeTimer;
         private Vector3 _centerPosition;
-
-        private enum State { Patrolling, ReturningToAnchor, MovingToNextAnchor }
-
-        // Cada índice define um "lado": um ponto-âncora e o ponto parceiro
-        // com quem ele oscila. A ordem aqui já reproduz exatamente a
-        // sequência do seu diagrama, sempre andando pela borda:
-        // P2<->P3, depois P1<->P0, depois P0<->P3, depois P3<->P2, e repete.
-        private Transform[] _anchors;
-        private Transform[] _partners;
-        private int _sideIndex;
-
+        private Vector3 _chargeTarget;
         private State _state;
-        private bool _movingToPartner;
-        private float _timer;
 
         private void Start()
         {
-            _anchors = new[] { _p2, _p1, _p0, _p3 };
-            _partners = new[] { _p3, _p0, _p3, _p2 };
-
-            _sideIndex = 0;
-            _state = State.Patrolling;
-            _movingToPartner = true;
-            _timer = 0f;
+            _points = new[] { _pointA, _pointB, _pointC, _pointD };
 
             _centerPosition = _arenaCenter != null
                 ? GetPosition(_arenaCenter)
                 : new Vector3(
-                    (_p0.position.x + _p1.position.x + _p2.position.x + _p3.position.x) / 4f,
+                    (_pointA.position.x + _pointB.position.x + _pointC.position.x + _pointD.position.x) / 4f,
                     _height,
-                    (_p0.position.z + _p1.position.z + _p2.position.z + _p3.position.z) / 4f);
+                    (_pointA.position.z + _pointB.position.z + _pointC.position.z + _pointD.position.z) / 4f);
 
-            transform.position = GetPosition(_anchors[_sideIndex]);
+            if (_player == null)
+            {
+                GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+                if (playerObj != null)
+                    _player = playerObj.transform;
+            }
+
+            Transform start = _homePoint != null ? _homePoint : _pointA;
+            transform.position = GetPosition(start);
+
+            _pointIndex = 0;
+            _sideTimer = 0f;
+            _chargeTimer = 0f;
+            _state = State.Idle;
         }
 
         private void Update()
         {
             switch (_state)
             {
+                case State.Idle:
+                    UpdateIdle();
+                    break;
                 case State.Patrolling:
                     UpdatePatrolling();
                     break;
-                case State.ReturningToAnchor:
-                    UpdateReturningToAnchor();
-                    break;
-                case State.MovingToNextAnchor:
-                    UpdateMovingToNextAnchor();
-                    break;
+                case State.Charging:
+                    UpdateCharging();
+                    return; // durante a investida ela olha pra direção do dash, não pro centro
             }
 
             FaceCenter();
         }
 
+        private void LateUpdate()
+        {
+            // Balanço vertical de voo, por cima de qualquer movimento/estado.
+            // Não mexe em X/Z, só sobrepõe um sobe-e-desce no Y.
+            float bob = Mathf.Sin(Time.time * _bobSpeed) * _bobHeight;
+            transform.position = new Vector3(transform.position.x, _height + bob, transform.position.z);
+        }
+
+        private void UpdateIdle()
+        {
+            // Parada esperando o trigger externo chamar Activate().
+        }
+
+        /// <summary>
+        /// Chamado pelo BossActivationTrigger quando o player entra na zona de ativação.
+        /// </summary>
+        public void Activate()
+        {
+            if (_state != State.Idle)
+                return;
+
+            _pointIndex = 1 % _points.Length; // primeiro alvo do ciclo é o Ponto B
+            _sideTimer = 0f;
+            _chargeTimer = 0f;
+            _state = State.Patrolling;
+        }
+
+        /// <summary>
+        /// Chamado pelo BossResetTrigger quando o player cai da montanha.
+        /// Ela volta pro ponto fixo e fica esperando (o balanço de voo do
+        /// LateUpdate continua rodando, então ela não fica totalmente
+        /// parada — só não anda mais até ser ativada de novo).
+        /// </summary>
+        public void ResetToHome()
+        {
+            _state = State.Idle;
+            _pointIndex = 0;
+            _sideTimer = 0f;
+            _chargeTimer = 0f;
+            _chargePhaseLanding = false;
+            _chargePhaseTimer = 0f;
+
+            Transform start = _homePoint != null ? _homePoint : _pointA;
+            transform.position = GetPosition(start);
+        }
+
         private void UpdatePatrolling()
         {
-            _timer += Time.deltaTime;
+            _chargeTimer += Time.deltaTime;
+            _sideTimer += Time.deltaTime;
 
-            if (_timer >= _tempoEmCadaLado)
+            if (_player != null && _chargeTimer >= _chargeCooldown)
             {
-                _state = State.ReturningToAnchor;
+                StartCharge();
                 return;
             }
 
-            Transform anchor = _anchors[_sideIndex];
-            Transform partner = _partners[_sideIndex];
-            Transform target = _movingToPartner ? partner : anchor;
-
-            MoveTowards(target);
-
-            if (HasArrived(target))
-            {
-                transform.position = GetPosition(target);
-                _movingToPartner = !_movingToPartner;
-            }
-        }
-
-        private void UpdateReturningToAnchor()
-        {
-            Transform anchor = _anchors[_sideIndex];
-
-            MoveTowards(anchor);
-
-            if (HasArrived(anchor))
-            {
-                transform.position = GetPosition(anchor);
-
-                _sideIndex = (_sideIndex + 1) % _anchors.Length;
-                _state = State.MovingToNextAnchor;
-            }
-        }
-
-        private void UpdateMovingToNextAnchor()
-        {
-            Transform nextAnchor = _anchors[_sideIndex];
-
-            MoveTowards(nextAnchor);
-
-            if (HasArrived(nextAnchor))
-            {
-                transform.position = GetPosition(nextAnchor);
-
-                _timer = 0f;
-                _movingToPartner = true;
-                _state = State.Patrolling;
-            }
-        }
-
-        private bool HasArrived(Transform target)
-        {
-            return Vector3.Distance(transform.position, GetPosition(target)) <= _arriveThreshold;
-        }
-
-        private void MoveTowards(Transform target)
-        {
+            Transform target = _points[_pointIndex];
             Vector3 targetPosition = GetPosition(target);
+
+            if (!HasArrived(targetPosition))
+            {
+                MoveTowards(targetPosition, _speed);
+            }
+            else
+            {
+                transform.position = targetPosition; // chegou antes do tempo: espera o resto parado
+            }
+
+            if (_sideTimer >= _tempoPorLado)
+            {
+                _pointIndex = (_pointIndex + 1) % _points.Length;
+                _sideTimer = 0f;
+            }
+        }
+
+        private void StartCharge()
+        {
+            // Sempre pousa no ponto OPOSTO do lado em que ela está agora
+            // no ciclo: A <-> C e B <-> D, sempre no mesmo par fixo.
+            _chargeLandingIndex = (_pointIndex + 2) % _points.Length;
+            _chargeTarget = GetPosition(_points[_chargeLandingIndex]);
+
+            _chargePhaseLanding = false;
+            _chargePhaseTimer = 0f;
+            _chargeTimer = 0f;
+            _state = State.Charging;
+        }
+
+        private void UpdateCharging()
+        {
+            if (!_chargePhaseLanding)
+            {
+                _chargePhaseTimer += Time.deltaTime;
+
+                Vector3 chaseTarget = _player != null ? GetPosition(_player) : _chargeTarget;
+                MoveAndFace(chaseTarget);
+
+                bool reachedPlayer = _player != null
+                    && Distance2D(transform.position, _player.position) <= _chargePlayerArriveThreshold;
+                bool chaseTimedOut = _chargePhaseTimer >= _chargeChaseTime;
+
+                if (_player == null || reachedPlayer || chaseTimedOut)
+                {
+                    _chargePhaseLanding = true;
+                }
+            }
+            else
+            {
+                MoveAndFace(_chargeTarget);
+
+                if (Distance2D(transform.position, _chargeTarget) <= _chargeArriveThreshold)
+                {
+                    EndCharge();
+                }
+            }
+        }
+
+        private void MoveAndFace(Vector3 targetPosition)
+        {
             Vector3 direction = targetPosition - transform.position;
+            direction.y = 0f;
+
+            if (direction.sqrMagnitude <= 0.0001f)
+                return;
+
+            Vector3 dirNormalized = direction.normalized;
+
+            transform.position += dirNormalized * _chargeSpeed * Time.deltaTime;
+
+            Quaternion targetRotation = Quaternion.LookRotation(dirNormalized);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+        }
+
+        private void EndCharge()
+        {
+            transform.position = _chargeTarget;
+
+            // Ela pousou exatamente no ponto _chargeLandingIndex, então o
+            // ciclo continua normalmente a partir do próximo ponto depois dele.
+            _pointIndex = (_chargeLandingIndex + 1) % _points.Length;
+            _sideTimer = 0f;
+            _chargeTimer = 0f;
+            _state = State.Patrolling;
+        }
+
+        private bool HasArrived(Vector3 targetPosition)
+        {
+            return Distance2D(transform.position, targetPosition) <= _arriveThreshold;
+        }
+
+        private void MoveTowards(Vector3 targetPosition, float speed)
+        {
+            Vector3 direction = targetPosition - transform.position;
+            direction.y = 0f; // o balanço vertical é só visual, não deve afetar a direção do voo
 
             if (direction.sqrMagnitude < 0.0001f)
                 return;
 
             direction.Normalize();
 
-            transform.position += direction * _speed * Time.deltaTime;
+            transform.position += direction * speed * Time.deltaTime;
         }
 
         private void FaceCenter()
@@ -164,6 +281,16 @@ namespace Atrapalhados
         private Vector3 GetPosition(Transform point)
         {
             return new Vector3(point.position.x, _height, point.position.z);
+        }
+
+        private Vector3 Flat(Vector3 v)
+        {
+            return new Vector3(v.x, 0f, v.z);
+        }
+
+        private float Distance2D(Vector3 a, Vector3 b)
+        {
+            return Vector3.Distance(Flat(a), Flat(b));
         }
     }
 }

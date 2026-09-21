@@ -31,6 +31,12 @@ namespace Atrapalhados
         [SerializeField] float _currentPitch = 0f;
         [SerializeField] float _currentYaw = 0f;
 
+        [Tooltip("Suaviza o input do analógico direito, pra tirar tremedeira/jitter.")]
+        [SerializeField] float _lookSmoothTime = 0.05f;
+        [Tooltip("Abaixo disso, o input do analógico é ignorado (evita drift no repouso).")]
+        [SerializeField] float _lookDeadzone = 0.15f;
+        Vector2 _smoothLookInput;
+
         [Header("Controle")]
         public bool MovementLocked { get; set; }
         public bool LookLocked { get; set; }
@@ -317,18 +323,35 @@ namespace Atrapalhados
             if (Gamepad.current == null)
                 return;
 
-            Vector2 input = Gamepad.current.rightStick.ReadValue();
+            Vector2 rawInput = Gamepad.current.rightStick.ReadValue();
 
-            if (input.sqrMagnitude < 0.01f)
+            // Deadzone maior: evita que ruído do analógico em repouso
+            // fique "vazando" pro _smoothLookInput e gerando drift/jitter.
+            if (rawInput.magnitude < _lookDeadzone)
+                rawInput = Vector2.zero;
+
+            // Suaviza o input bruto do analógico (mesmo esquema usado no
+            // movimento), isso é o que resolve a rotação "não suave".
+            _smoothLookInput = Vector2.Lerp(
+                _smoothLookInput,
+                rawInput,
+                1f - Mathf.Exp(-1f / _lookSmoothTime * Time.deltaTime)
+            );
+
+            if (_smoothLookInput.sqrMagnitude < 0.0001f)
                 return;
 
-            float sensibilidadeX = 120f;
-            float sensibilidadeY = 120f;
+            Vector2 input = _smoothLookInput * controllerLookSensitivity * Time.deltaTime;
 
-            input *= Time.deltaTime;
+            _currentYaw += input.x;
+            _currentPitch -= input.y;
 
-            _currentYaw += input.x * sensibilidadeX;
-            _currentPitch -= input.y * sensibilidadeY;
+            // Mantém o yaw sempre entre -180 e 180. Sem isso, girar a
+            // câmera muito tempo faz esse número crescer sem limite
+            // (milhares de graus), e o float perde precisão — é isso
+            // que causa o "aperto pra frente e ele vai de lado" depois
+            // de mexer bastante a câmera.
+            _currentYaw = Mathf.Repeat(_currentYaw + 180f, 360f) - 180f;
 
             _currentPitch = Mathf.Clamp(
                 _currentPitch,
@@ -336,7 +359,15 @@ namespace Atrapalhados
                 _pitchLimit
             );
 
-            _cameraRoot.localRotation = Quaternion.Euler(
+            // IMPORTANTE: rotação em espaço de MUNDO (não localRotation).
+            // _cameraRoot é filho do personagem, e o personagem já gira
+            // sozinho em MoveUpdate() pra acompanhar a direção do
+            // movimento. Se a câmera usasse localRotation, esse giro do
+            // corpo se somaria ao giro do analógico e a câmera "perderia"
+            // a frente do personagem toda vez que ele virasse andando.
+            // Com rotação de mundo, a câmera ignora a rotação do corpo e
+            // fica sempre exatamente onde o analógico mandou.
+            _cameraRoot.rotation = Quaternion.Euler(
                 _currentPitch,
                 _currentYaw,
                 0f
@@ -376,4 +407,3 @@ namespace Atrapalhados
         #endregion
     }
 }
-
