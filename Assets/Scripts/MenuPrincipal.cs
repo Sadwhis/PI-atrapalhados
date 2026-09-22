@@ -39,8 +39,9 @@ public class MenuPrincipal : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            bool isLocked = Cursor.lockState == CursorLockMode.Locked;
+            Cursor.visible = isLocked;
+            Cursor.lockState = isLocked ? CursorLockMode.None : CursorLockMode.Locked;
         }
     }
     public void OpcoeDoJogo()
