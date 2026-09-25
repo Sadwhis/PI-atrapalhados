@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class Portal : MonoBehaviour
+public class Portal2 : MonoBehaviour
 {
     [SerializeField] private string nomeCena;
-  
+
     bool carregando;
 
     private void OnTriggerEnter(Collider other)
@@ -16,12 +16,11 @@ public class Portal : MonoBehaviour
 
             FadeManager.Instance.TrocarCena(nomeCena);
         }
-        
+
     }
 
-    public void trocarCena(string nomeCenaa) 
+    public void trocarCena(string nomeCenaa)
     {
         FadeManager.Instance.TrocarCena(nomeCenaa);
     }
-    
 }
