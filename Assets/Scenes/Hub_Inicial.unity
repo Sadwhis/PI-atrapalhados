@@ -7671,6 +7671,63 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 78.27, y: 24.276836, z: 68.57875}
   m_Center: {x: -7.970012e-14, y: 15.638422, z: 17.989494}
+--- !u!1001 &660215143
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2199560268354575601, guid: c1f8e3b2b3b211a41acb3f6afde3b757, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.1592
+      objectReference: {fileID: 0}
+    - target: {fileID: 2199560268354575601, guid: c1f8e3b2b3b211a41acb3f6afde3b757, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.70291
+      objectReference: {fileID: 0}
+    - target: {fileID: 2199560268354575601, guid: c1f8e3b2b3b211a41acb3f6afde3b757, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -49.8123
+      objectReference: {fileID: 0}
+    - target: {fileID: 2199560268354575601, guid: c1f8e3b2b3b211a41acb3f6afde3b757, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2199560268354575601, guid: c1f8e3b2b3b211a41acb3f6afde3b757, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2199560268354575601, guid: c1f8e3b2b3b211a41acb3f6afde3b757, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2199560268354575601, guid: c1f8e3b2b3b211a41acb3f6afde3b757, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2199560268354575601, guid: c1f8e3b2b3b211a41acb3f6afde3b757, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2199560268354575601, guid: c1f8e3b2b3b211a41acb3f6afde3b757, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2199560268354575601, guid: c1f8e3b2b3b211a41acb3f6afde3b757, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9003741051937401679, guid: c1f8e3b2b3b211a41acb3f6afde3b757, type: 3}
+      propertyPath: m_Name
+      value: FadeManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c1f8e3b2b3b211a41acb3f6afde3b757, type: 3}
 --- !u!1 &662202739
 GameObject:
   m_ObjectHideFlags: 0
@@ -9208,7 +9265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3db046f29468ba34ab6743036abc5d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nomeCena: terreno
+  nomeCena: Mundo_Chocolate
 --- !u!1 &790348781
 GameObject:
   m_ObjectHideFlags: 0
@@ -27859,3 +27916,4 @@ SceneRoots:
   - {fileID: 201387351}
   - {fileID: 1960284477}
   - {fileID: 1101633613}
+  - {fileID: 660215143}
