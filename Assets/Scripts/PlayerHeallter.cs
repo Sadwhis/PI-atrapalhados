@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHeallter : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public float health;
+    public Scrollbar healthscroll;
     void Start()
     {
         
@@ -12,5 +14,16 @@ public class PlayerHeallter : MonoBehaviour
     void Update()
     {
         
+    }
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        healthscroll.size = health / 100;
+        GetComponent<Animator>().SetTrigger(damage);
+        if(health <= 0)
+        {
+            print("die");
+        }
     }
 }
