@@ -2,26 +2,11 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-    [SerializeField] private string nomeCena;
-  
-    bool carregando;
-
-    private void OnTriggerEnter(Collider other)
+    public Animation transition;
+    public float transitionTime = 1f;
+    void Upadate()
     {
-        if (carregando) return;
-
-        if (other.CompareTag("Player"))
-        {
-            carregando = true;
-
-            FadeManager.Instance.TrocarCena(nomeCena);
-        }
-        
+        if (Input.)
     }
 
-    public void trocarCena(string nomeCenaa) 
-    {
-        FadeManager.Instance.TrocarCena(nomeCenaa);
-    }
-    
 }

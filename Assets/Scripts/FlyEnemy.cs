@@ -406,7 +406,7 @@ public class FlyEnemy : MonoBehaviour
         _agent.isStopped = false;
         _agent.SetDestination(player.position);
         _waitTimer = 0f;
-        playerHeallter.TakeDamage(10);
+       
     }
 
     void RotaçãoMelhorada()
@@ -512,5 +512,5 @@ public class FlyEnemy : MonoBehaviour
 
         HitPlayer(other);
     }
-    public PlayerHeallter playerHeallter;
+
 }
