@@ -6,7 +6,7 @@ public class Portal : MonoBehaviour
     public float transitionTime = 1f;
     void Upadate()
     {
-        if (Input.)
+        
     }
 
 }
