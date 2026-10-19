@@ -1,4 +1,5 @@
 ﻿using Atrapalhados;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,19 +10,20 @@ namespace Atrapalhados
     {
         [Header("Components")]
         [SerializeField] FPController FPController;
-
+         
         [Header("Auto Run")]
         [SerializeField] private bool autoRun = true;
         [SerializeField] private bool autoSprint = true;
-
+         
         public bool click;
-
+        
         #region Input Handling
 
         [Header("Corrida Automática")]
         [SerializeField] private float tempoParaCorrer = 3f;
-
+        
         private float tempoAndando = 0f;
+        
         void OnMove(InputValue value)
         {
             FPController._moveInput = value.Get<Vector2>();
@@ -124,6 +126,7 @@ namespace Atrapalhados
         }
 
         #endregion
+
     }
 }
 
