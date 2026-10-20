@@ -73,8 +73,16 @@ namespace Atrapalhados
         [SerializeField] Animator _animator;
         [SerializeField] FlyEnemy flyEnemy;
 
+        [Header("Knockback")]
         public Vector3 _KnockBackForce;
         [SerializeField] float _knockbackDrag = 5f;
+        [Tooltip("Tag do chão onde o player para na hora depois de ser lançado.")]
+        [SerializeField] string _groundTag = "ground";
+
+        // Está sob efeito de knockback
+        private bool _isInKnockback;
+        // Já saiu do chão desde que levou o knockback (evita parar antes de cair)
+        private bool _airborneInKnockback;
 
         Camera _mainCamera;
 
@@ -105,6 +113,21 @@ namespace Atrapalhados
                 float pitchNormalizado = GetCameraPitch() / _pitchLimit;
                 _animator.SetFloat("MiraV", -pitchNormalizado);
             }
+        }
+
+        void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            if (!_isInKnockback || !_airborneInKnockback)
+                return;
+
+            if (!hit.gameObject.CompareTag(_groundTag))
+                return;
+
+            // Só conta se for chão (normal apontando pra cima)
+            if (hit.normal.y < 0.5f)
+                return;
+
+            StopKnockbackSlide();
         }
 
         #endregion
@@ -149,6 +172,51 @@ namespace Atrapalhados
         public void ApplyKnockback(Vector3 force)
         {
             _KnockBackForce += force;
+            _isInKnockback = true;
+            _airborneInKnockback = false;
+        }
+
+        void StopKnockbackSlide()
+        {
+            _isInKnockback = false;
+            _airborneInKnockback = false;
+
+            _KnockBackForce = Vector3.zero;
+            _currentVelocity = new Vector3(0f, _currentVelocity.y, 0f);
+            _smoothMoveInput = Vector2.zero;
+        }
+
+        void UpdateKnockbackState()
+        {
+            if (!_isInKnockback)
+                return;
+
+            // Marca que o player saiu do chão por causa do knockback
+            if (!IsGrounded)
+            {
+                _airborneInKnockback = true;
+            }
+            // Voltou pro chão depois de estar no ar: para na hora
+            else if (_airborneInKnockback)
+            {
+                StopKnockbackSlide();
+            }
+        }
+
+        void DecayKnockback()
+        {
+            _KnockBackForce = Vector3.MoveTowards(
+                _KnockBackForce,
+                Vector3.zero,
+                _knockbackDrag * Time.deltaTime
+            );
+
+            // Força acabou: desliga o estado de knockback
+            if (_KnockBackForce.sqrMagnitude < 0.01f)
+            {
+                _isInKnockback = false;
+                _airborneInKnockback = false;
+            }
         }
 
         public void ToggleCameraView()
@@ -169,6 +237,8 @@ namespace Atrapalhados
 
         private void MoveUpdate()
         {
+            UpdateKnockbackState();
+
             if (MovementLocked)
             {
                 _currentSpeed = 0f;
@@ -184,21 +254,17 @@ namespace Atrapalhados
                     (_currentVelocity + _KnockBackForce) * Time.deltaTime
                 );
 
-                _KnockBackForce = Vector3.MoveTowards(
-                    _KnockBackForce,
-                    Vector3.zero,
-                    _knockbackDrag * Time.deltaTime
-                );
+                DecayKnockback();
 
                 UpdateAnimations(false);
                 return;
             }
 
             _smoothMoveInput = Vector2.Lerp(
-     _smoothMoveInput,
-     _moveInput,
-     1f - Mathf.Exp(-1f / _movementSmoothTime * Time.deltaTime)
- );
+                _smoothMoveInput,
+                _moveInput,
+                1f - Mathf.Exp(-1f / _movementSmoothTime * Time.deltaTime)
+            );
 
             Vector3 direction = new Vector3(
                 _smoothMoveInput.x,
@@ -213,8 +279,7 @@ namespace Atrapalhados
                 direction.Normalize();
 
                 // Direção horizontal da câmera, lida direto da câmera
-                // renderizada (controlada pela Cinemachine), não mais
-                // calculada na mão a partir de um yaw guardado aqui.
+                // renderizada (controlada pela Cinemachine).
                 Vector3 cameraForward = Vector3.forward;
                 Vector3 cameraRight = Vector3.right;
 
@@ -286,11 +351,7 @@ namespace Atrapalhados
                 (_currentVelocity + _KnockBackForce) * Time.deltaTime
             );
 
-            _KnockBackForce = Vector3.MoveTowards(
-                _KnockBackForce,
-                Vector3.zero,
-                _knockbackDrag * Time.deltaTime
-            );
+            DecayKnockback();
 
             // Velocidade usada pela animação/FOV
             _currentSpeed = new Vector3(

@@ -320,6 +320,7 @@ namespace Atrapalhados
                 playerController.ApplyKnockback(force);
 
             _vidaController.TomarDano(1);
+
         }
 
         /// <summary>

@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Ground
   - JumpGround
   - FimGame
   - FALA(NPC)
@@ -21,6 +20,7 @@ TagManager:
   - Enemy
   - Soco
   - HudManager
+  - ground
   layers:
   - Default
   - TransparentFX
