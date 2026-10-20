@@ -79,9 +79,10 @@ namespace Atrapalhados
         private Vector3 _centerPosition;
         private Vector3 _chargeTarget;
         private State _state;
-
+        HeartController _vidaController;
         private void Start()
         {
+            _vidaController = GameObject.FindWithTag("Player").GetComponent<HeartController>();
             _points = new[] { _pointA, _pointB, _pointC, _pointD };
 
             _centerPosition = _arenaCenter != null
@@ -317,6 +318,8 @@ namespace Atrapalhados
             FPController playerController = playerCollider.GetComponent<FPController>();
             if (playerController != null)
                 playerController.ApplyKnockback(force);
+
+            _vidaController.TomarDano(1);
         }
 
         /// <summary>

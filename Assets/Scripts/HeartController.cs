@@ -36,14 +36,19 @@ public class HeartController : MonoBehaviour
     {
         if (vida <= 0) return;
 
-        vida -= quantidade;
+        int vidaAnterior = vida;
+        vida = Mathf.Max(0, vida - quantidade);
 
         if (AudioPlayer.Instance != null)
         {
             AudioPlayer.Instance.SomStart(1);
         }
 
-        AtualizarInterfaceSemAnimar();
+        // Anima todos os corações cheios que foram perdidos
+        for (int i = vida; i < vidaAnterior && i < coracoesCheios.Length; i++)
+        {
+            AnimarPerdaCoracao(i);
+        }
 
         if (vida <= 0)
         {
@@ -51,10 +56,29 @@ public class HeartController : MonoBehaviour
         }
     }
 
+    private void AnimarPerdaCoracao(int indice)
+    {
+        GameObject cheio = coracoesCheios[indice];
+        GameObject vazio = coracoesVazioObj[indice];
+        RectTransform rect = cheio.GetComponent<RectTransform>();
+
+        // Mostra o vazio por trás enquanto o cheio encolhe
+        vazio.SetActive(true);
+
+        rect.DOKill();
+        rect.DOScale(0f, 0.25f)
+            .SetEase(Ease.InBack)
+            .OnComplete(() =>
+            {
+                cheio.SetActive(false);
+                rect.localScale = Vector3.one; // reseta para quando for reativado
+            });
+    }
+
     void Morrer()
     {
         Debug.Log("O Player morreu");
-        AudioPlayer.Instance.SomStart(2);
+        //AudioPlayer.Instance.SomStart(2);
     }
 
     public void AtualizarInterfaceSemAnimar()

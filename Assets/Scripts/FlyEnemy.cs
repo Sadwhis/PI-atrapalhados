@@ -86,11 +86,13 @@ public class FlyEnemy : MonoBehaviour
     private Coroutine MoveCoroutine;
 
     Animator anim;
+    HeartController _vidaController;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         _agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
+        _vidaController = GameObject.FindWithTag("Player").GetComponent<HeartController>();
         _agent.baseOffset = _flightHeight;
         _agent.speed = _moveSpeed;
         _agent.updateRotation = false;
@@ -246,6 +248,7 @@ public class FlyEnemy : MonoBehaviour
         FPController playerController = playerCollider.GetComponent<FPController>();
         if (playerController != null)
             playerController.ApplyKnockback(force);
+        _vidaController.TomarDano(1);
     }
 
     /// <summary>
