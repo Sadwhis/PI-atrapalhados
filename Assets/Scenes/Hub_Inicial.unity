@@ -5574,6 +5574,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7961289528872400106, guid: c1f8e3b2b3b211a41acb3f6afde3b757, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -18.675537
+      objectReference: {fileID: 0}
+    - target: {fileID: 7961289528872400106, guid: c1f8e3b2b3b211a41acb3f6afde3b757, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 14.401855
+      objectReference: {fileID: 0}
     - target: {fileID: 9003741051937401679, guid: c1f8e3b2b3b211a41acb3f6afde3b757, type: 3}
       propertyPath: m_Name
       value: FadeManager
@@ -6697,7 +6705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3db046f29468ba34ab6743036abc5d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nomeCena: 
+  nomeCena: Mundo_Chocolate
 --- !u!1 &790348781
 GameObject:
   m_ObjectHideFlags: 0
