@@ -21,6 +21,8 @@ TagManager:
   - Soco
   - HudManager
   - ground
+  - Ground
+  - CheckPoint
   layers:
   - Default
   - TransparentFX
