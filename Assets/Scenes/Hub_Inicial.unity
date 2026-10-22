@@ -6719,8 +6719,8 @@ Transform:
   m_GameObject: {fileID: 784818607}
   serializedVersion: 2
   m_LocalRotation: {x: 0.01579947, y: 0.7057436, z: 0.029174635, w: 0.70769006}
-  m_LocalPosition: {x: -0.096022174, y: -0.047741156, z: -0.13517703}
-  m_LocalScale: {x: 0.07976262, y: 0.035330094, z: 0.031802908}
+  m_LocalPosition: {x: -0.0962, y: -0.052, z: 0.025}
+  m_LocalScale: {x: -0.1, y: 0.035330094, z: 0.031802908}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1511683671}
@@ -6759,6 +6759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nomeCena: Mundo_Chocolate
+  InitialPosition: {fileID: 855058560}
 --- !u!1 &790348781
 GameObject:
   m_ObjectHideFlags: 0
@@ -7392,7 +7393,7 @@ Transform:
   m_GameObject: {fileID: 855058558}
   serializedVersion: 2
   m_LocalRotation: {x: 9.3132246e-10, y: -0.6953984, z: 9.3132246e-10, w: 0.7186245}
-  m_LocalPosition: {x: -2.6217031, y: 4.019435, z: 46.730984}
+  m_LocalPosition: {x: -2.56, y: 4.019435, z: 48.5}
   m_LocalScale: {x: 0.39721763, y: 1, z: 2.5186458}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13883,11 +13884,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2847964389079435920, guid: acb3acf3d788a4c45adc6987cff34281, type: 3}
   m_PrefabInstance: {fileID: 2734840150964885256}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1347016351 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7276270706405868793, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
-  m_PrefabInstance: {fileID: 5252801729112198198}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1347889020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16160,7 +16156,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6289580210796607972, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
   m_PrefabInstance: {fileID: 5252801729112198198}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347016351}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f87fc364bf27cae43ad37a77f7848777, type: 3}
@@ -16177,19 +16173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89875cdc57c54474a8a74efd9b2a3b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1605533493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347016351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e77a48d7329d1e4fa9bbf5afa1be126, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerDados
-  InitialPosition: {fileID: 1634230641}
 --- !u!1001 &1606185310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21418,10 +21401,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 8692197950834215964, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7276270706405868793, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1605533493}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b2516144bde5d9498f41e3b2d44f451, type: 3}
 --- !u!114 &5252801729112198200 stripped
 MonoBehaviour:

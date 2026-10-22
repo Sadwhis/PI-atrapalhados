@@ -1,41 +1,29 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class PlayerDados : MonoBehaviour
 {
-    [SerializeField] private Transform InitialPosition;
-    void Start()
-    {
-        Respawn();
-    }
-
-    // Update is called once per frame
+    public Animator transition;
+    public float transitionTime = 1f;
     void Update()
     {
+        if (Input.GetMouseButton(0))
+        {
+            LoadNextLevel();
+        }
+    }
+    public void LoadNextLevel()
+    {
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 2));
+        IEnumerator LoadLevel(int LevelIndex)
+        {
+            transition.SetTrigger("Start");
+            yield return new WaitForSeconds(transitionTime);
+            SceneManager.LoadScene(LevelIndex);
+        }
 
-    }
-    private void Respawn()
-    {
-       float x = PlayerPrefs.GetFloat("checkpointX");
-       float y = PlayerPrefs.GetFloat("checkpointY");
-        Vector2 checkpointPosition = new Vector2(x, y);
-        if(checkpointPosition != Vector2.zero)
-        {
-            transform.position = checkpointPosition;
-        }
-        else
-        {
-            transform.position = InitialPosition.position;
-        }
-    }
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.CompareTag("CheckPoint"))
-        {
-            Vector2 position = collision.transform.position;
-            PlayerPrefs.SetFloat("checkpointX", position.x);
-            PlayerPrefs.SetFloat("checkpointY", position.y);
-        }
     }
 }
