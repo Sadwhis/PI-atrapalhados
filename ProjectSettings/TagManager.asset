@@ -23,6 +23,7 @@ TagManager:
   - ground
   - Ground
   - CheckPoint
+  - RespawnPlayer
   layers:
   - Default
   - TransparentFX

@@ -1,86 +1,80 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
+    private static HashSet<GameObject> portalObjects =
+        new HashSet<GameObject>();
+
+    [Header("Modo do Portal")]
+    [SerializeField] private bool trocarDeCena = false;
+
+    [Header("Teletransporte na mesma cena")]
+    [SerializeField] private Transform destination;
+
+    [Header("Troca de cena")]
     [SerializeField] private string nomeCena;
-    [SerializeField] private Transform InitialPosition;
+
     private bool carregando;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (carregando) return;
+        GameObject jogador = other.attachedRigidbody != null
+            ? other.attachedRigidbody.gameObject
+            : other.gameObject;
 
-        if (other.CompareTag("Player"))
+        if (!jogador.CompareTag("Player"))
+            return;
+
+        if (portalObjects.Contains(jogador))
+            return;
+
+        // Troca de cena
+        if (trocarDeCena)
         {
+            if (carregando)
+                return;
+
+            if (string.IsNullOrEmpty(nomeCena))
+                return;
+
             carregando = true;
 
-            // Salva a posição do jogador na cena atual
-            SalvarPosicao(other.transform);
-
-            // Faz a transição usando seu FadeManager
+            // Não salva a posição do portal
             FadeManager.Instance.TrocarCena(nomeCena);
+            return;
+        }
+
+        // Teletransporte na mesma cena
+        if (destination == null)
+            return;
+
+        portalObjects.Add(jogador);
+
+        jogador.transform.position = destination.position;
+
+        if (jogador.TryGetComponent(out Rigidbody rb))
+        {
+            rb.linearVelocity = Vector3.zero;
         }
     }
 
-    private void SalvarPosicao(Transform jogador)
+    private void OnTriggerExit(Collider other)
     {
-        string cenaAtual = SceneManager.GetActiveScene().name;
-        string chave = "PortalPos_" + cenaAtual;
+        GameObject jogador = other.attachedRigidbody != null
+            ? other.attachedRigidbody.gameObject
+            : other.gameObject;
 
-        PlayerPrefs.SetFloat(chave + "_X", jogador.position.x);
-        PlayerPrefs.SetFloat(chave + "_Y", jogador.position.y);
-        PlayerPrefs.SetFloat(chave + "_Z", jogador.position.z);
-
-        PlayerPrefs.SetInt(chave + "_Salvo", 1);
-
-        PlayerPrefs.Save();
+        portalObjects.Remove(jogador);
     }
 
     public void trocarCena(string nomeCenaa)
     {
-        FadeManager.Instance.TrocarCena(nomeCenaa);
-    }
-
-    private void Respawn()
-    {
-        string cenaAtual = SceneManager.GetActiveScene().name;
-        string chave = "PortalPos_" + cenaAtual;
-
-        // Verifica se existe uma posição salva pelo portal
-        if (PlayerPrefs.GetInt(chave + "_Salvo", 0) == 1)
-        {
-            float x = PlayerPrefs.GetFloat(chave + "_X");
-            float y = PlayerPrefs.GetFloat(chave + "_Y");
-            float z = PlayerPrefs.GetFloat(chave + "_Z");
-
-            transform.position = new Vector3(x, y, z);
-
-            // Remove somente o salvamento de chegada desta cena
-            PlayerPrefs.DeleteKey(chave + "_Salvo");
-            PlayerPrefs.DeleteKey(chave + "_X");
-            PlayerPrefs.DeleteKey(chave + "_Y");
-            PlayerPrefs.DeleteKey(chave + "_Z");
-
-            PlayerPrefs.Save();
+        if (carregando || string.IsNullOrEmpty(nomeCenaa))
             return;
-        }
 
-        // Se não veio de um portal, mantém o respawn antigo
-        float checkpointX = PlayerPrefs.GetFloat("checkpointX");
-        float checkpointY = PlayerPrefs.GetFloat("checkpointY");
-
-        if (checkpointX != 0 || checkpointY != 0)
-        {
-            transform.position = new Vector3(
-                checkpointX,
-                checkpointY,
-                transform.position.z
-            );
-        }
-        else if (InitialPosition != null)
-        {
-            transform.position = InitialPosition.position;
-        }
+        carregando = true;
+        FadeManager.Instance.TrocarCena(nomeCenaa);
     }
 }

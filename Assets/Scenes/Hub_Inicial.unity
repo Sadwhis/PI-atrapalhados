@@ -6758,8 +6758,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3db046f29468ba34ab6743036abc5d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trocarDeCena: 1
+  destination: {fileID: 784818608}
   nomeCena: Mundo_Chocolate
-  InitialPosition: {fileID: 855058560}
 --- !u!1 &790348781
 GameObject:
   m_ObjectHideFlags: 0
@@ -7356,9 +7357,10 @@ GameObject:
   m_Component:
   - component: {fileID: 855058560}
   - component: {fileID: 855058559}
+  - component: {fileID: 855058561}
   m_Layer: 0
   m_Name: CheckPoint (2)
-  m_TagString: Untagged
+  m_TagString: CheckPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7393,12 +7395,26 @@ Transform:
   m_GameObject: {fileID: 855058558}
   serializedVersion: 2
   m_LocalRotation: {x: 9.3132246e-10, y: -0.6953984, z: 9.3132246e-10, w: 0.7186245}
-  m_LocalPosition: {x: -2.56, y: 4.019435, z: 48.5}
-  m_LocalScale: {x: 0.39721763, y: 1, z: 2.5186458}
+  m_LocalPosition: {x: -2.6, y: 4.8, z: 48.8}
+  m_LocalScale: {x: 0.46, y: 1.43, z: 3.91}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0.758, y: -88.629, z: 1.131}
+--- !u!114 &855058561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855058558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b91997666a261d49981929c8cfcea0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RespawnPlayer
+  InitialPosition: {fileID: 855058560}
+  pontoRespawn: {fileID: 1634230641}
 --- !u!1001 &864340798
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16774,9 +16790,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1634230641}
   - component: {fileID: 1634230640}
+  - component: {fileID: 1634230642}
   m_Layer: 0
   m_Name: Initial Point
-  m_TagString: Untagged
+  m_TagString: RespawnPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16811,12 +16828,26 @@ Transform:
   m_GameObject: {fileID: 1634230639}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.99, y: 1.41, z: -46.74}
+  m_LocalPosition: {x: -4.99, y: 1.79, z: -46.74}
   m_LocalScale: {x: 2.36, y: 1.78, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1634230642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634230639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b91997666a261d49981929c8cfcea0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RespawnPlayer
+  InitialPosition: {fileID: 1634230641}
+  pontoRespawn: {fileID: 855058560}
 --- !u!1 &1644232234
 GameObject:
   m_ObjectHideFlags: 0

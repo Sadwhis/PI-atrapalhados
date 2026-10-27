@@ -949,6 +949,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3db046f29468ba34ab6743036abc5d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trocarDeCena: 1
+  destination: {fileID: 359847575}
   nomeCena: Hub_Inicial
 --- !u!65 &359847577
 BoxCollider:
@@ -4524,6 +4526,59 @@ MonoBehaviour:
   _duracaoRostoGiro: 0.5
   _duracaoBrotoCoracao: 0.35
   _atrasoEntreCoracoes: 0.12
+--- !u!1 &2071245011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2071245013}
+  - component: {fileID: 2071245012}
+  m_Layer: 0
+  m_Name: CheckPoint (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &2071245012
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071245011}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.58, y: 4.77, z: 1.26}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &2071245013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071245011}
+  serializedVersion: 2
+  m_LocalRotation: {x: 9.3132246e-10, y: -0.6953984, z: 9.3132246e-10, w: 0.7186245}
+  m_LocalPosition: {x: -2.56, y: 4.019435, z: 48.5}
+  m_LocalScale: {x: 0.39721763, y: 1, z: 2.5186458}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0.758, y: -88.629, z: 1.131}
 --- !u!1001 &2079290279
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5053,3 +5108,4 @@ SceneRoots:
   - {fileID: 203351223}
   - {fileID: 187854858}
   - {fileID: 2097699446}
+  - {fileID: 2071245013}
