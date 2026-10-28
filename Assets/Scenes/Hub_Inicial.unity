@@ -6759,7 +6759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trocarDeCena: 1
-  destination: {fileID: 784818608}
+  destination: {fileID: 855058560}
   nomeCena: Mundo_Chocolate
 --- !u!1 &790348781
 GameObject:
@@ -21183,13 +21183,53 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1514215417}
+    - target: {fileID: 765086096837982315, guid: acb3acf3d788a4c45adc6987cff34281, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0000059605
+      objectReference: {fileID: 0}
+    - target: {fileID: 765086096837982315, guid: acb3acf3d788a4c45adc6987cff34281, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 155
+      objectReference: {fileID: 0}
     - target: {fileID: 865034871353595368, guid: acb3acf3d788a4c45adc6987cff34281, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1514215417}
+    - target: {fileID: 1391998978393571805, guid: acb3acf3d788a4c45adc6987cff34281, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1391998978393571805, guid: acb3acf3d788a4c45adc6987cff34281, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -132
+      objectReference: {fileID: 0}
+    - target: {fileID: 3774234769375463266, guid: acb3acf3d788a4c45adc6987cff34281, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3774234769375463266, guid: acb3acf3d788a4c45adc6987cff34281, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -387
+      objectReference: {fileID: 0}
     - target: {fileID: 4381977559981698815, guid: acb3acf3d788a4c45adc6987cff34281, type: 3}
       propertyPath: m_Name
       value: Canva - Hud
+      objectReference: {fileID: 0}
+    - target: {fileID: 4655190178642976502, guid: acb3acf3d788a4c45adc6987cff34281, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -633.1862
+      objectReference: {fileID: 0}
+    - target: {fileID: 4655190178642976502, guid: acb3acf3d788a4c45adc6987cff34281, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -107.6417
+      objectReference: {fileID: 0}
+    - target: {fileID: 4655190178642976502, guid: acb3acf3d788a4c45adc6987cff34281, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 39
+      objectReference: {fileID: 0}
+    - target: {fileID: 4655190178642976502, guid: acb3acf3d788a4c45adc6987cff34281, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -53.821
       objectReference: {fileID: 0}
     - target: {fileID: 4707684153231181438, guid: acb3acf3d788a4c45adc6987cff34281, type: 3}
       propertyPath: m_Pivot.x
@@ -21270,6 +21310,10 @@ PrefabInstance:
     - target: {fileID: 4707684153231181438, guid: acb3acf3d788a4c45adc6987cff34281, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797493117124773444, guid: acb3acf3d788a4c45adc6987cff34281, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
