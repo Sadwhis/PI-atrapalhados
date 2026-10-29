@@ -15,7 +15,7 @@ public class Portal : MonoBehaviour
 
     [Header("Troca de cena")]
     [SerializeField] private string nomeCena;
-
+    [SerializeField] int _numbCena;
     private bool carregando;
 
     private void OnTriggerEnter(Collider other)
@@ -33,6 +33,9 @@ public class Portal : MonoBehaviour
         // Troca de cena
         if (trocarDeCena)
         {
+
+            PlayerPrefs.SetInt("pos", _numbCena);
+            
             if (carregando)
                 return;
 
@@ -76,5 +79,7 @@ public class Portal : MonoBehaviour
 
         carregando = true;
         FadeManager.Instance.TrocarCena(nomeCenaa);
+       
     }
+
 }

@@ -86,6 +86,8 @@ namespace Atrapalhados
 
         Camera _mainCamera;
 
+        [SerializeField] GameManager _gameManager;
+
         #region Unity Methods
 
         void OnValidate()
@@ -97,6 +99,12 @@ namespace Atrapalhados
         void Start()
         {
             _mainCamera = Camera.main;
+            if(PlayerPrefs.GetInt("pos") <= 1)
+            {
+             _gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+            _gameManager._player = transform;
+            }
+            
             // flyEnemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<FlyEnemy>();
         }
 
