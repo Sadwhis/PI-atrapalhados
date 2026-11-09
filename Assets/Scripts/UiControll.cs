@@ -5,17 +5,12 @@ using UnityEngine.UI;
 
 public class UiControll : MonoBehaviour
 {
-    //public CanvasGroup CanvasGroup;
-    //public float duration;
-    //public Button Jogar;
-    //public Button DarNoPé;
-    [SerializeField] Transform Titulo;
+    [SerializeField] private float scaleFactor = 1.2f;
+    [SerializeField] private float durantion = 0.5f;
+    private Vector3 originalScale;
     void Start()
     {
-        // CanvasGroup.DOFade(1f, duration);
-        //Jogar.onClick.AddListener(PlayButtonAnimation);
-        //DarNoPé.onClick.AddListener(DarNoPéButtonAnimation);
-        Titulo.transform.DOShakeScale(1, new Vector3(1, 0.5f, 0), 5);
+        originalScale = transform.localScale;
     }
 
     // Update is called once per frame
@@ -23,14 +18,15 @@ public class UiControll : MonoBehaviour
     {
 
     }
-    //void PlayButtonAnimation()
-    //{
-    //.transform.DOShakeScale(Vector3.one * 0.3f, 10, 1f);
-    //}
-    // DarNoPéButtonAnimation()
-    //
+    public void OnPointerEnter()
+    {
+        transform.DOScale(endValue: originalScale * scaleFactor, durantion).SetEase(Ease.OutQuad);
+    }
+    public void OnPointerExit()
+    {
+        transform.DOScale(originalScale, durantion).SetEase(Ease.OutQuad);
+    }
 
-    //}
 
 }
 
