@@ -6,7 +6,7 @@ public class MenuPause : MonoBehaviour
 {
     public GameObject _MenuPause;
 
-    private bool paused = false;
+    public bool paused = false;
 
     void Start()
     {
@@ -26,6 +26,8 @@ public class MenuPause : MonoBehaviour
         {
             AlternarPause();
         }
+
+        print(Time.timeScale);
     }
 
     private void AlternarPause()
@@ -64,7 +66,7 @@ public class MenuPause : MonoBehaviour
             _MenuPause.SetActive(false);
         }
 
-        Time.timeScale = 1f;
+       Time.timeScale = 1f;
     }
 
     // Botão Continuar
