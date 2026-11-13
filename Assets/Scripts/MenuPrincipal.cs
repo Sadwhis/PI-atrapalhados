@@ -8,6 +8,10 @@ public class MenuPrincipal : MonoBehaviour
     public string nomeDaCenaDoJogo = "Hub_Inicial";
     public GameObject _TelaDeOpcoes;
     //public Button primarybutton;
+    [SerializeField] public RawImage _Imagem;
+    [SerializeField] public float _x, _y;
+
+
     private void Start()
     {
         // primarybutton.Select();
@@ -43,6 +47,9 @@ public class MenuPrincipal : MonoBehaviour
             Cursor.visible = isLocked;
             Cursor.lockState = isLocked ? CursorLockMode.None : CursorLockMode.Locked;
         }
+
+        FundoSeMexendo();
+
     }
     public void OpcoeDoJogo()
     {
@@ -54,6 +61,12 @@ public class MenuPrincipal : MonoBehaviour
     public void SairDasOpcoes()
     {
         _TelaDeOpcoes.SetActive(false);
+
+    }
+
+    public void FundoSeMexendo()
+    {
+        _Imagem.uvRect = new Rect(_Imagem.uvRect.position + new Vector2(_x, _y) * Time.deltaTime, _Imagem.uvRect.size);
 
     }
 
