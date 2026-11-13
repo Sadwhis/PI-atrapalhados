@@ -4,83 +4,53 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 public class MenuPause : MonoBehaviour
 {
-    public GameObject _MenuPause;
+    public GameObject pauseMenu;
 
-    public bool paused = false;
+    private bool paused = false;
 
     void Start()
     {
-        HideMenuPause();
+        HidePauseMenu();
     }
 
     void Update()
     {
-        // Teclado: ESC
-        if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            AlternarPause();
+            if (paused)
+                HidePauseMenu();
+            else
+                ShowPauseMenu();
         }
-
-        // Gamepad: botão Start/Menu
-        if (Gamepad.current != null && Gamepad.current.startButton.wasPressedThisFrame)
-        {
-            AlternarPause();
-        }
-
-        print(Time.timeScale);
+        
     }
 
-    private void AlternarPause()
-    {
-        if (paused)
-        {
-            HideMenuPause();
-        }
-        else
-        {
-            ShowMenuPause();
-        }
-
-        //Cursor.lockState = CursorLockMode.None;
-        //Cursor.visible = true;
-    }
-
-    private void ShowMenuPause()
+    private void ShowPauseMenu()
     {
         paused = true;
-
-        if (_MenuPause != null)
-        {
-            _MenuPause.SetActive(true);
-        }
-
+        pauseMenu.SetActive(true);
         Time.timeScale = 0f;
     }
 
-    private void HideMenuPause()
+    private void HidePauseMenu()
     {
         paused = false;
-
-        if (_MenuPause != null)
-        {
-            _MenuPause.SetActive(false);
-        }
-
-       Time.timeScale = 1f;
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
     }
 
-    // Botão Continuar
     public void BTN_Resume()
     {
-        HideMenuPause();
+        HidePauseMenu();
     }
 
-    // Botão Sair
-    public void ClickToHome()
+    public void BTN_Quit()
     {
-        Time.timeScale = 1f;
+        Application.Quit();
 
-        SceneManager.LoadScene(0);
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#endif
     }
 
 }

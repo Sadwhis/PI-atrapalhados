@@ -17745,7 +17745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1219438677969847974}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1701474984
@@ -22374,7 +22374,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5475845461759280843}
         m_TargetAssemblyTypeName: MenuPause, Assembly-CSharp
-        m_MethodName: ClickToHome
+        m_MethodName: BTN_Quit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -25887,7 +25887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c8f1434133971419895c235f1dffea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuPause
-  _MenuPause: {fileID: 643284986}
+  pauseMenu: {fileID: 643284986}
 --- !u!224 &5607054592718305260
 RectTransform:
   m_ObjectHideFlags: 0
