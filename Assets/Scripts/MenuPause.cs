@@ -4,60 +4,83 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 public class MenuPause : MonoBehaviour
 {
-    public GameObject pauseMenu;
+    public GameObject _MenuPause;
 
     public bool paused = false;
 
     void Start()
     {
-        HidePauseMenu();
+        HideMenuPause();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        // Teclado: ESC
+        if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            if (paused)
-                HidePauseMenu();
-            else
-                ShowPauseMenu();
+            AlternarPause();
         }
-        //if (Input.GetKeyDown(KeyCode.Escape))
-        //{
-          //  if (paused)
-            //    HidePauseMenu();
-           // else
-             //   ShowPauseMenu();
-        //}
 
+        // Gamepad: botão Start/Menu
+        if (Gamepad.current != null && Gamepad.current.startButton.wasPressedThisFrame)
+        {
+            AlternarPause();
+        }
+
+        print(Time.timeScale);
     }
 
-    private void ShowPauseMenu()
+    public void AlternarPause()
+    {
+        if (paused)
+        {
+            HideMenuPause();
+        }
+        else
+        {
+            ShowMenuPause();
+        }
+
+        //Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = true;
+    }
+
+    public void ShowMenuPause()
     {
         paused = true;
-        pauseMenu.SetActive(true);
+
+        if (_MenuPause != null)
+        {
+            _MenuPause.SetActive(true);
+        }
+
         Time.timeScale = 0f;
     }
 
-    private void HidePauseMenu()
+    public void HideMenuPause()
     {
         paused = false;
-        pauseMenu.SetActive(false);
+
+        if (_MenuPause != null)
+        {
+            _MenuPause.SetActive(false);
+        }
+
         Time.timeScale = 1f;
     }
 
+    // Botão Continuar
     public void BTN_Resume()
     {
-        HidePauseMenu();
+        HideMenuPause();
     }
 
-    public void BTN_Quit()
+    // Botão Sair
+    public void ClickToHome()
     {
-        Application.Quit();
+        Time.timeScale = 1f;
 
-#if UNITY_EDITOR
-        EditorApplication.ExitPlaymode();
-#endif
+        SceneManager.LoadScene(0);
     }
 
 }
