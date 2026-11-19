@@ -6,7 +6,7 @@ public class MenuPause : MonoBehaviour
 {
     public GameObject pauseMenu;
 
-    private bool paused = false;
+    public bool paused = false;
 
     void Start()
     {
@@ -15,14 +15,21 @@ public class MenuPause : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             if (paused)
                 HidePauseMenu();
             else
                 ShowPauseMenu();
         }
-        
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+          //  if (paused)
+            //    HidePauseMenu();
+           // else
+             //   ShowPauseMenu();
+        //}
+
     }
 
     private void ShowPauseMenu()

@@ -9844,6 +9844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuPause
   pauseMenu: {fileID: 1992315144}
+  paused: 0
 --- !u!114 &7191912371526735836
 MonoBehaviour:
   m_ObjectHideFlags: 0

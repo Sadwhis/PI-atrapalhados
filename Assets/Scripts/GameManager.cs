@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        _player.position = _poStart[_posIni].position;
+        //_player.position = _poStart[_posIni].position;
         
         //_posIni = PlayerPrefs.GetInt("pos");
     }
