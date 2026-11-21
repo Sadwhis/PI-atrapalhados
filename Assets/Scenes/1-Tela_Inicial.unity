@@ -1193,7 +1193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nomeDaCenaDoJogo: Hub_Inicial
   _TelaDeOpcoes: {fileID: 1869559962}
-  _Imagem: {fileID: 0}
+  _Imagem: {fileID: 38157557}
   _x: 0
   _y: 0
 --- !u!1 &856046077

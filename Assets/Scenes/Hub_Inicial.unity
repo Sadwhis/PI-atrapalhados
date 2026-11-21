@@ -25887,7 +25887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c8f1434133971419895c235f1dffea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuPause
-  pauseMenu: {fileID: 643284986}
+  _MenuPause: {fileID: 643284986}
   paused: 0
 --- !u!224 &5607054592718305260
 RectTransform:
