@@ -6764,6 +6764,7 @@ GameObject:
   - component: {fileID: 784818608}
   - component: {fileID: 784818609}
   - component: {fileID: 784818610}
+  - component: {fileID: 784818611}
   m_Layer: 0
   m_Name: Collider_PortalChocolate
   m_TagString: Untagged
@@ -6823,6 +6824,21 @@ MonoBehaviour:
   destination: {fileID: 855058560}
   nomeCena: Mundo_Chocolate
   _numbCena: 1
+--- !u!114 &784818611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784818607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fab5740e7614e94d8350e5e2bbd3a38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TravaPortal
+  textoAlerta: {fileID: 0}
+  tempoMensagem: 3
+  mensagemAtiva: 0
 --- !u!1 &790348781
 GameObject:
   m_ObjectHideFlags: 0
