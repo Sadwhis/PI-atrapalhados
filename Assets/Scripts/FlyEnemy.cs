@@ -92,7 +92,19 @@ public class FlyEnemy : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         _agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
-        _vidaController = GameObject.FindWithTag("Player").GetComponent<HeartController>();
+
+        // Acha o player pela tag "Player"
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        if (playerObj != null)
+        {
+            player = playerObj.transform;
+            _vidaController = playerObj.GetComponent<HeartController>();
+        }
+        else
+        {
+            Debug.LogError("FlyEnemy: nenhum objeto com a tag 'Player' foi encontrado na cena!", this);
+        }
+
         _agent.baseOffset = _flightHeight;
         _agent.speed = _moveSpeed;
         _agent.updateRotation = false;
@@ -107,7 +119,6 @@ public class FlyEnemy : MonoBehaviour
             _originalColors[i] = _renderers[i].material.color;
         }
     }
-
     void Update()
     {
         if (_hitCooldownTimer > 0f)
